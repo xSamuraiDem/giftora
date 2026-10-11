@@ -1,233 +1,340 @@
-from pathlib import Path
-
-html = r'''<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
   <meta name="theme-color" content="#100d1b">
-  <title>Giftora — Upgrade Your Gifts</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <meta name="color-scheme" content="dark">
+  <title>Giftora — Telegram Gifts</title>
+  <script src="https://telegram.org/js/telegram-web-app.js?63"></script>
   <style>
-    :root {
-      --bg: #100d1b;
-      --panel: rgba(29, 24, 47, .88);
-      --panel2: #211a35;
-      --text: #f8f5ff;
-      --muted: #a9a1bd;
-      --pink: #ff5ebc;
-      --violet: #9b6bff;
-      --gold: #ffd777;
-      --green: #58e6ae;
-      --line: rgba(255,255,255,.09);
-    }
-    * { box-sizing: border-box; }
-    html { background: var(--bg); }
-    body {
-      margin: 0; min-height: 100vh; color: var(--text);
-      background:
-        radial-gradient(ellipse at 12% 0%, rgba(155,107,255,.24), transparent 38%),
-        radial-gradient(ellipse at 95% 20%, rgba(255,94,188,.14), transparent 32%),
-        linear-gradient(180deg, #100d1b 0%, #151025 55%, #100d1b 100%);
-      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-    button { font: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
-    .app { width: min(100%, 520px); margin: 0 auto; padding: 18px 16px 28px; }
-    .topbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:22px; }
-    .brand { display:flex; gap:10px; align-items:center; }
-    .logo {
-      width:42px; height:42px; border-radius:14px; display:grid; place-items:center;
-      font-size:22px; background:linear-gradient(135deg,var(--pink),var(--violet));
-      box-shadow:0 8px 26px rgba(155,107,255,.25);
-    }
-    .brand-name { font-size:18px; font-weight:900; letter-spacing:.3px; }
-    .brand-sub { color:var(--muted); font-size:10px; letter-spacing:1.8px; margin-top:2px; }
-    .online {
-      display:flex; align-items:center; gap:7px; padding:8px 11px; border:1px solid var(--line);
-      border-radius:999px; background:rgba(255,255,255,.035); color:#d7d0e7; font-size:11px;
-    }
-    .dot { width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 10px rgba(88,230,174,.75); }
-    .hero {
-      position:relative; overflow:hidden; border:1px solid rgba(255,255,255,.1); border-radius:27px;
-      padding:23px 20px 20px; background:linear-gradient(135deg,rgba(53,38,83,.96),rgba(30,22,49,.96));
-      box-shadow:0 20px 50px rgba(0,0,0,.24);
-    }
-    .hero:before { content:""; position:absolute; width:210px;height:210px;right:-75px;top:-95px;border-radius:50%;
-      background:radial-gradient(circle,rgba(255,94,188,.28),transparent 68%); pointer-events:none; }
-    .eyebrow { display:inline-flex; gap:7px; align-items:center; color:#e3caff; font-size:10px; font-weight:800; letter-spacing:1.8px; text-transform:uppercase; }
-    h1 { position:relative; font-size:34px; line-height:1.04; margin:13px 0 10px; letter-spacing:-1.4px; }
-    h1 span { background:linear-gradient(90deg,#fff 5%,#ffc5e9 48%,#bda1ff 95%); -webkit-background-clip:text; background-clip:text; color:transparent; }
-    .hero p { position:relative; color:#bdb3d2; font-size:13px; line-height:1.55; margin:0; max-width:285px; }
-    .hero-art { position:absolute; right:12px; bottom:12px; width:118px; height:118px; display:grid; place-items:center; }
-    .orb { position:absolute; inset:7px; border-radius:50%; border:1px solid rgba(255,255,255,.12); background:radial-gradient(circle at 35% 25%,rgba(255,215,119,.24),rgba(155,107,255,.08) 52%,transparent 70%); }
-    .gift-big { position:relative; font-size:70px; filter:drop-shadow(0 12px 18px rgba(255,94,188,.28)); transform:rotate(-8deg); }
-    .spark { position:absolute; color:var(--gold); font-size:17px; }
-    .s1 { top:3px; right:19px; } .s2 { bottom:15px; left:5px; color:#ff8bd0; }
-    .primary {
-      width:100%; border:0; border-radius:16px; padding:16px 15px; margin-top:20px;
-      display:flex; align-items:center; justify-content:center; gap:10px; color:#fff; font-weight:850; font-size:14px;
-      background:linear-gradient(100deg,#ff54b7 0%,#b45cff 58%,#8b68ff 100%);
-      box-shadow:0 10px 25px rgba(180,92,255,.24), inset 0 1px 0 rgba(255,255,255,.25);
-      transition:transform .15s ease, filter .15s ease;
-    }
-    .primary:active,.nav-btn:active,.setting-btn:active { transform:scale(.98); filter:brightness(1.12); }
-    .section-head { display:flex; align-items:center; justify-content:space-between; margin:24px 2px 12px; }
-    .section-title { font-size:15px; font-weight:850; }
-    .section-note { font-size:11px; color:var(--muted); }
-    .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:9px; }
-    .stat { border:1px solid var(--line); border-radius:17px; padding:13px 10px; background:rgba(255,255,255,.035); min-width:0; }
-    .stat-icon { font-size:18px; margin-bottom:9px; }
-    .stat-value { font-size:16px; font-weight:900; letter-spacing:-.4px; }
-    .stat-label { color:var(--muted); font-size:10px; margin-top:4px; white-space:nowrap; }
-    .upgrade-card { border:1px solid var(--line); border-radius:22px; padding:16px; background:var(--panel); }
-    .item-row { display:grid; grid-template-columns:1fr 32px 1fr; align-items:center; gap:8px; }
-    .item {
-      text-align:center; min-width:0; padding:15px 7px 13px; border:1px solid rgba(255,255,255,.08);
-      border-radius:17px; background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
-    }
-    .item-emoji { font-size:38px; line-height:1.25; filter:drop-shadow(0 5px 12px rgba(155,107,255,.2)); }
-    .item-name { font-size:11px; font-weight:800; margin-top:8px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-    .item-price { color:var(--gold); font-size:11px; margin-top:5px; }
-    .arrow { width:30px; height:30px; border-radius:50%; display:grid; place-items:center; color:#f7c5ff; background:rgba(177,100,255,.15); border:1px solid rgba(177,100,255,.25); }
-    .chance-line { display:flex; justify-content:space-between; align-items:center; margin:16px 1px 8px; font-size:11px; color:var(--muted); }
-    .chance { color:var(--green); font-weight:850; }
-    .progress { height:7px; border-radius:10px; background:rgba(255,255,255,.08); overflow:hidden; }
-    .progress span { display:block; width:67%; height:100%; border-radius:10px; background:linear-gradient(90deg,var(--pink),var(--violet)); }
-    .demo-note { font-size:10px; color:#8e85a4; line-height:1.45; margin:12px 2px 0; }
-    .settings { border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,.03); overflow:hidden; }
-    .setting-row { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px; }
-    .setting-row + .setting-row { border-top:1px solid var(--line); }
-    .setting-left { display:flex; gap:11px; align-items:center; }
-    .setting-icon { width:35px;height:35px;border-radius:12px;display:grid;place-items:center;background:rgba(155,107,255,.14);font-size:17px; }
-    .setting-title { font-size:12px; font-weight:800; }
-    .setting-desc { font-size:10px; color:var(--muted); margin-top:4px; }
-    .setting-btn { border:1px solid rgba(255,255,255,.1); border-radius:11px; background:#2c2342; color:#f6efff; padding:9px 11px; font-size:11px; font-weight:800; white-space:nowrap; }
-    .setting-btn.on { background:rgba(88,230,174,.12); border-color:rgba(88,230,174,.28); color:#8af0c5; }
-    .bottom-nav { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:22px; }
-    .nav-btn { border:1px solid var(--line); border-radius:14px; background:rgba(255,255,255,.035); color:#a99fbe; padding:12px 5px; font-size:10px; font-weight:750; display:flex; flex-direction:column; align-items:center; gap:6px; }
-    .nav-btn .nav-emoji { font-size:18px; }
-    .nav-btn.active { color:#fff; border-color:rgba(196,130,255,.38); background:linear-gradient(135deg,rgba(255,94,188,.15),rgba(155,107,255,.17)); }
-    .footer { text-align:center; color:#6f6685; font-size:10px; margin-top:18px; letter-spacing:.4px; }
-    .toast { position:fixed; left:50%; bottom:22px; transform:translate(-50%,20px); opacity:0; pointer-events:none; transition:.22s; z-index:10; width:max-content; max-width:calc(100% - 32px); border:1px solid var(--line); border-radius:14px; padding:12px 16px; color:#fff; background:#2a2140; box-shadow:0 12px 35px rgba(0,0,0,.35); font-size:12px; text-align:center; }
-    .toast.show { opacity:1; transform:translate(-50%,0); }
-    @media (max-width:360px) { h1{font-size:30px}.hero-art{opacity:.65;right:-5px}.hero p{max-width:240px}.stat-label{font-size:9px}.app{padding-left:12px;padding-right:12px} }
+    :root{--bg:#100d1b;--panel:#1b162b;--panel2:#241d38;--text:#faf7ff;--muted:#a99fbd;--pink:#ff58b8;--violet:#9e6bff;--gold:#ffd777;--green:#62e6b0;--line:rgba(255,255,255,.09);--danger:#ff7b9b;--safe:env(safe-area-inset-bottom,0px)}
+    *{box-sizing:border-box}html{min-height:100%;background:var(--bg);scroll-behavior:smooth}body{margin:0;min-height:100vh;color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(ellipse at 10% 0%,rgba(158,107,255,.23),transparent 38%),radial-gradient(ellipse at 100% 14%,rgba(255,88,184,.12),transparent 32%),linear-gradient(180deg,#100d1b,#151025 57%,#100d1b);-webkit-font-smoothing:antialiased}button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}button:focus-visible{outline:2px solid #d4b1ff;outline-offset:3px}.app{width:min(100%,560px);min-height:100vh;margin:0 auto;padding:17px 16px calc(95px + var(--safe))}.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:21px}.brand{display:flex;align-items:center;gap:10px;min-width:0}.logo{width:43px;height:43px;flex-shrink:0;display:grid;place-items:center;border-radius:15px;font-size:23px;background:linear-gradient(135deg,var(--pink),var(--violet));box-shadow:0 8px 28px #9b6bff3d}.brand-name{font-size:18px;font-weight:950;letter-spacing:.3px}.brand-sub{font-size:9px;color:var(--muted);letter-spacing:1.55px;margin-top:2px}.online{display:flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:8px 10px;background:#ffffff08;color:#ded7ea;font-size:10px;white-space:nowrap}.dot{width:7px;height:7px;flex:0 0 7px;border-radius:50%;background:#7d718f}.dot.live{background:var(--green);box-shadow:0 0 11px #62e6b080}.dot.demo{background:var(--gold)}.page{animation:enter .22s ease both}.hidden{display:none!important}@keyframes enter{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}.hero{position:relative;overflow:hidden;border:1px solid #ffffff18;border-radius:27px;padding:24px 20px 20px;background:linear-gradient(135deg,#352653f5,#1e1631f5);box-shadow:0 20px 50px #00000030}.hero:before{content:"";position:absolute;width:230px;height:230px;right:-85px;top:-105px;border-radius:50%;background:radial-gradient(circle,#ff5ebc40,transparent 68%);pointer-events:none}.eyebrow{display:inline-flex;align-items:center;gap:7px;color:#e3caff;font-size:9px;font-weight:850;letter-spacing:1.7px;text-transform:uppercase}.hero h1{position:relative;font-size:34px;line-height:1.04;margin:13px 0 10px;letter-spacing:-1.3px}.gradient-text{background:linear-gradient(90deg,#fff 5%,#ffc5e9 48%,#bda1ff 95%);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{position:relative;max-width:285px;color:#bdb3d2;font-size:12px;line-height:1.6;margin:0}.hero-art{position:absolute;right:11px;bottom:26px;width:118px;height:118px;display:grid;place-items:center;pointer-events:none}.orb{position:absolute;inset:7px;border:1px solid #ffffff20;border-radius:50%;background:radial-gradient(circle at 35% 25%,#ffd7773d,#9b6bff14 52%,transparent 70%)}.gift-big{position:relative;font-size:69px;filter:drop-shadow(0 12px 18px #ff5ebc47);transform:rotate(-8deg)}.spark{position:absolute;color:var(--gold);font-size:17px}.s1{top:3px;right:19px}.s2{bottom:15px;left:5px;color:#ff8bd0}.primary,.secondary,.small-button{border:0;border-radius:15px;font-size:12px;font-weight:850;transition:transform .14s ease,filter .14s ease}.primary{width:100%;margin-top:20px;padding:15px 14px;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(100deg,#ff54b7,#b45cff 58%,#8b68ff);box-shadow:0 10px 25px #b45cff3d,inset 0 1px #ffffff40}.secondary{padding:13px 15px;background:#ffffff0a;border:1px solid var(--line)}.small-button{padding:9px 11px;background:#ffffff0a;border:1px solid var(--line);white-space:nowrap;font-size:10px}.primary:active,.secondary:active,.small-button:active,.nav-btn:active{transform:scale(.98);filter:brightness(1.1)}.section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:23px 2px 11px}.section-title{font-size:14px;font-weight:900}.section-note{font-size:10px;color:var(--muted);text-align:right}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.stat{min-width:0;border:1px solid var(--line);border-radius:17px;padding:13px 10px;background:#ffffff08}.stat-icon{font-size:18px;margin-bottom:9px}.stat-value{font-size:15px;font-weight:900;letter-spacing:-.35px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.stat-label{font-size:9px;color:var(--muted);margin-top:4px;white-space:nowrap}.panel{border:1px solid var(--line);border-radius:21px;padding:15px;background:#1d182fe0;box-shadow:0 10px 28px #00000012}.featured{display:flex;align-items:center;gap:13px}.featured-art{width:76px;height:76px;flex:0 0 76px;display:grid;place-items:center;font-size:39px;border-radius:20px;border:1px solid #ffd77730;background:radial-gradient(circle at 30% 20%,#ffd77726,#9b6bff18 70%)}.featured-label{font-size:9px;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold);font-weight:850}.featured-name{font-size:15px;font-weight:900;margin-top:5px;line-height:1.25}.featured-meta{font-size:10px;color:var(--muted);margin-top:5px}.upgrade-card{padding:15px;border:1px solid var(--line);border-radius:22px;background:var(--panel)}.item-row{display:grid;grid-template-columns:1fr 31px 1fr;align-items:center;gap:8px}.item-preview{text-align:center;min-width:0;padding:16px 7px 13px;border:1px solid #ffffff12;border-radius:17px;background:linear-gradient(180deg,#ffffff0d,#ffffff04)}.item-emoji{font-size:38px;line-height:1.2;filter:drop-shadow(0 5px 12px #9b6bff33)}.item-name{font-size:11px;font-weight:850;margin-top:8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.item-price{font-size:10px;color:var(--gold);margin-top:5px}.arrow{width:30px;height:30px;display:grid;place-items:center;border-radius:50%;color:#f7c5ff;background:#b164ff26;border:1px solid #b164ff40}.note{margin:12px 2px 0;color:#9d93b2;font-size:10px;line-height:1.5}.badge{display:inline-flex;align-items:center;gap:5px;width:max-content;border:1px solid var(--line);border-radius:999px;padding:5px 8px;color:#d8cee9;background:#ffffff08;font-size:9px;font-weight:800}.badge.gold{border-color:#ffd77735;background:#ffd7770c;color:var(--gold)}.badge.green{border-color:#62e6b033;background:#62e6b00d;color:var(--green)}.badge.pink{border-color:#ff58b833;background:#ff58b80c;color:#ff9ed7}.page-title{font-size:25px;line-height:1.1;letter-spacing:-.7px;margin:5px 0 7px;font-weight:950}.page-subtitle{font-size:11px;color:var(--muted);line-height:1.55;margin:0 0 18px}.inventory-toolbar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:13px}.inventory-count{font-size:11px;color:var(--muted)}.filters{display:flex;gap:6px;overflow:auto;padding:0 0 3px;margin:0 0 13px;scrollbar-width:none}.filters::-webkit-scrollbar{display:none}.filter{flex:0 0 auto;border:1px solid var(--line);border-radius:999px;background:#ffffff06;padding:8px 11px;color:var(--muted);font-size:10px;font-weight:800}.filter.active{color:#fff;border-color:#c482ff65;background:#9b6bff25}.inventory-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.gift-card{position:relative;overflow:hidden;min-width:0;padding:13px 11px 12px;border:1px solid var(--line);border-radius:19px;background:linear-gradient(160deg,#ffffff0d,#ffffff04)}.gift-card:before{content:"";position:absolute;inset:0 0 auto;height:3px;background:var(--rarity-color,#9e6bff)}.gift-visual{height:94px;border-radius:14px;display:grid;place-items:center;font-size:47px;background:radial-gradient(circle at 45% 35%,color-mix(in srgb,var(--rarity-color,#9e6bff) 22%,transparent),transparent 70%);margin-bottom:9px}.gift-title{font-size:12px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.gift-rarity{font-size:9px;color:var(--rarity-color,#c4a0ff);font-weight:850;margin-top:4px}.gift-value{font-size:11px;color:var(--gold);font-weight:850;margin-top:9px}.gift-source{font-size:8px;color:var(--muted);margin-top:7px;line-height:1.3}.empty-state{padding:27px 18px;text-align:center;border:1px dashed #ffffff20;border-radius:19px;color:var(--muted);font-size:11px;line-height:1.65}.empty-icon{font-size:36px;margin-bottom:10px}.profile-card{position:relative;overflow:hidden;display:flex;gap:15px;align-items:center;padding:18px;border:1px solid #ffffff16;border-radius:23px;background:linear-gradient(140deg,#382653f0,#1f1933f5)}.profile-card:after{content:"";position:absolute;width:160px;height:160px;right:-75px;top:-85px;border-radius:50%;background:#ff58b821;pointer-events:none}.avatar{width:72px;height:72px;flex:0 0 72px;border-radius:23px;display:grid;place-items:center;overflow:hidden;border:2px solid #ffffff2c;background:linear-gradient(135deg,#ff58b8,#9e6bff);font-size:28px;font-weight:900}.avatar img{width:100%;height:100%;object-fit:cover}.profile-name{font-size:17px;font-weight:950;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:280px}.profile-username{font-size:11px;color:#c5b8dc;margin-top:4px}.profile-id{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:10px;color:#e3d7f3;margin-top:10px}.profile-id button{border:0;background:transparent;color:#c0a0ff;padding:0;font-size:10px}.profile-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:11px}.profile-stat{border:1px solid var(--line);border-radius:16px;padding:13px;background:#ffffff07}.profile-stat .stat-value{font-size:17px}.profile-stat .stat-label{font-size:10px}.best-prize{display:flex;gap:12px;align-items:center;padding:13px;border-radius:18px;border:1px solid #ffd77735;background:linear-gradient(120deg,#ffd7770d,#9b6bff12)}.best-prize .featured-art{width:62px;height:62px;flex-basis:62px;border-radius:17px;font-size:32px}.best-copy{min-width:0}.best-title{font-weight:900;font-size:13px;overflow-wrap:anywhere}.best-sub{font-size:10px;color:var(--muted);margin-top:4px}.settings{border:1px solid var(--line);border-radius:18px;background:#ffffff05;overflow:hidden}.setting-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px}.setting-row+.setting-row{border-top:1px solid var(--line)}.setting-left{display:flex;align-items:center;gap:10px;min-width:0}.setting-icon{width:34px;height:34px;flex:0 0 34px;display:grid;place-items:center;border-radius:12px;background:#9b6bff24;font-size:16px}.setting-title{font-size:11px;font-weight:850}.setting-desc{font-size:9px;color:var(--muted);margin-top:4px;line-height:1.4}.setting-btn{border:1px solid #ffffff18;border-radius:11px;background:#2c2342;color:#f6efff;padding:8px 10px;font-size:10px;font-weight:850;white-space:nowrap}.setting-btn.on{background:#62e6b01f;border-color:#62e6b04a;color:#8af0c5}.bottom-nav{position:fixed;z-index:5;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,560px);padding:10px 13px calc(10px + var(--safe));display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;background:linear-gradient(180deg,#100d1b00,#100d1bf2 20%,#100d1b 100%);backdrop-filter:blur(14px)}.nav-btn{min-width:0;border:1px solid var(--line);border-radius:15px;background:#ffffff07;color:#a99fbe;padding:10px 3px 9px;font-size:9px;font-weight:800;display:flex;flex-direction:column;align-items:center;gap:4px}.nav-emoji{font-size:18px;line-height:1.1}.nav-btn.active{color:#fff;border-color:#c482ff65;background:linear-gradient(135deg,#ff5ebc24,#9b6bff2b)}.footer{text-align:center;color:#726887;font-size:9px;margin-top:21px;letter-spacing:.7px}.toast{position:fixed;left:50%;bottom:calc(86px + var(--safe));transform:translate(-50%,15px);opacity:0;pointer-events:none;transition:.2s;z-index:20;width:max-content;max-width:calc(100% - 28px);border:1px solid var(--line);border-radius:14px;padding:12px 15px;color:#fff;background:#2a2140;box-shadow:0 12px 35px #0006;font-size:11px;text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}.server-note{margin-top:12px;border:1px solid var(--line);border-radius:13px;padding:10px 11px;color:var(--muted);font-size:9px;line-height:1.5;background:#ffffff04}.server-note strong{color:#e7d8ff}.danger-note{border-color:#ff7b9b35;color:#e8b0bf}.row-between{display:flex;justify-content:space-between;align-items:center;gap:10px}.subtle-link{background:none;border:0;color:#c5a5ff;font-size:10px;font-weight:800;padding:5px 0}.loading{opacity:.65;pointer-events:none}@media(max-width:370px){.app{padding-left:12px;padding-right:12px}.hero h1{font-size:30px}.hero-art{opacity:.57;right:-8px}.hero p{max-width:240px}.stat{padding:11px 7px}.stat-value{font-size:13px}.profile-card{gap:11px;padding:14px}.avatar{width:62px;height:62px;flex-basis:62px;border-radius:20px}.profile-name{font-size:15px}.gift-visual{height:83px}}
   </style>
 </head>
 <body>
   <main class="app">
     <header class="topbar">
-      <div class="brand">
-        <div class="logo">🎁</div>
-        <div><div class="brand-name">Giftora</div><div class="brand-sub">UPGRADE YOUR GIFTS</div></div>
-      </div>
-      <div class="online"><span class="dot"></span><span id="onlineCount">● Онлайн</span></div>
+      <div class="brand"><div class="logo">🎁</div><div><div class="brand-name">Giftora</div><div class="brand-sub">UPGRADE YOUR GIFTS</div></div></div>
+      <div class="online" aria-live="polite"><span class="dot" id="onlineDot"></span><span id="onlineCount">Сервер не подключён</span></div>
     </header>
 
-    <section class="hero">
-      <div class="eyebrow">✦ ПОДАРКИ НОВОГО УРОВНЯ</div>
-      <h1>Твой подарок.<br><span>Твой апгрейд.</span></h1>
-      <p>Испытай удачу, выбирай цель и открывай для себя мир Telegram-подарков.</p>
-      <div class="hero-art"><div class="orb"></div><span class="gift-big">🎁</span><span class="spark s1">✦</span><span class="spark s2">✧</span></div>
-      <button class="primary" id="startUpgrade">🎁 &nbsp; Начать апгрейд <span>↗</span></button>
-    </section>
-
-    <div class="section-head"><div class="section-title">Giftora в цифрах</div><div class="section-note">Твоя площадка подарков</div></div>
-    <section class="stats">
-      <div class="stat"><div class="stat-icon">🎁</div><div class="stat-value">Gift Drop</div><div class="stat-label">Мир подарков</div></div>
-      <div class="stat"><div class="stat-icon">⭐</div><div class="stat-value">Stars</div><div class="stat-label">Валюта попыток</div></div>
-      <div class="stat"><div class="stat-icon">⚡</div><div class="stat-value">Upgrade</div><div class="stat-label">Новый уровень</div></div>
-    </section>
-
-    <div class="section-head"><div class="section-title">Предпросмотр апгрейда</div><div class="section-note">Демо-интерфейс</div></div>
-    <section class="upgrade-card">
-      <div class="item-row">
-        <div class="item"><div class="item-emoji">🎁</div><div class="item-name">Твой подарок</div><div class="item-price">Исходный</div></div>
-        <div class="arrow">➜</div>
-        <div class="item"><div class="item-emoji">💎</div><div class="item-name">Редкий подарок</div><div class="item-price">Цель апгрейда</div></div>
+    <section class="page" id="page-home">
+      <section class="hero">
+        <div class="eyebrow">✦ ПОДАРКИ НОВОГО УРОВНЯ</div>
+        <h1>Твой подарок.<br><span class="gradient-text">Твой апгрейд.</span></h1>
+        <p>Собирай коллекцию, следи за лучшими призами и развивай свой инвентарь Giftora.</p>
+        <div class="hero-art"><div class="orb"></div><span class="gift-big">🎁</span><span class="spark s1">✦</span><span class="spark s2">✧</span></div>
+        <button class="primary" id="startUpgrade">⚡ Открыть апгрейд <span>↗</span></button>
+      </section>
+      <div class="section-head"><div class="section-title">Твоя коллекция</div><button class="subtle-link" data-go="inventory">В инвентарь ↗</button></div>
+      <section class="stats">
+        <div class="stat"><div class="stat-icon">🎁</div><div class="stat-value" id="homeInventoryCount">—</div><div class="stat-label">Предметов</div></div>
+        <div class="stat"><div class="stat-icon">🏆</div><div class="stat-value" id="homeBestValue">—</div><div class="stat-label">Лучший приз</div></div>
+        <div class="stat"><div class="stat-icon">🌐</div><div class="stat-value" id="homeOnline">—</div><div class="stat-label">Сейчас онлайн</div></div>
+      </section>
+      <div class="section-head"><div class="section-title">Лучший приз</div><div class="section-note">По ценности в инвентаре</div></div>
+      <section id="homeBestPrize" class="panel"><div class="featured"><div class="featured-art">🎁</div><div><div class="featured-label">Твоя коллекция</div><div class="featured-name">Ищем лучший приз…</div><div class="featured-meta">Загружаем предметы</div></div></div></section>
+      <div class="section-head"><div class="section-title">Быстрый доступ</div><div class="section-note">Всё в одном месте</div></div>
+      <div class="stats">
+        <button class="stat" data-go="inventory" style="text-align:left;color:inherit"><div class="stat-icon">🧳</div><div class="stat-value">Инвентарь</div><div class="stat-label">Все твои предметы</div></button>
+        <button class="stat" data-go="profile" style="text-align:left;color:inherit"><div class="stat-icon">👤</div><div class="stat-value">Профиль</div><div class="stat-label">ID и статистика</div></button>
+        <button class="stat" data-go="upgrade" style="text-align:left;color:inherit"><div class="stat-icon">⚡</div><div class="stat-value">Апгрейд</div><div class="stat-label">Цель улучшения</div></button>
       </div>
-      <div class="chance-line"><span>Шанс успеха</span><span class="chance">67% · пример</span></div>
-      <div class="progress"><span></span></div>
-      <div class="demo-note">Это только визуальный пример. Реальные подарки, цены и шансы появятся после подключения серверной логики.</div>
+      <div class="footer">GIFTORA · YOUR GIFTS, YOUR COLLECTION</div>
     </section>
 
-    <div class="section-head"><div class="section-title">Настройки</div><div class="section-note">Управляй уведомлениями</div></div>
-    <section class="settings">
-      <div class="setting-row">
-        <div class="setting-left"><div class="setting-icon">🔔</div><div><div class="setting-title">Уведомления</div><div class="setting-desc" id="notificationStatus">Уведомления включены</div></div></div>
-        <button class="setting-btn on" id="notificationToggle">🔔 Вкл.</button>
-      </div>
+    <section class="page hidden" id="page-upgrade">
+      <div class="eyebrow">✦ GIFT LAB</div><h2 class="page-title">Апгрейд подарков</h2><p class="page-subtitle">Выбери предмет, а затем цель улучшения. Реальный результат должен рассчитывать сервер — интерфейс не будет списывать или обещать призы без подключённой механики.</p>
+      <section class="upgrade-card">
+        <div class="item-row">
+          <div class="item-preview"><div class="item-emoji" id="upgradeFromEmoji">🎁</div><div class="item-name" id="upgradeFromName">Твой предмет</div><div class="item-price" id="upgradeFromValue">Выбери в инвентаре</div></div>
+          <div class="arrow">➜</div>
+          <div class="item-preview"><div class="item-emoji" id="upgradeToEmoji">💎</div><div class="item-name" id="upgradeToName">Цель апгрейда</div><div class="item-price" id="upgradeToValue">Не выбрана</div></div>
+        </div>
+        <div class="section-head"><div class="section-title">Предмет для улучшения</div><span class="badge" id="upgradeStatus">Не выбрано</span></div>
+        <div id="upgradeChoices" class="filters" aria-label="Выбор предмета"></div>
+        <div class="section-head"><div class="section-title">Цель</div><span class="section-note">Выше ценность</span></div>
+        <div id="targetChoices" class="filters" aria-label="Выбор цели"></div>
+        <div class="server-note"><strong>Важно:</strong> пока в сервере не реализован настоящий движок апгрейда, кнопка не меняет инвентарь и ничего не списывает. Демо-предметы Giftora не являются Telegram-подарками или денежным балансом.</div>
+        <button class="primary" id="doUpgrade">⚡ Проверить апгрейд</button>
+      </section>
+      <div class="section-head"><div class="section-title">Как это работает</div></div>
+      <section class="panel"><div class="setting-row"><div class="setting-left"><div class="setting-icon">1</div><div><div class="setting-title">Выбери предмет</div><div class="setting-desc">Предмет должен быть в твоём инвентаре</div></div></div></div><div class="setting-row"><div class="setting-left"><div class="setting-icon">2</div><div><div class="setting-title">Выбери цель</div><div class="setting-desc">Цель должна быть ценнее исходного предмета</div></div></div></div><div class="setting-row"><div class="setting-left"><div class="setting-icon">3</div><div><div class="setting-title">Подключи серверную механику</div><div class="setting-desc">Результат должен подтверждаться сервером</div></div></div></div></section>
     </section>
 
-    <nav class="bottom-nav">
+    <section class="page hidden" id="page-inventory">
+      <div class="eyebrow">✦ YOUR COLLECTION</div><h2 class="page-title">Инвентарь</h2><p class="page-subtitle">Твои предметы и их ценность. При подключённом сервере коллекция синхронизируется между сессиями.</p>
+      <div class="inventory-toolbar"><span class="inventory-count" id="inventoryCount">Предметов: 0</span><span id="inventoryMode" class="badge">Демо-режим</span></div>
+      <div class="filters" id="inventoryFilters"><button class="filter active" data-filter="all">Все</button><button class="filter" data-filter="Common">Обычные</button><button class="filter" data-filter="Rare">Редкие</button><button class="filter" data-filter="Epic">Эпические</button><button class="filter" data-filter="Legendary">Легендарные</button></div>
+      <div class="inventory-grid" id="inventoryGrid"></div>
+      <div class="empty-state hidden" id="inventoryEmpty"><div class="empty-icon">🧳</div><strong>Пока здесь пусто</strong><br>Открой демо-дроп, чтобы проверить сохранение предметов.</div>
+      <button class="primary" id="openDrop">🎁 Открыть демо-дроп</button>
+      <p class="note">Демо-дроп выдаёт только внутренний тестовый предмет Giftora. Он не является коллекционным подарком Telegram, не имеет денежной стоимости и не передаётся в Telegram.</p>
+      <div class="server-note" id="inventoryServerNote">При подключённом backend новые предметы будут храниться в серверной базе данных.</div>
+    </section>
+
+    <section class="page hidden" id="page-profile">
+      <div class="eyebrow">✦ PLAYER PROFILE</div><h2 class="page-title">Твой профиль</h2><p class="page-subtitle">Профиль Telegram, статистика и лучший предмет коллекции.</p>
+      <section class="profile-card">
+        <div class="avatar" id="profileAvatar">G</div>
+        <div style="min-width:0;position:relative;z-index:1"><div class="profile-name" id="profileName">Гость Giftora</div><div class="profile-username" id="profileUsername">Открой Mini App через Telegram</div><div class="profile-id">ID: <strong id="profileId">—</strong><button id="copyId">Копировать</button></div><div style="margin-top:9px"><span class="badge" id="profileAuthBadge">Нет проверки сервера</span></div></div>
+      </section>
+      <section class="profile-stats">
+        <div class="profile-stat"><div class="stat-icon">🎁</div><div class="stat-value" id="profileItemCount">0</div><div class="stat-label">Предметов в инвентаре</div></div>
+        <div class="profile-stat"><div class="stat-icon">🏆</div><div class="stat-value" id="profileBestValue">—</div><div class="stat-label">Ценность лучшего приза</div></div>
+        <div class="profile-stat"><div class="stat-icon">🌐</div><div class="stat-value" id="profileOnlineCount">—</div><div class="stat-label">Пользователей онлайн</div></div>
+        <div class="profile-stat"><div class="stat-icon">🛡️</div><div class="stat-value" id="profileDataMode">Демо</div><div class="stat-label">Режим данных</div></div>
+      </section>
+      <div class="section-head"><div class="section-title">🏆 Лучший приз</div><span class="section-note">Твой топ-предмет</span></div>
+      <div id="profileBestPrize" class="best-prize"><div class="featured-art">🎁</div><div class="best-copy"><div class="best-title">Пока нет предметов</div><div class="best-sub">Открой демо-дроп в инвентаре</div></div></div>
+      <div class="section-head"><div class="section-title">Настройки</div><span class="section-note">На этом устройстве</span></div>
+      <section class="settings">
+        <div class="setting-row"><div class="setting-left"><div class="setting-icon">🔔</div><div><div class="setting-title">Уведомления</div><div class="setting-desc" id="notificationStatus">Включены в интерфейсе</div></div></div><button class="setting-btn on" id="notificationToggle">🔔 Вкл.</button></div>
+        <div class="setting-row"><div class="setting-left"><div class="setting-icon">🔄</div><div><div class="setting-title">Обновить данные</div><div class="setting-desc">Синхронизировать профиль и инвентарь</div></div></div><button class="setting-btn" id="refreshData">Обновить</button></div>
+      </section>
+      <div class="server-note"><strong>Приватность:</strong> Telegram ID и аватар отображаются из данных Mini App. Сервер принимает личность как подтверждённую только после проверки подписи initData бот-токеном.</div>
+    </section>
+
+    <nav class="bottom-nav" aria-label="Основная навигация">
       <button class="nav-btn active" data-tab="home"><span class="nav-emoji">⌂</span>Главная</button>
-      <button class="nav-btn" data-tab="upgrade"><span class="nav-emoji">🎁</span>Апгрейд</button>
+      <button class="nav-btn" data-tab="upgrade"><span class="nav-emoji">⚡</span>Апгрейд</button>
+      <button class="nav-btn" data-tab="inventory"><span class="nav-emoji">🧳</span>Инвентарь</button>
       <button class="nav-btn" data-tab="profile"><span class="nav-emoji">👤</span>Профиль</button>
     </nav>
-    <div class="footer">GIFTORA · UPGRADE YOUR GIFTS</div>
   </main>
-  <div class="toast" id="toast"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
-    const tg = window.Telegram && window.Telegram.WebApp;
+    // Leave empty when index.html is served by giftora_server.py from the same domain.
+    // For a separate API, set this to its HTTPS origin, e.g. https://api.example.com
+    const API_BASE = '';
+    const LOCAL_KEY = 'giftora_demo_inventory_v2';
+    const SETTINGS_KEY = 'giftora_settings_v1';
+    const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
     if (tg) {
-      tg.ready();
-      tg.expand();
+      tg.ready(); tg.expand();
       try { tg.setHeaderColor('#100d1b'); tg.setBackgroundColor('#100d1b'); } catch (_) {}
     }
-
-    const toast = document.getElementById('toast');
-    let toastTimer;
-    function showToast(text) {
-      toast.textContent = text;
-      toast.classList.add('show');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
-      if (tg && tg.HapticFeedback) tg.HapticFeedback.impactOccurred('light');
+    const $ = (id) => document.getElementById(id);
+    const state = { page:'home', server:false, verified:false, profile:null, inventory:[], online:null, filter:'all', chosenFrom:null, chosenTo:null, notifications:true, localItems:false };
+    const RARITIES = {
+      Common:{label:'Обычный',color:'#b6b2c5'}, Rare:{label:'Редкий',color:'#61c6ff'}, Epic:{label:'Эпический',color:'#c38aff'}, Legendary:{label:'Легендарный',color:'#ffd777'}
+    };
+    const LOCAL_STARTER = [
+      {id:'demo-001',name:'Starlight Box',emoji:'🎁',rarity:'Common',value:15,source:'local-demo'},
+      {id:'demo-002',name:'Neon Star',emoji:'🌟',rarity:'Rare',value:45,source:'local-demo'},
+      {id:'demo-003',name:'Crystal Gift',emoji:'💎',rarity:'Epic',value:90,source:'local-demo'}
+    ];
+    const DEFAULT_DROP_POOL = [
+      {name:'Giftora Box',emoji:'🎁',rarity:'Common',value:10},
+      {name:'Pixel Star',emoji:'🌟',rarity:'Rare',value:25},
+      {name:'Violet Crystal',emoji:'💎',rarity:'Epic',value:50},
+      {name:'Golden Comet',emoji:'☄️',rarity:'Legendary',value:100}
+    ];
+    let toastTimer = null;
+    function showToast(message) {
+      $('toast').textContent = message; $('toast').classList.add('show'); clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => $('toast').classList.remove('show'), 2600);
+      try { if (tg && tg.HapticFeedback) tg.HapticFeedback.impactOccurred('light'); } catch (_) {}
     }
-
-    document.getElementById('startUpgrade').addEventListener('click', () => {
-      showToast('Скоро здесь появится настоящий апгрейд!');
-      if (tg && tg.sendData) {
-        // Передаём событие боту; обработчик web_app_data нужно добавить на стороне Python.
-        tg.sendData(JSON.stringify({ action: 'start_upgrade' }));
+    function escapeHtml(value) { return String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+    function getLocalItems() {
+      try { const raw = localStorage.getItem(LOCAL_KEY); if (raw) { const parsed = JSON.parse(raw); if (Array.isArray(parsed)) return parsed; } } catch (_) {}
+      try { localStorage.setItem(LOCAL_KEY, JSON.stringify(LOCAL_STARTER)); } catch (_) {}
+      return LOCAL_STARTER.map(x => ({...x}));
+    }
+    function saveLocalItems() { try { localStorage.setItem(LOCAL_KEY, JSON.stringify(state.inventory)); } catch (_) {} }
+    function bestPrize() { return [...state.inventory].sort((a,b) => Number(b.value||0)-Number(a.value||0))[0] || null; }
+    function itemValue(item) { return `${Number(item.value || 0).toLocaleString('ru-RU')} pts`; }
+    function initData() { return tg && typeof tg.initData === 'string' ? tg.initData : ''; }
+    async function api(path, options={}) {
+      const headers = {...(options.headers || {})};
+      const init = initData(); if (init) headers['X-Telegram-Init-Data'] = init;
+      if (options.body && !headers['Content-Type']) headers['Content-Type'] = 'application/json';
+      const response = await fetch(`${API_BASE}${path}`, {...options, headers, cache:'no-store'});
+      let data = {}; try { data = await response.json(); } catch (_) {}
+      if (!response.ok) throw new Error(data.detail || data.error || `API ${response.status}`);
+      return data;
+    }
+    function getTelegramProfile() {
+      const u = tg && tg.initDataUnsafe ? tg.initDataUnsafe.user : null;
+      if (!u) return {id:null, first_name:'Гость Giftora', last_name:'', username:'', photo_url:'', premium:false};
+      return {id:u.id ?? null, first_name:u.first_name || 'Пользователь', last_name:u.last_name || '', username:u.username || '', photo_url:u.photo_url || '', premium:!!u.is_premium};
+    }
+    function setAvatar(photoUrl, name) {
+      const el = $('profileAvatar');
+      if (photoUrl && /^https:\/\//i.test(photoUrl)) {
+        el.innerHTML = `<img src="${escapeHtml(photoUrl)}" alt="Аватар Telegram" referrerpolicy="no-referrer">`;
+        el.querySelector('img').addEventListener('error', () => { el.textContent = (name || 'G').trim().charAt(0).toUpperCase() || 'G'; }, {once:true});
+      } else { el.textContent = (name || 'G').trim().charAt(0).toUpperCase() || 'G'; }
+    }
+    function renderProfile() {
+      const p = state.profile || getTelegramProfile();
+      const name = `${p.first_name || 'Пользователь'} ${p.last_name || ''}`.trim();
+      $('profileName').textContent = name || 'Гость Giftora';
+      $('profileUsername').textContent = p.username ? `@${p.username}` : (p.id ? 'Пользователь Telegram' : 'Открой Mini App через Telegram');
+      $('profileId').textContent = p.id ? String(p.id) : '—';
+      $('copyId').disabled = !p.id; $('copyId').style.opacity = p.id ? '1' : '.4';
+      setAvatar(p.photo_url || '', name || 'G');
+      $('profileAuthBadge').textContent = state.verified ? '✓ Сервер подтвердил Telegram' : (p.id ? 'Telegram-профиль · без сервера' : 'Локальный просмотр');
+      $('profileAuthBadge').className = `badge ${state.verified ? 'green' : ''}`;
+      $('profileItemCount').textContent = String(state.inventory.length);
+      const best = bestPrize(); $('profileBestValue').textContent = best ? Number(best.value||0).toLocaleString('ru-RU') : '—';
+      $('profileOnlineCount').textContent = state.online == null ? '—' : Number(state.online).toLocaleString('ru-RU');
+      $('profileDataMode').textContent = state.server ? 'Сервер' : 'Демо';
+    }
+    function setOnline(count, connected) {
+      state.online = Number.isFinite(Number(count)) ? Number(count) : null;
+      $('onlineCount').textContent = connected && state.online !== null ? `${state.online} онлайн` : 'Офлайн-демо';
+      $('onlineDot').className = `dot ${connected ? 'live' : 'demo'}`;
+      $('homeOnline').textContent = connected && state.online !== null ? Number(state.online).toLocaleString('ru-RU') : 'Демо';
+      $('profileOnlineCount').textContent = connected && state.online !== null ? Number(state.online).toLocaleString('ru-RU') : '—';
+    }
+    function renderBestPrize() {
+      const item = bestPrize();
+      const render = (targetId, isProfile=false) => {
+        const target = $(targetId);
+        if (!item) {
+          target.innerHTML = isProfile ? '<div class="featured-art">🎁</div><div class="best-copy"><div class="best-title">Пока нет предметов</div><div class="best-sub">Открой демо-дроп в инвентаре</div></div>' : '<div class="featured"><div class="featured-art">🎁</div><div><div class="featured-label">Твоя коллекция</div><div class="featured-name">Лучший приз ещё не получен</div><div class="featured-meta">Открой инвентарь, чтобы добавить демо-предмет</div></div></div>';
+          return;
+        }
+        const rarity = RARITIES[item.rarity] || RARITIES.Common;
+        if (isProfile) target.innerHTML = `<div class="featured-art" style="border-color:${rarity.color}44">${escapeHtml(item.emoji || '🎁')}</div><div class="best-copy"><div class="best-title">${escapeHtml(item.name)}</div><div class="best-sub">${escapeHtml(rarity.label)} · ${escapeHtml(itemValue(item))}</div></div>`;
+        else target.innerHTML = `<div class="featured"><div class="featured-art" style="border-color:${rarity.color}44">${escapeHtml(item.emoji || '🎁')}</div><div><div class="featured-label">🏆 ${escapeHtml(rarity.label)}</div><div class="featured-name">${escapeHtml(item.name)}</div><div class="featured-meta">Ценность: ${escapeHtml(itemValue(item))}</div></div></div>`;
+      };
+      render('homeBestPrize'); render('profileBestPrize', true);
+      $('homeInventoryCount').textContent = String(state.inventory.length);
+      $('homeBestValue').textContent = item ? Number(item.value||0).toLocaleString('ru-RU') : '—';
+      $('profileItemCount').textContent = String(state.inventory.length);
+      $('profileBestValue').textContent = item ? Number(item.value||0).toLocaleString('ru-RU') : '—';
+    }
+    function renderInventory() {
+      const grid = $('inventoryGrid');
+      let items = [...state.inventory].sort((a,b) => Number(b.value||0)-Number(a.value||0));
+      if (state.filter !== 'all') items = items.filter(x => x.rarity === state.filter);
+      $('inventoryCount').textContent = `Предметов: ${state.inventory.length}`;
+      $('inventoryMode').textContent = state.server ? 'Серверный инвентарь' : 'Локальное демо';
+      $('inventoryMode').className = `badge ${state.server ? 'green' : 'gold'}`;
+      $('inventoryServerNote').innerHTML = state.server ? '<strong>Синхронизация включена.</strong> Инвентарь загружен из общей серверной базы для твоего Telegram ID.' : '<strong>Демо-режим.</strong> Предметы ниже хранятся только в браузере. Для общего серверного инвентаря запусти backend и открой Mini App через Telegram.';
+      $('inventoryEmpty').classList.toggle('hidden', items.length !== 0);
+      grid.classList.toggle('hidden', items.length === 0);
+      grid.innerHTML = items.map(item => {
+        const rarity = RARITIES[item.rarity] || RARITIES.Common;
+        const source = item.source === 'local-demo' ? 'Локальный DEMO-предмет' : item.source === 'giftora-demo' ? 'Демо-предмет Giftora' : state.server ? 'Серверный предмет' : 'Предмет';
+        return `<article class="gift-card" style="--rarity-color:${rarity.color}"><div class="gift-visual">${escapeHtml(item.emoji || '🎁')}</div><div class="gift-title" title="${escapeHtml(item.name)}">${escapeHtml(item.name)}</div><div class="gift-rarity">${escapeHtml(rarity.label)}</div><div class="gift-value">${escapeHtml(itemValue(item))}</div><div class="gift-source">${escapeHtml(source)}</div><button class="small-button choose-upgrade" data-id="${escapeHtml(item.id)}" style="width:100%;margin-top:10px">Выбрать для апгрейда</button></article>`;
+      }).join('');
+      grid.querySelectorAll('.choose-upgrade').forEach(btn => btn.addEventListener('click', () => { state.chosenFrom = state.inventory.find(x => String(x.id) === btn.dataset.id) || null; state.chosenTo = null; renderUpgradeChoices(); showPage('upgrade'); }));
+      renderBestPrize(); renderProfile();
+    }
+    function renderUpgradeChoices() {
+      const items = [...state.inventory].sort((a,b) => Number(a.value||0)-Number(b.value||0));
+      const from = state.chosenFrom;
+      $('upgradeFromEmoji').textContent = from ? (from.emoji || '🎁') : '🎁';
+      $('upgradeFromName').textContent = from ? from.name : 'Твой предмет';
+      $('upgradeFromValue').textContent = from ? itemValue(from) : 'Выбери в инвентаре';
+      $('upgradeStatus').textContent = from ? 'Предмет выбран' : 'Не выбрано';
+      $('upgradeChoices').innerHTML = items.map(item => `<button class="filter ${from && String(item.id)===String(from.id) ? 'active' : ''}" data-from="${escapeHtml(item.id)}">${escapeHtml(item.emoji || '🎁')} ${escapeHtml(item.name)}</button>`).join('') || '<span class="section-note">Инвентарь пуст</span>';
+      $('upgradeChoices').querySelectorAll('[data-from]').forEach(btn => btn.addEventListener('click', () => { state.chosenFrom = state.inventory.find(x => String(x.id)===btn.dataset.from) || null; state.chosenTo = null; renderUpgradeChoices(); }));
+      const targets = DEFAULT_DROP_POOL.filter(x => !from || Number(x.value) > Number(from.value||0));
+      $('targetChoices').innerHTML = targets.map(item => `<button class="filter ${state.chosenTo && state.chosenTo.name===item.name ? 'active' : ''}" data-to="${escapeHtml(item.name)}">${escapeHtml(item.emoji)} ${escapeHtml(item.name)} · ${item.value} pts</button>`).join('') || '<span class="section-note">Нет цели выше ценности исходного предмета</span>';
+      $('targetChoices').querySelectorAll('[data-to]').forEach(btn => btn.addEventListener('click', () => { state.chosenTo = targets.find(x => x.name===btn.dataset.to) || null; renderUpgradeChoices(); }));
+      $('upgradeToEmoji').textContent = state.chosenTo ? state.chosenTo.emoji : '💎';
+      $('upgradeToName').textContent = state.chosenTo ? state.chosenTo.name : 'Цель апгрейда';
+      $('upgradeToValue').textContent = state.chosenTo ? `${state.chosenTo.value} pts` : 'Не выбрана';
+    }
+    function showPage(page) {
+      if (!['home','upgrade','inventory','profile'].includes(page)) return;
+      state.page = page;
+      document.querySelectorAll('.page').forEach(el => el.classList.toggle('hidden', el.id !== `page-${page}`));
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.tab === page));
+      if (page === 'inventory') renderInventory();
+      if (page === 'profile') { renderProfile(); renderBestPrize(); }
+      if (page === 'upgrade') renderUpgradeChoices();
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+    async function refreshOnline() {
+      try { const data = await api('/api/online'); setOnline(data.online_count, data.server === true); }
+      catch (_) { setOnline(null, false); }
+    }
+    async function refreshData() {
+      state.profile = getTelegramProfile();
+      state.server = false; state.verified = false; state.localItems = true;
+      state.inventory = getLocalItems();
+      renderProfile(); renderInventory();
+      if (initData()) {
+        try {
+          const data = await api('/api/bootstrap');
+          if (data && data.profile) {
+            state.profile = data.profile; state.verified = true; state.server = true; state.localItems = false;
+            state.inventory = Array.isArray(data.inventory) ? data.inventory : [];
+            renderProfile(); renderInventory(); renderUpgradeChoices();
+          }
+        } catch (err) {
+          console.warn('Giftora API unavailable:', err.message);
+          $('profileAuthBadge').textContent = 'Сервер недоступен · демо';
+        }
       }
+      await refreshOnline();
+      renderProfile(); renderBestPrize();
+    }
+    async function openDrop() {
+      const button = $('openDrop'); button.classList.add('loading'); button.textContent = '🎁 Открываем…';
+      try {
+        if (state.server && initData()) {
+          const data = await api('/api/demo/drop', {method:'POST',body:JSON.stringify({})});
+          if (data.item) state.inventory.unshift(data.item);
+          state.inventory = (await api('/api/inventory')).items || state.inventory;
+          showToast(`Получен предмет: ${data.item?.name || 'Giftora Drop'}`);
+        } else {
+          const pool = DEFAULT_DROP_POOL;
+          const roll = Math.random();
+          const itemBase = roll > .96 ? pool[3] : roll > .78 ? pool[2] : roll > .42 ? pool[1] : pool[0];
+          const item = {...itemBase,id:`local-${Date.now()}-${Math.random().toString(16).slice(2,7)}`,source:'local-demo',created_at:new Date().toISOString()};
+          state.inventory.unshift(item); saveLocalItems(); showToast(`Демо-предмет добавлен: ${item.name}`);
+        }
+        renderInventory(); renderUpgradeChoices();
+      } catch (err) { showToast(`Не удалось открыть дроп: ${err.message}`); }
+      finally { button.classList.remove('loading'); button.innerHTML = '🎁 Открыть демо-дроп'; }
+    }
+    function renderFilters() {
+      document.querySelectorAll('#inventoryFilters [data-filter]').forEach(btn => btn.classList.toggle('active', btn.dataset.filter===state.filter));
+    }
+    document.querySelectorAll('.nav-btn').forEach(btn => btn.addEventListener('click', () => showPage(btn.dataset.tab)));
+    document.querySelectorAll('[data-go]').forEach(btn => btn.addEventListener('click', () => showPage(btn.dataset.go)));
+    $('startUpgrade').addEventListener('click', () => showPage('upgrade'));
+    $('inventoryFilters').querySelectorAll('[data-filter]').forEach(btn => btn.addEventListener('click', () => { state.filter=btn.dataset.filter; renderFilters(); renderInventory(); }));
+    $('openDrop').addEventListener('click', openDrop);
+    $('doUpgrade').addEventListener('click', () => {
+      if (!state.chosenFrom) return showToast('Сначала выбери предмет из инвентаря');
+      if (!state.chosenTo) return showToast('Выбери цель апгрейда');
+      showToast('Механика апгрейда ещё не подключена — предметы не списаны');
     });
-
-    let notificationsEnabled = true;
-    const notificationToggle = document.getElementById('notificationToggle');
-    notificationToggle.addEventListener('click', () => {
-      notificationsEnabled = !notificationsEnabled;
-      notificationToggle.classList.toggle('on', notificationsEnabled);
-      notificationToggle.textContent = notificationsEnabled ? '🔔 Вкл.' : '🔕 Выкл.';
-      document.getElementById('notificationStatus').textContent =
-        notificationsEnabled ? 'Уведомления включены' : 'Уведомления выключены';
-      showToast(notificationsEnabled ? 'Уведомления включены' : 'Уведомления выключены');
-      if (tg && tg.sendData) {
-        tg.sendData(JSON.stringify({
-          action: 'notifications',
-          enabled: notificationsEnabled
-        }));
-      }
+    $('copyId').addEventListener('click', async () => {
+      const id = state.profile?.id;
+      if (!id) return showToast('ID появится при открытии Mini App через Telegram');
+      try { await navigator.clipboard.writeText(String(id)); showToast('Telegram ID скопирован'); }
+      catch (_) { showToast(`Твой Telegram ID: ${id}`); }
     });
-
-    document.querySelectorAll('.nav-btn').forEach(button => {
-      button.addEventListener('click', () => {
-        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-        button.classList.add('active');
-        const tab = button.dataset.tab;
-        if (tab === 'home') showToast('Ты на главной Giftora');
-        if (tab === 'upgrade') showToast('Раздел апгрейда скоро откроется');
-        if (tab === 'profile') showToast('Профиль подключим следующим этапом');
-      });
+    const settings = (() => { try { return JSON.parse(localStorage.getItem(SETTINGS_KEY)||'{}'); } catch (_) { return {}; } })();
+    state.notifications = settings.notifications !== false;
+    function paintNotification() {
+      $('notificationToggle').classList.toggle('on', state.notifications);
+      $('notificationToggle').textContent = state.notifications ? '🔔 Вкл.' : '🔕 Выкл.';
+      $('notificationStatus').textContent = state.notifications ? 'Включены в интерфейсе' : 'Выключены в интерфейсе';
+    }
+    $('notificationToggle').addEventListener('click', () => {
+      state.notifications = !state.notifications;
+      try { localStorage.setItem(SETTINGS_KEY, JSON.stringify({notifications:state.notifications})); } catch (_) {}
+      paintNotification(); showToast(state.notifications ? 'Настройка включена' : 'Настройка выключена');
     });
-
-    // Число онлайн пока демонстрационное: точный онлайн должен присылать backend.
-    document.getElementById('onlineCount').textContent = 'Онлайн';
+    $('refreshData').addEventListener('click', async () => { $('refreshData').textContent='…'; await refreshData(); $('refreshData').textContent='Обновить'; showToast('Данные обновлены'); });
+    window.addEventListener('beforeunload', () => { /* heartbeat expires automatically on the server */ });
+    paintNotification();
+    state.profile = getTelegramProfile(); state.inventory = getLocalItems(); renderProfile(); renderInventory(); renderUpgradeChoices();
+    refreshData();
+    // Backend records each active Telegram session. Real count is not fabricated when the API is offline.
+    setInterval(() => { if (initData()) { api('/api/heartbeat',{method:'POST',body:JSON.stringify({})}).catch(()=>{}); } refreshOnline(); }, 15000);
   </script>
 </body>
 </html>
-'''
-path = Path("/mnt/data/giftora_miniapp.html")
-path.write_text(html, encoding="utf-8")
-print(f"Создан файл: {path} ({path.stat().st_size} байт)")
