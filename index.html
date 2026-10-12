@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#111111">
 <meta name="referrer" content="no-referrer">
-<title>GIFTORA — Demo Upgrader</title>
+<title>GIFTORA — Origin Box & Demo Upgrader</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
 :root{color-scheme:dark;--bg:#101010;--bg2:#151515;--panel:#1a1a1a;--panel2:#202020;--panel3:#262626;--line:#343434;--line2:#484848;--orange:#ff941f;--orange2:#ffb64f;--amber:#ffda90;--text:#f7f4ef;--muted:#96918a;--green:#70e1a2;--red:#ff7171;--blue:#9aa8ff;--radius:16px;--safe-b:env(safe-area-inset-bottom,0px);font-synthesis:none}
@@ -15,6 +15,129 @@
 @media(max-width:650px){body{font-size:13px}.app{padding:0 10px calc(88px + var(--safe-b))}.header{margin:0 -10px;padding:calc(9px + env(safe-area-inset-top,0px)) 10px 9px}.header-inner{gap:8px}.brand{gap:7px}.brand-icon{width:34px;height:34px;border-radius:10px;font-size:20px}.brand-name{font-size:14px;letter-spacing:1px}.brand-caption{font-size:7px;letter-spacing:.9px}.main-nav{display:none}.header-actions{gap:6px}.balance-chip{padding:7px 8px;gap:6px;border-radius:9px}.balance-label{font-size:7px}.balance-val{font-size:10px}.header-avatar{width:32px;height:32px}.main{padding-top:17px}.title-row{align-items:flex-start;margin-bottom:12px}.page-title{font-size:25px}.page-description{font-size:10px;margin-top:6px}.demo-stamp{padding:6px 7px;font-size:7px;gap:5px}.demo-stamp strong{font-size:6px}.status-row{padding:8px 9px;margin-bottom:9px}.status-message{font-size:8px}.status-right{font-size:7px}.stage-wrap{padding:0;border:0;background:transparent}.upgrade-stage{grid-template-columns:minmax(0,1fr) 92px minmax(0,1fr);gap:6px}.item-panel{min-height:202px;padding:8px;border-radius:12px}.panel-topline{margin-bottom:8px}.panel-label{font-size:7px;letter-spacing:.8px}.panel-step{width:18px;height:18px;font-size:7px;border-radius:5px}.item-art-wrap{height:76px;border-radius:9px}.item-art{font-size:43px}.item-art .gift-art-image{max-width:56px;max-height:58px}.item-name{font-size:9px;margin-top:8px}.item-rarity{font-size:7px;margin-top:4px}.item-value-row{margin-top:8px;padding-top:7px;gap:3px}.item-value-label{font-size:7px}.item-value{font-size:9px}.select-under{margin-top:8px;padding:8px 3px;border-radius:7px;font-size:7px;letter-spacing:0}.upgrade-core{border-radius:12px;padding:8px 3px 6px}.chance-caption{font-size:6px;letter-spacing:.6px}.chance-number{font-size:23px;margin-top:4px}.chance-number small{font-size:11px}.gauge{width:89px;margin:9px auto 5px}.gauge-track,.gauge-arc{stroke-width:8}.gauge-arrow{font-size:22px}.gauge-word{font-size:5px;letter-spacing:.7px;margin-top:3px}.core-vs{font-size:6px;gap:3px;letter-spacing:0}.vs-line{width:11px}.multiplier{font-size:7px;margin-top:6px;padding:4px 5px}.demo-core-action{margin-top:9px}.primary-action{font-size:9px;min-height:46px;padding:11px 8px;gap:7px;letter-spacing:.35px;border-radius:9px}.action-spark{font-size:14px}.spin-hint{margin-top:7px;font-size:7px}.below-stage{grid-template-columns:1fr;gap:8px;margin-top:9px}.selection-box{padding:10px;border-radius:12px}.selection-head{margin-bottom:8px}.selection-title{font-size:10px}.selection-note{font-size:7px}.mini-item{flex-basis:83px;padding:6px;border-radius:9px}.mini-art{height:46px;font-size:30px}.mini-name{font-size:8px;min-height:22px}.mini-value{font-size:8px}.mini-meta{font-size:6px}.minor-action{padding:7px;font-size:7px}.lower-grid{grid-template-columns:1fr;gap:8px;margin-top:8px}.info-card{padding:10px;border-radius:12px}.info-title{font-size:10px;margin-bottom:9px}.statbox{padding:8px}.stat-value{font-size:15px}.status-right{max-width:85px;overflow:hidden;text-overflow:ellipsis}.footer{margin-top:16px;font-size:7px}.mobile-nav{position:fixed;z-index:30;display:grid;grid-template-columns:repeat(4,1fr);gap:3px;left:0;right:0;bottom:0;padding:7px 9px calc(7px + var(--safe-b));border-top:1px solid #ffffff10;background:#111111ed;backdrop-filter:blur(20px)}.mobile-nav button{min-width:0;border:1px solid transparent;border-radius:10px;background:transparent;color:#817c74;padding:7px 2px 6px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:7px;font-weight:900}.mobile-nav .mobile-icon{font-size:17px;line-height:1}.mobile-nav button.active{border-color:#ff9b3024;background:#ff9b300c;color:#ffbd68}.subpage-head{align-items:flex-start;flex-direction:column;margin:2px 0 12px;gap:10px}.subpage-head h2{font-size:23px}.subpage-head p{font-size:9px;margin-top:5px}.subpage-actions{width:100%}.search{flex:1;width:100%}.gift-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.gift-card{padding:8px;border-radius:11px}.gift-card .gift-picture{height:95px;font-size:46px;margin-bottom:7px}.gift-card .gift-title{font-size:10px;min-height:28px}.gift-card .gift-sub{font-size:7px}.gift-card .gift-price{font-size:9px}.gift-card .gift-add{font-size:7px;padding:6px}.profile-layout{grid-template-columns:1fr}.profile-card{padding:13px}.profile-avatar{width:56px;height:56px;border-radius:16px}.profile-name{font-size:16px}.wallet-hero{padding:16px}.wallet-balance{font-size:29px}.wallet-coin{font-size:46px}.package-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.pack{padding:11px 8px}.pack-amount{font-size:19px}.result-banner{padding:9px;gap:8px}.result-emblem{width:34px;height:34px;font-size:20px}.result-title{font-size:11px}.result-copy p{font-size:8px}.result-action{padding:7px;font-size:7px}.modal-backdrop{padding:14px}.result-modal{padding:19px}.modal-burst{font-size:59px}.modal-title{font-size:22px}}
 @media(max-width:355px){.brand-caption{display:none}.brand-name{font-size:12px}.brand-icon{width:30px;height:30px}.balance-chip{padding:6px}.header-avatar{width:29px;height:29px}.upgrade-stage{grid-template-columns:minmax(0,1fr) 78px minmax(0,1fr);gap:4px}.item-panel{padding:6px}.item-art-wrap{height:68px}.item-art{font-size:38px}.item-art .gift-art-image{max-width:47px;max-height:48px}.gauge{width:76px}.chance-number{font-size:20px}.select-under{font-size:6px}.panel-label{font-size:6px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+/* Origin Box / case opening — isolated demo economy */
+.nav-btn[data-go="cases"]{border-color:#ff9d3021;background:linear-gradient(180deg,#ff9e3010,#ff9e3004);color:#ffca82}
+.nav-btn[data-go="cases"].active{background:linear-gradient(180deg,#ff9c3223,#ff9c320a);border-color:#ffab4d55;color:#ffe0ae;box-shadow:inset 0 0 18px #ff9b1a08}
+.origin-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin:8px 0 17px}
+.origin-head h2{margin:0;font-size:clamp(27px,4vw,42px);letter-spacing:-1.4px;line-height:1.05;font-weight:1000}
+.origin-head h2 span{color:#ffad45}
+.origin-head p{max-width:650px;margin:9px 0 0;color:#928a80;font-size:11px;line-height:1.65}
+.origin-exclusive{flex:none;display:flex;align-items:center;gap:7px;border:1px solid #ff9f3836;background:#ff9b1a0c;padding:10px 12px;border-radius:11px;color:#ffc579;font-size:9px;font-weight:1000;letter-spacing:1px}
+.origin-exclusive b{background:linear-gradient(120deg,#ffd77f,#ff8d28);color:#301704;border-radius:5px;padding:4px 6px;font-size:8px}
+.origin-hero-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(245px,.8fr);gap:13px}
+.origin-feature{position:relative;min-width:0;overflow:hidden;border:1px solid #3b3023;border-radius:19px;background:radial-gradient(ellipse at 54% 0%,#ff9c2e20,transparent 55%),linear-gradient(145deg,#211c16,#171615 73%);padding:19px}
+.origin-feature:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(125deg,transparent 28%,#ffcb7410 48%,transparent 64%);transform:translateX(-100%);animation:originSheen 7s ease-in-out infinite}
+@keyframes originSheen{0%,65%{transform:translateX(-100%)}88%,100%{transform:translateX(100%)}}
+.origin-feature-top{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.origin-label{color:#b6a38b;font-size:8px;font-weight:1000;letter-spacing:1.5px}
+.origin-badge{border:1px solid #ffb34c33;background:#ff9e2411;border-radius:6px;padding:5px 7px;color:#ffcf8a;font-size:7px;font-weight:1000;letter-spacing:1px}
+.origin-box-showcase{position:relative;z-index:1;min-height:205px;display:grid;grid-template-columns: minmax(0,1fr) minmax(150px,.8fr);align-items:center;gap:14px}
+.origin-box-art{position:relative;display:grid;place-items:center;min-height:180px;isolation:isolate}
+.origin-box-aura{position:absolute;width:170px;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#ff9b2833 0%,#ff8c1610 42%,transparent 72%);filter:blur(2px);animation:auraPulse 3s ease-in-out infinite alternate}
+@keyframes auraPulse{to{transform:scale(1.16);opacity:.72}}
+.origin-box-cube{position:relative;width:130px;height:112px;display:grid;place-items:center;border:1px solid #ffc2678a;border-radius:20px;background:linear-gradient(145deg,#49301b,#2e1d11 58%,#1f1711);box-shadow:0 18px 40px #0009,inset 0 1px #fff4;transform:rotate(-6deg);animation:boxFloat 4s ease-in-out infinite}
+.origin-box-cube:before{content:"";position:absolute;left:0;right:0;top:20px;height:14px;background:linear-gradient(90deg,#ffd57d,#ff9e2d,#c95716);box-shadow:0 2px 10px #ff9d2c37}
+.origin-box-cube:after{content:"";position:absolute;top:0;bottom:0;width:15px;background:linear-gradient(90deg,#ffb84c,#ff8c1b,#ffd471);box-shadow:0 0 10px #ff9d2c22}
+.origin-box-emoji{position:relative;z-index:2;font-size:54px;filter:drop-shadow(0 8px 10px #000a);transform:translateY(3px) rotate(6deg)}
+.origin-box-spark{position:absolute;z-index:3;color:#ffcf7a;font-size:20px;text-shadow:0 0 12px #ff9e2d}
+.origin-box-spark.one{top:15%;right:15%}.origin-box-spark.two{bottom:18%;left:12%;font-size:14px;color:#fff0c9}
+@keyframes boxFloat{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-8px) rotate(-3deg)}}
+.origin-case-copy{position:relative;z-index:1}
+.origin-case-title{font-size:clamp(23px,3vw,33px);font-weight:1000;letter-spacing:-1px;line-height:1.04}
+.origin-case-description{margin-top:9px;color:#a59a8a;font-size:10px;line-height:1.65}
+.origin-case-price{display:flex;align-items:center;gap:9px;margin-top:16px;flex-wrap:wrap}
+.origin-case-price strong{font-size:22px;color:#ffcf81;font-weight:1000;letter-spacing:-.6px}
+.origin-case-price del{color:#7d7264;font-size:11px}
+.origin-discount-label{border:1px solid #6bc99c3a;background:#54b98510;color:#9ce9bd;border-radius:6px;padding:5px 7px;font-size:8px;font-weight:1000}
+.origin-feature-foot{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid #ffffff0c;margin-top:8px;padding-top:13px;color:#83796c;font-size:9px}
+.origin-feature-foot b{color:#e9bd77}
+.origin-account{display:flex;flex-direction:column;justify-content:space-between;gap:15px;background:linear-gradient(160deg,#1c1b19,#151515);border:1px solid #34302a;border-radius:19px;padding:18px}
+.origin-account-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.origin-account-title{color:#a69d91;font-size:8px;font-weight:1000;letter-spacing:1.5px}
+.origin-demo-tag{border:1px solid #ff9d3031;color:#ffbd68;background:#ff9b1a0c;border-radius:6px;padding:4px 6px;font-size:7px;font-weight:1000}
+.origin-balance{margin-top:7px;font-size:35px;line-height:1;font-weight:1000;letter-spacing:-1.4px;color:#ffcf82}
+.origin-balance small{font-size:13px;letter-spacing:0;color:#f4c06d}
+.origin-account-desc{margin-top:9px;color:#867e73;font-size:9px;line-height:1.6}
+.origin-refill{width:100%;margin-top:12px;border:1px solid #4a3d2b;border-radius:10px;background:#ff9b1a0a;color:#ffc579;padding:10px 11px;font-size:9px;font-weight:1000;transition:.15s}
+.origin-refill:hover{border-color:#ffb04d6b;background:#ff9b1a16}
+.origin-account-divider{height:1px;background:#ffffff0c}
+.origin-mini-stat{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.origin-mini-stat .v{font-size:17px;font-weight:1000;color:#f3e3ce}.origin-mini-stat .l{margin-top:3px;color:#837b70;font-size:8px}
+.origin-opening{margin-top:13px;overflow:hidden;border:1px solid #35302a;border-radius:18px;background:linear-gradient(180deg,#1a1917,#141414);padding:15px}
+.origin-opening-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.origin-opening-title{font-size:11px;font-weight:1000;letter-spacing:.75px}
+.origin-opening-sub{margin-top:4px;color:#8d8375;font-size:9px}
+.origin-live-pill{display:flex;align-items:center;gap:6px;border:1px solid #64c8902c;background:#67c58b0c;color:#a1e3ba;padding:6px 8px;border-radius:7px;font-size:7px;font-weight:1000;white-space:nowrap}
+.origin-live-pill:before{content:"";width:5px;height:5px;border-radius:50%;background:#69d69a;box-shadow:0 0 9px #69d69a}
+.origin-reel-viewport{position:relative;overflow:hidden;height:150px;border:1px solid #38332a;border-radius:12px;background:linear-gradient(180deg,#191816,#121212);isolation:isolate}
+.origin-reel-viewport:before{content:"";position:absolute;z-index:3;left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%);background:linear-gradient(180deg,#ffe3a7,#ff9b20,#ffe3a7);box-shadow:0 0 14px #ff9d35aa;pointer-events:none}
+.origin-reel-viewport:after{content:"";position:absolute;z-index:2;inset:0;pointer-events:none;background:linear-gradient(90deg,#121212 0%,transparent 13%,transparent 87%,#121212 100%)}
+.origin-reel{position:absolute;left:0;top:8px;height:132px;display:flex;align-items:stretch;gap:9px;padding:0;transform:translateX(0);will-change:transform}
+.origin-reel-tile{position:relative;flex:0 0 112px;width:112px;height:132px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid #3c352b;border-radius:10px;background:radial-gradient(ellipse at 50% 10%,#ffb64612,transparent 72%),linear-gradient(160deg,#24211c,#171615);overflow:hidden}
+.origin-reel-tile:after{content:"";position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--tile-accent,#ffab43)}
+.origin-reel-tile .art{font-size:39px;line-height:1;filter:drop-shadow(0 7px 8px #0008)}
+.origin-reel-tile .name{margin-top:12px;max-width:98px;text-align:center;color:#c6b7a0;font-size:8px;font-weight:900;line-height:1.25}
+.origin-reel-tile .amount{margin-top:5px;color:#ffca7b;font-size:9px;font-weight:1000}
+.origin-reel-tile.best{border-color:#ffc45e8a;background:radial-gradient(ellipse at 50% 12%,#ffbc4b24,transparent 70%),linear-gradient(160deg,#392718,#20170f);box-shadow:inset 0 0 25px #ffac2712}
+.origin-reel-tile.best:after{height:4px;background:linear-gradient(90deg,#fff0ad,#ff961d,#fff0ad)}
+.origin-opening-actions{display:flex;align-items:center;gap:10px;margin-top:12px}
+.origin-open-button{flex:1;min-height:48px;border:1px solid #ffcc73;border-radius:11px;background:linear-gradient(100deg,#ffd277,#ff9a26 62%,#e66e17);color:#2b1706;box-shadow:0 7px 22px #ff941b20,inset 0 1px #fff8;padding:12px 15px;font-size:10px;font-weight:1000;letter-spacing:.55px;transition:transform .14s,filter .14s}
+.origin-open-button:hover:not(:disabled){transform:translateY(-1px);filter:brightness(1.06)}
+.origin-open-button:active:not(:disabled){transform:scale(.99)}
+.origin-price-note{min-width:88px;text-align:right;color:#8c8174;font-size:8px;line-height:1.5}
+.origin-price-note strong{display:block;color:#ffce84;font-size:13px}
+.origin-open-status{margin-top:10px;color:#797168;font-size:8px;line-height:1.5;text-align:center}
+.origin-support-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:13px;margin-top:13px}
+.origin-promo-card,.origin-math-card,.origin-odds-card,.origin-history-card{min-width:0;border:1px solid #34302a;border-radius:16px;background:linear-gradient(155deg,#1b1a18,#151515);padding:15px}
+.origin-section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.origin-section-title{font-size:10px;font-weight:1000;letter-spacing:.6px}
+.origin-section-kicker{color:#81776b;font-size:7px;font-weight:950;letter-spacing:1px}
+.origin-promo-desc{font-size:9px;line-height:1.6;color:#8d8478;margin:0 0 12px}
+.origin-promo-row{display:flex;gap:7px}
+.origin-promo-input{min-width:0;flex:1;height:41px;border:1px solid #39342c;border-radius:9px;background:#111;color:#f7e6cf;padding:0 11px;text-transform:uppercase;letter-spacing:1px;font-size:10px;font-weight:900;outline:none}
+.origin-promo-input:focus{border-color:#ffad4c88;box-shadow:0 0 0 3px #ff9b1a0c}
+.origin-promo-apply{border:1px solid #ffb5504c;border-radius:9px;background:#ff9b1a14;color:#ffcc83;padding:0 13px;font-size:9px;font-weight:1000;white-space:nowrap}
+.origin-promo-apply:hover{background:#ff9b1a24}
+.origin-promo-message{margin-top:10px;min-height:31px;padding:8px 9px;border:1px solid #ffffff0b;border-radius:8px;background:#ffffff04;color:#8f8679;font-size:8px;line-height:1.5}
+.origin-promo-message.good{color:#a5e4b8;border-color:#63d18a29;background:#59ca8108}
+.origin-promo-message.bad{color:#ff9b92;border-color:#ff746829;background:#ff5e5808}
+.origin-math-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.origin-math-stat{border:1px solid #ffffff0a;border-radius:9px;background:#ffffff03;padding:9px 8px;min-width:0}
+.origin-math-value{color:#ffcd81;font-size:17px;font-weight:1000;letter-spacing:-.4px}
+.origin-math-label{margin-top:5px;color:#857c70;font-size:7px;line-height:1.5}
+.origin-math-formula{margin-top:10px;padding:10px;border-radius:9px;border:1px solid #ffffff0a;background:#111;color:#9e9384;font-size:8px;line-height:1.65;overflow-wrap:anywhere}
+.origin-math-formula strong{color:#e7c38e}
+.origin-odds-card,.origin-history-card{margin-top:13px}
+.origin-odds-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.origin-odd{position:relative;min-width:0;border:1px solid #35302a;border-radius:10px;background:linear-gradient(160deg,#211f1b,#181716);padding:10px 6px 9px;text-align:center;overflow:hidden}
+.origin-odd.legendary{border-color:#73522b;background:linear-gradient(160deg,#38291a,#1f1913)}
+.origin-odd.bear{border-color:#b17b36;background:radial-gradient(ellipse at 50% 10%,#ffbb4d20,transparent 70%),linear-gradient(160deg,#3a2919,#1f1812)}
+.origin-odd-art{font-size:28px;line-height:1.15;filter:drop-shadow(0 5px 8px #0008)}
+.origin-odd-name{margin-top:8px;min-height:25px;color:#bdb1a0;font-size:8px;font-weight:850;line-height:1.3;overflow-wrap:anywhere}
+.origin-odd-chance{margin-top:7px;color:#ffcf86;font-size:13px;font-weight:1000}
+.origin-odd-caption{margin-top:3px;color:#766f64;font-size:7px}
+.origin-odds-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:11px;color:#857b6e;font-size:8px}
+.origin-odds-foot strong{color:#a5e6b7}
+.origin-history-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.origin-history-entry{display:flex;align-items:center;gap:9px;min-width:0;border:1px solid #ffffff0a;border-radius:10px;background:#ffffff03;padding:8px}
+.origin-history-art{font-size:24px;flex:none}
+.origin-history-copy{min-width:0;flex:1}
+.origin-history-name{font-size:8px;font-weight:950;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.origin-history-sub{margin-top:4px;color:#82796d;font-size:7px}
+.origin-history-reward{margin-top:3px;color:#ffcf84;font-size:8px;font-weight:1000}
+.origin-empty{grid-column:1/-1;padding:18px;border:1px dashed #39332a;border-radius:10px;text-align:center;color:#7e7569;font-size:9px}
+.origin-warning{margin-top:12px;padding:11px 12px;border:1px solid #48372a;border-radius:10px;background:#211b15;color:#9b8b78;font-size:8px;line-height:1.65}
+.origin-warning strong{color:#ffd08b}
+.origin-reeling .origin-box-cube{animation:boxShake .22s ease-in-out infinite alternate}
+@keyframes boxShake{from{transform:translateY(-2px) rotate(-8deg)}to{transform:translateY(2px) rotate(-3deg)}}
+@media(max-width:900px){.origin-odds-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.origin-support-grid{grid-template-columns:1fr 1fr}.origin-box-showcase{grid-template-columns:minmax(0,.9fr) minmax(0,1fr)}}
+@media(max-width:650px){
+ .nav-btn[data-go="cases"]{display:none}.origin-head{align-items:flex-start;flex-direction:column;gap:8px;margin-bottom:13px}.origin-head h2{font-size:27px}.origin-head p{font-size:9px;margin-top:6px}.origin-exclusive{padding:7px 8px;font-size:7px}.origin-hero-grid{grid-template-columns:1fr;gap:9px}.origin-feature{padding:13px;border-radius:14px}.origin-box-showcase{grid-template-columns:110px minmax(0,1fr);gap:10px;min-height:158px}.origin-box-art{min-height:150px}.origin-box-aura{width:118px}.origin-box-cube{width:88px;height:81px;border-radius:14px}.origin-box-cube:before{top:15px;height:10px}.origin-box-cube:after{width:11px}.origin-box-emoji{font-size:37px}.origin-box-spark{font-size:15px}.origin-case-title{font-size:25px}.origin-case-description{font-size:8px;margin-top:7px}.origin-case-price{margin-top:10px;gap:7px}.origin-case-price strong{font-size:19px}.origin-case-price del{font-size:9px}.origin-feature-foot{font-size:7px;margin-top:4px;padding-top:9px}.origin-account{padding:12px;border-radius:14px;gap:11px}.origin-balance{font-size:29px}.origin-account-desc{font-size:8px;margin-top:6px}.origin-refill{margin-top:9px;padding:9px;font-size:8px}.origin-mini-stat .v{font-size:15px}.origin-opening{margin-top:9px;padding:10px;border-radius:14px}.origin-opening-head{align-items:flex-start;margin-bottom:9px}.origin-opening-title{font-size:9px}.origin-opening-sub{font-size:7px}.origin-live-pill{font-size:6px;padding:5px 6px}.origin-reel-viewport{height:126px}.origin-reel{top:6px;height:112px;gap:7px}.origin-reel-tile{flex-basis:92px;width:92px;height:112px;border-radius:8px}.origin-reel-tile .art{font-size:32px}.origin-reel-tile .name{font-size:7px;max-width:82px;margin-top:8px}.origin-reel-tile .amount{font-size:8px}.origin-opening-actions{gap:7px;margin-top:9px}.origin-open-button{min-height:43px;padding:10px 8px;font-size:8px;letter-spacing:.2px}.origin-price-note{min-width:68px;font-size:7px}.origin-price-note strong{font-size:11px}.origin-open-status{font-size:7px}.origin-support-grid{grid-template-columns:1fr;gap:9px;margin-top:9px}.origin-promo-card,.origin-math-card,.origin-odds-card,.origin-history-card{padding:11px;border-radius:13px}.origin-section-title{font-size:9px}.origin-promo-desc{font-size:8px}.origin-promo-input{height:39px;font-size:9px}.origin-promo-apply{font-size:8px;padding:0 10px}.origin-math-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.origin-math-stat{padding:8px 6px}.origin-math-value{font-size:15px}.origin-math-label{font-size:6px}.origin-math-formula{font-size:7px;padding:8px}.origin-odds-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.origin-odd{padding:8px 4px}.origin-odd-art{font-size:23px}.origin-odd-name{font-size:7px;min-height:22px;margin-top:6px}.origin-odd-chance{font-size:11px;margin-top:5px}.origin-odd-caption{font-size:6px}.origin-odds-foot{font-size:7px;align-items:flex-start}.origin-history-list{grid-template-columns:1fr;gap:6px}.origin-history-entry{padding:7px}.origin-history-art{font-size:21px}.origin-warning{font-size:7px;padding:9px}
+ .mobile-nav{grid-template-columns:repeat(5,1fr)}.mobile-nav button[data-go="cases"]{display:flex}.mobile-nav button{font-size:6px;padding:6px 1px}.mobile-nav .mobile-icon{font-size:16px}
+}
+@media(prefers-reduced-motion:reduce){.origin-feature:after,.origin-box-aura,.origin-box-cube,.origin-reeling .origin-box-cube{animation:none!important}.origin-reel{transition-duration:.01ms!important}}
+
 </style>
 </head>
 <body>
@@ -26,6 +149,7 @@
     </div>
     <nav class="main-nav" aria-label="Главная навигация">
       <button class="nav-btn active" data-go="demo">Апгрейд <span class="nav-demo">DEMO</span></button>
+      <button class="nav-btn" data-go="cases">Origin Box</button>
       <button class="nav-btn" data-go="inventory">Инвентарь</button>
       <button class="nav-btn" data-go="profile">Профиль</button>
       <button class="nav-btn" data-go="wallet">Stars</button>
@@ -97,6 +221,59 @@
   <div class="legal-note">Виртуальные предметы и демо-ценности созданы для развлечения. Они не являются настоящими Telegram-подарками или Telegram Stars, не продаются, не передаются другим пользователям и не имеют денежной стоимости.</div>
 </section>
 
+
+<section class="view" id="view-cases">
+  <div class="eyebrow"><span class="eyebrow-dot"></span> GIFTORA CASE LAB · LOCAL SIMULATION</div>
+  <div class="origin-head">
+    <div><h2>Origin <span>Box</span></h2><p>Открой виртуальный кейс, прокрути рулетку и собери коллекцию. Все награды и DEMO ⭐ существуют только в этом браузере — реальный кошелёк Telegram не затрагивается.</p></div>
+    <div class="origin-exclusive"><b>DEMO</b> OPEN · WIN · COLLECT</div>
+  </div>
+  <div class="origin-hero-grid">
+    <section class="origin-feature">
+      <div class="origin-feature-top"><div class="origin-label">GIFTORA ORIGINAL DROP</div><div class="origin-badge">LIMITED CASE</div></div>
+      <div class="origin-box-showcase">
+        <div class="origin-box-art" id="originBoxArt"><div class="origin-box-aura"></div><div class="origin-box-cube"><span class="origin-box-emoji">🎁</span></div><span class="origin-box-spark one">✦</span><span class="origin-box-spark two">✧</span></div>
+        <div class="origin-case-copy"><div class="origin-case-title">Origin Box</div><div class="origin-case-description">Базовый кейс с балансными наградами и редким коллекционным Мишкой. Вероятности открыты до каждого запуска.</div><div class="origin-case-price"><strong id="originCasePrice">30 DEMO ⭐</strong><del id="originCaseOldPrice" hidden>30 ⭐</del><span class="origin-discount-label" id="originDiscountBadge" hidden>−5%</span></div></div>
+      </div>
+      <div class="origin-feature-foot"><span>Открытие <b>не списывает реальные Stars</b></span><span>7 наград · 100% шансов</span></div>
+    </section>
+    <aside class="origin-account">
+      <div><div class="origin-account-head"><div class="origin-account-title">ТВОЙ DEMO-БАЛАНС</div><span class="origin-demo-tag">НЕ РЕАЛЬНЫЕ ⭐</span></div><div class="origin-balance"><span id="originDemoBalance">90</span> <small>DEMO ⭐</small></div><div class="origin-account-desc">Эти виртуальные единицы тратятся только на Origin Box. Баланс Giftora Stars и реальные платежи остаются отдельно.</div><button id="refillOriginDemo" class="origin-refill">＋ ДОБАВИТЬ +90 DEMO ⭐</button></div>
+      <div class="origin-account-divider"></div>
+      <div class="origin-mini-stat"><div><div class="v" id="originOpenedCount">0</div><div class="l">Кейсов открыто</div></div><div><div class="v" id="originBearCount">0</div><div class="l">Мишек в коллекции</div></div></div>
+    </aside>
+  </div>
+  <section class="origin-opening">
+    <div class="origin-opening-head"><div><div class="origin-opening-title">ПРОКРУТКА ORIGIN BOX</div><div class="origin-opening-sub">Награда выбирается по опубликованным шансам, прокрутка — анимация результата.</div></div><div class="origin-live-pill">LOCAL RNG · DEMO</div></div>
+    <div class="origin-reel-viewport" id="originReelViewport" aria-label="Демо-прокрутка кейса"><div class="origin-reel" id="originReelTrack"></div></div>
+    <div class="origin-opening-actions"><button id="openOriginBox" class="origin-open-button">ОТКРЫТЬ ORIGIN BOX · 30 DEMO ⭐</button><div class="origin-price-note"><strong id="originPriceCaption">30 DEMO ⭐</strong><span id="originDiscountCaption">Цена кейса</span></div></div>
+    <div id="originOpenStatus" class="origin-open-status" aria-live="polite">В кейсе нет реальных Telegram-подарков. Все исходы — локальная симуляция.</div>
+  </section>
+  <div class="origin-support-grid">
+    <section class="origin-promo-card">
+      <div class="origin-section-head"><div class="origin-section-title">🎟 ПРОМОКОД</div><div class="origin-section-kicker">ORIGIN BOX ONLY</div></div>
+      <p class="origin-promo-desc">Введи <b style="color:#ffcb7f">КОЩЕЙ</b>, чтобы получить скидку 5% на следующее открытие Origin Box. Код действует один раз в этом браузере.</p>
+      <div class="origin-promo-row"><input id="originPromoInput" class="origin-promo-input" type="text" maxlength="24" placeholder="ВВЕДИ ПРОМОКОД" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Промокод"><button id="applyOriginPromo" class="origin-promo-apply">АКТИВИРОВАТЬ</button></div>
+      <div id="originPromoMessage" class="origin-promo-message" role="status" aria-live="polite">Промокод ещё не активирован. Скидка применяется только к DEMO-цене.</div>
+    </section>
+    <section class="origin-math-card">
+      <div class="origin-section-head"><div class="origin-section-title">📐 МАТЕМАТИКА КЕЙСА</div><div class="origin-section-kicker">ОДИН ОТКРЫТЫЙ РАСПРЕДЕЛИТЕЛЬ</div></div>
+      <div class="origin-math-grid"><div class="origin-math-stat"><div class="origin-math-value" id="originOddsTotal">100%</div><div class="origin-math-label">Сумма вероятностей всех наград</div></div><div class="origin-math-stat"><div class="origin-math-value" id="originExpectedStars">4,22 ⭐</div><div class="origin-math-label">Среднее начисление DEMO ⭐ на открытие</div></div><div class="origin-math-stat"><div class="origin-math-value" id="originExpectedValue">5,22</div><div class="origin-math-label">Ожидаемая демо-ценность с учётом Мишки</div></div><div class="origin-math-stat"><div class="origin-math-value" id="originExpectedReturn">17,4%</div><div class="origin-math-label">Условная ценность относительно цены кейса</div></div></div>
+      <div class="origin-math-formula"><strong>Формула ожидания:</strong> сумма (вероятность × демо-ценность). Для баланса: 1×30% + 2×24% + 3×18% + 5×14% + 15×8% + 25×4% = <strong>4,22 DEMO ⭐</strong>. Мишка имеет условную коллекционную оценку 50 DEMO ⭐ и шанс 2%, поэтому общая условная ожидаемая ценность — <strong>5,22</strong>. Это не деньги и не обещание конкретного выигрыша.</div>
+    </section>
+  </div>
+  <section class="origin-odds-card">
+    <div class="origin-section-head"><div><div class="origin-section-title">СОДЕРЖИМОЕ ORIGIN BOX</div><div class="origin-opening-sub">Шансы видны до открытия · сумма проверяется автоматически</div></div><div class="origin-section-kicker">ODDS TABLE</div></div>
+    <div class="origin-odds-grid" id="originOddsGrid"></div>
+    <div class="origin-odds-foot"><span>Точная сумма вероятностей: <strong id="originOddsFootTotal">100%</strong></span><span>Топ-дроп — Мишка Origin · шанс 2%</span></div>
+  </section>
+  <section class="origin-history-card">
+    <div class="origin-section-head"><div class="origin-section-title">ПОСЛЕДНИЕ ОТКРЫТИЯ</div><div class="origin-section-kicker">LOCAL HISTORY</div></div>
+    <div id="originCaseHistory" class="origin-history-list"><div class="origin-empty">Открой первый Origin Box — результат появится здесь.</div></div>
+  </section>
+  <div class="origin-warning"><strong>Важно о DEMO.</strong> Origin Box использует отдельный локальный баланс, который нельзя вывести, передать или обменять. Мишка — виртуальный предмет коллекции, а его оценка в 50 DEMO ⭐ нужна только для расчёта математики. Ничего из этого не является настоящими Telegram Stars или настоящим Telegram-подарком.</div>
+</section>
+
 <section class="view" id="view-inventory">
   <div class="eyebrow"><span class="eyebrow-dot"></span> YOUR DEMO COLLECTION</div>
   <div class="subpage-head"><div><h2>Мой инвентарь</h2><p>Твои виртуальные Telegram-style подарки. Выбери любой доступный предмет для апгрейда. Проигрыш влияет только на демо-коллекцию.</p></div><div class="subpage-actions"><button class="soft-btn" id="addStarter">＋ ДЕМО-ПОДАРОК</button><button class="soft-btn" id="resetDemo">↻ СБРОСИТЬ ДЕМО</button></div></div>
@@ -132,11 +309,12 @@
   <div class="legal-note">Пополнение требует запуска через Telegram-бота и подтверждённого платежа. Не вводи данные банковской карты на этой странице.</div>
 </section>
 
-<footer class="footer"><div><div class="footer-mark">GIFTORA / DEMO LAB</div><div>Виртуальная коллекция · без вывода · без реальных предметов</div></div><div class="upgrader-watermark">BUILT FOR DEMO PLAY <span style="color:#ff9d2d">✦</span></div></footer>
+<footer class="footer"><div><div class="footer-mark">GIFTORA / DEMO LAB</div><div>Виртуальная коллекция · без вывода · без реальных предметов</div></div><div class="footer-mark">ORIGIN BOX · VIRTUAL DROPS</div></footer>
 </main>
 </div>
 <nav class="mobile-nav" aria-label="Навигация приложения">
   <button data-go="demo" class="active"><span class="mobile-icon">↗</span><span>DEMO</span></button>
+  <button data-go="cases"><span class="mobile-icon">▣</span><span>Кейс</span></button>
   <button data-go="inventory"><span class="mobile-icon">▦</span><span>Инвентарь</span></button>
   <button data-go="profile"><span class="mobile-icon">◉</span><span>Профиль</span></button>
   <button data-go="wallet"><span class="mobile-icon">✦</span><span>Stars</span></button>
@@ -170,6 +348,18 @@
     {id:'heart',name:'Сердце вселенной',emoji:'💖',value:75000,rarity:'Мифический',tier:'legendary'}
   ];
   const starterIds = ['marmalade','plush','rose'];
+  const CASE_STORAGE_KEY = 'giftora_origin_box_demo_v1';
+  const CASE_PRICE = 30;
+  const BEAR_DEMO_VALUE = 50;
+  const CASE_PRIZES = [
+    {id:'star1',name:'1 ⭐ на баланс',short:'1 DEMO ⭐',emoji:'⭐',chance:30,type:'stars',stars:1,accent:'#a6a6a6'},
+    {id:'star2',name:'2 ⭐ на баланс',short:'2 DEMO ⭐',emoji:'✨',chance:24,type:'stars',stars:2,accent:'#b2bac8'},
+    {id:'star3',name:'3 ⭐ на баланс',short:'3 DEMO ⭐',emoji:'🌟',chance:18,type:'stars',stars:3,accent:'#68c9a0'},
+    {id:'star5',name:'5 ⭐ на баланс',short:'5 DEMO ⭐',emoji:'💫',chance:14,type:'stars',stars:5,accent:'#7ba6ff'},
+    {id:'star15',name:'15 ⭐ на баланс',short:'15 DEMO ⭐',emoji:'🌠',chance:8,type:'stars',stars:15,accent:'#b899ff'},
+    {id:'star25',name:'25 ⭐ на баланс',short:'25 DEMO ⭐',emoji:'💎',chance:4,type:'stars',stars:25,accent:'#ffb94d'},
+    {id:'originBear',name:'Мишка Origin',short:'ТОП-ПРИЗ',emoji:'🧸',chance:2,type:'item',demoValue:BEAR_DEMO_VALUE,accent:'#ffd16c'}
+  ];
   const now = () => Math.floor(Date.now()/1000);
   function toInt(v, fallback=0){ const n=Number(v); return Number.isFinite(n)?Math.trunc(n):fallback; }
   function fmt(v){return new Intl.NumberFormat('ru-RU',{maximumFractionDigits:0}).format(toInt(v,0));}
@@ -181,7 +371,12 @@
   function safeLoad(){try{const raw=localStorage.getItem(STORAGE_KEY);if(!raw)return defaultSave();const v=JSON.parse(raw);if(!v||!Array.isArray(v.inventory)||!v.stats)return defaultSave();const inventory=v.inventory.filter(x=>x&&typeof x==='object'&&x.catalogId&&getGift(x.catalogId));if(!inventory.length)return {...defaultSave(),stats:normalizeStats(v.stats),history:Array.isArray(v.history)?v.history.slice(0,8):[]};return {inventory,selectedSource:v.selectedSource||inventory[0].instanceId,selectedTarget:v.selectedTarget||'moon',stats:normalizeStats(v.stats),history:Array.isArray(v.history)?v.history.slice(0,8):[]};}catch(_){return defaultSave();}}
   function normalizeStats(s){return {spins:Math.max(0,toInt(s?.spins)),wins:Math.max(0,toInt(s?.wins)),bestValue:Math.max(0,toInt(s?.bestValue))};}
   let save = safeLoad();
-  const state = {view:'demo',filter:'all',search:'',rolling:false,lastResult:null,toastTimer:0,spinAngle:0};
+  const state = {view:'demo',filter:'all',search:'',rolling:false,lastResult:null,toastTimer:0,spinAngle:0,caseRolling:false,caseCost:0};
+  function defaultCaseSave(){return {balance:90,promoActive:false,promoUsed:false,opened:0,bearCount:0,history:[],pending:null};}
+  function loadCaseSave(){try{const raw=localStorage.getItem(CASE_STORAGE_KEY);if(!raw)return defaultCaseSave();const x=JSON.parse(raw);if(!x||typeof x!=='object')return defaultCaseSave();return {balance:Math.max(0,Math.round((Number(x.balance)||0)*10)/10),promoActive:!!x.promoActive,promoUsed:!!x.promoUsed,opened:Math.max(0,toInt(x.opened)),bearCount:Math.max(0,toInt(x.bearCount)),history:Array.isArray(x.history)?x.history.slice(0,6).filter(h=>h&&typeof h==='object'):[],pending:x.pending&&typeof x.pending.prizeId==='string'?{prizeId:x.pending.prizeId,cost:Math.max(0,Number(x.pending.cost)||CASE_PRICE),at:toInt(x.pending.at)}:null};}catch(_){return defaultCaseSave();}}
+  let caseSave = loadCaseSave();
+  let currentCasePrize = null;
+  let caseTimer = null;
   const user = (tg?.initDataUnsafe?.user)||{};
   const profile = {id:snapshotUserId||String(user.id||''),first:qs.get('first')||user.first_name||'',last:qs.get('last')||user.last_name||'',username:qs.get('username')||user.username||'',photo:user.photo_url||'',registered:toInt(qs.get('registered'),0)};
   function saveState(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(save));}catch(_){} }
@@ -207,11 +402,28 @@
   function renderInventory(){const items=[...save.inventory].sort((a,b)=>b.value-a.value);$('inventoryCount').textContent=`${items.length} ${items.length===1?'предмет':items.length<5?'предмета':'предметов'}`;$('inventoryGrid').innerHTML=items.map(invCardMarkup).join('')||'<div class="empty-note">Инвентарь пуст. Нажми «Демо-подарок», чтобы продолжить.</div>';}
   function renderHistoryAndStats(){const s=save.stats,best=bestItem();$('statSpins').textContent=fmt(s.spins);$('statWins').textContent=fmt(s.wins);$('statBest').textContent=best?fmt(best.value):fmt(s.bestValue);$('recentHistory').innerHTML=historyMarkup();$('profileItemCount').textContent=fmt(save.inventory.length);$('profileWins').textContent=fmt(s.wins);$('profileSpins').textContent=fmt(s.spins);$('profileWinRate').textContent=s.spins?Math.round(s.wins/s.spins*100)+'%':'0%';$('profileBestValue').textContent=best?fmt(best.value):fmt(s.bestValue);}
   function renderWallet(){const val=snapshotBalance===null?'—':fmt(snapshotBalance);$('headerBalance').textContent=val;$('walletBalance').textContent=val;$('walletTimestamp').textContent=SNAPSHOT_OK?`Снимок от бота · ${new Date(toInt(qs.get('at'),now())*1000).toLocaleString('ru-RU')}`:'Открой Giftora кнопкой бота, чтобы получить снимок баланса.';document.querySelectorAll('[data-pack]').forEach(b=>b.disabled=!(SNAPSHOT_OK&&tg&&typeof tg.sendData==='function'));$('refreshBalance').disabled=!(SNAPSHOT_OK&&tg&&typeof tg.sendData==='function');}
-  function renderAll(){renderIdentity();updateSourceTargetVisual();$('sourceStrip').innerHTML=sourceStripMarkup();$('targetStrip').innerHTML=targetStripMarkup();renderInventory();renderTargetGrid();renderHistoryAndStats();renderWallet();syncNativeMainButton();}
-  function go(view){const allowed=['demo','inventory','catalog','profile','wallet'];if(!allowed.includes(view))return;state.view=view;document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+view));document.querySelectorAll('[data-go]').forEach(b=>b.classList.toggle('active',b.dataset.go===view));document.querySelectorAll('.mobile-nav button').forEach(b=>b.classList.toggle('active',b.dataset.go===view||(view==='catalog'&&b.dataset.go==='demo')));try{tg?.HapticFeedback?.selectionChanged();}catch(_){}window.scrollTo({top:0,behavior:'smooth'});syncNativeMainButton();}
+  function saveCaseState(){try{localStorage.setItem(CASE_STORAGE_KEY,JSON.stringify(caseSave));}catch(_){}}
+  function activeOriginPromo(){return caseSave.promoActive&&!caseSave.promoUsed;}
+  function originPrice(){return activeOriginPromo()?Math.round(CASE_PRICE*0.95*10)/10:CASE_PRICE;}
+  function fmtDemoStars(v){return new Intl.NumberFormat('ru-RU',{minimumFractionDigits:Number.isInteger(v)?0:1,maximumFractionDigits:1}).format(v);}
+  function fmtMath(v){return new Intl.NumberFormat('ru-RU',{minimumFractionDigits:2,maximumFractionDigits:2}).format(v);}
+  function chooseOriginPrize(){const roll=Math.random()*100;let tally=0;for(const prize of CASE_PRIZES){tally+=prize.chance;if(roll<tally)return prize;}return CASE_PRIZES[CASE_PRIZES.length-1];}
+  function originOddsMarkup(p){const cls=p.id==='originBear'?'bear':p.chance<=4?'legendary':'';const caption=p.type==='item'?'коллекционный предмет':'на DEMO-баланс';return `<article class="origin-odd ${cls}"><div class="origin-odd-art">${p.emoji}</div><div class="origin-odd-name">${escapeHtml(p.name)}</div><div class="origin-odd-chance">${fmtDemoStars(p.chance)}%</div><div class="origin-odd-caption">${caption}</div></article>`;}
+  function originHistoryMarkup(){if(!caseSave.history.length)return '<div class="origin-empty">Открой первый Origin Box — результат появится здесь.</div>';return caseSave.history.slice(0,3).map(h=>`<div class="origin-history-entry"><div class="origin-history-art">${escapeHtml(h.emoji||'🎁')}</div><div class="origin-history-copy"><div class="origin-history-name">${escapeHtml(h.name||'Награда')}</div><div class="origin-history-sub">${escapeHtml(h.when||'Недавно')} · шанс ${fmtDemoStars(h.chance||0)}%</div><div class="origin-history-reward">${escapeHtml(h.reward||'Демо-награда')}</div></div></div>`).join('');}
+  function renderOriginCase(){if(!$('originDemoBalance'))return;const price=state.caseRolling&&state.caseCost?state.caseCost:originPrice();$('originDemoBalance').textContent=fmtDemoStars(caseSave.balance);$('originOpenedCount').textContent=fmt(caseSave.opened);$('originBearCount').textContent=fmt(caseSave.bearCount);$('originCasePrice').textContent=`${fmtDemoStars(price)} DEMO ⭐`;$('originCaseOldPrice').hidden=!activeOriginPromo();$('originDiscountBadge').hidden=!activeOriginPromo();$('originPriceCaption').textContent=`${fmtDemoStars(price)} DEMO ⭐`;$('originDiscountCaption').textContent=activeOriginPromo()?'−5% промокод':'цена открытия';$('openOriginBox').textContent=state.caseRolling?'ПРОКРУТКА…':`ОТКРЫТЬ ORIGIN BOX · ${fmtDemoStars(price)} DEMO ⭐`;$('openOriginBox').disabled=state.caseRolling||caseSave.balance<price;$('originOpenStatus').textContent=state.caseRolling?'Кейс открыт — прокрутка уже идёт…':caseSave.balance<price?'Не хватает DEMO ⭐. Нажми «Добавить +90» — это бесплатный игровой баланс.':'Все награды виртуальные. Реальный кошелёк Giftora не меняется.';
+    const promo=$('originPromoMessage');if(caseSave.promoUsed){promo.className='origin-promo-message';promo.textContent='Промокод КОЩЕЙ уже использован. Скидка применялась к одному открытию.';}else if(activeOriginPromo()){promo.className='origin-promo-message good';promo.textContent='КОЩЕЙ активирован: −5% на следующее открытие. Цена снижена с 30 до 28,5 DEMO ⭐.';}else{promo.className='origin-promo-message';promo.textContent='Промокод ещё не активирован. Введи КОЩЕЙ — скидка 5% на одно открытие.';}
+    $('originOddsGrid').innerHTML=CASE_PRIZES.map(originOddsMarkup).join('');const total=CASE_PRIZES.reduce((sum,p)=>sum+p.chance,0);const expectedStars=CASE_PRIZES.reduce((sum,p)=>sum+(p.type==='stars'?p.chance*p.stars/100:0),0);const expectedValue=expectedStars+CASE_PRIZES.reduce((sum,p)=>sum+(p.type==='item'?p.chance*p.demoValue/100:0),0);$('originOddsTotal').textContent=fmtDemoStars(total)+'%';$('originOddsFootTotal').textContent=fmtDemoStars(total)+'%';$('originExpectedStars').textContent=fmtMath(expectedStars)+' ⭐';$('originExpectedValue').textContent=fmtMath(expectedValue);$('originExpectedReturn').textContent=fmtMath(expectedValue/price*100)+'%';$('originCaseHistory').innerHTML=originHistoryMarkup();syncNativeMainButton();}
+  function renderOriginReel(prize){const track=$('originReelTrack');const viewport=$('originReelViewport');if(!track||!viewport)return;const list=[];const winIndex=30;for(let i=0;i<39;i++)list.push(CASE_PRIZES[Math.floor(Math.random()*CASE_PRIZES.length)]);list[winIndex]=prize;track.style.transition='none';track.style.transform='translateX(0px)';track.innerHTML=list.map((p,i)=>`<div class="origin-reel-tile ${i===winIndex?'best':''}" style="--tile-accent:${p.accent}"><div class="art">${p.emoji}</div><div class="name">${escapeHtml(p.name)}</div><div class="amount">${p.type==='stars'?'+'+p.stars+' DEMO ⭐':(i===winIndex?'ТОП-ПРИЗ':'МИШКА')}</div></div>`).join('');void track.offsetWidth;requestAnimationFrame(()=>requestAnimationFrame(()=>{const tile=track.querySelector('.origin-reel-tile');const tileWidth=tile?tile.getBoundingClientRect().width:112;const gap=parseFloat(window.getComputedStyle(track).columnGap)||9;const tileCenter=winIndex*(tileWidth+gap)+tileWidth/2;const targetX=viewport.clientWidth/2-tileCenter;track.style.transition='transform 3.65s cubic-bezier(.10,.76,.08,1)';track.style.transform=`translateX(${targetX}px)`;}));}
+  function settleOriginPrize(prize,cost,silent=false){if(prize.type==='stars'){caseSave.balance=Math.round((caseSave.balance+prize.stars)*10)/10;}else{caseSave.bearCount++;const bear=cloneGift('plush');bear.name='Мишка Origin';bear.emoji='🧸';bear.value=1800;bear.rarity='Мифический';bear.tier='legendary';save.inventory.push(bear);save.stats.bestValue=Math.max(save.stats.bestValue,bear.value);saveState();}
+    caseSave.pending=null;caseSave.opened++;caseSave.history.unshift({at:now(),when:new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'}),id:prize.id,name:prize.name,emoji:prize.emoji,chance:prize.chance,reward:prize.type==='stars'?`+${prize.stars} DEMO ⭐`:'Добавлен в инвентарь'});caseSave.history=caseSave.history.slice(0,6);saveCaseState();if(!silent)renderAll();}
+  function openOriginBox(){if(state.caseRolling)return;const cost=originPrice();if(caseSave.balance<cost){showToast('Не хватает DEMO ⭐. Пополни тестовый баланс.');return;}const prize=chooseOriginPrize();state.caseRolling=true;state.caseCost=cost;currentCasePrize=prize;caseSave.balance=Math.round((caseSave.balance-cost)*10)/10;caseSave.pending={prizeId:prize.id,cost,at:now()};if(activeOriginPromo()){caseSave.promoActive=false;caseSave.promoUsed=true;}saveCaseState();renderOriginCase();$('originBoxArt').classList.add('origin-reeling');$('originReelTrack').style.transition='none';renderOriginReel(prize);try{tg?.HapticFeedback?.impactOccurred('medium');}catch(_){}window.clearTimeout(caseTimer);caseTimer=window.setTimeout(()=>{state.caseRolling=false;state.caseCost=0;$('originBoxArt').classList.remove('origin-reeling');settleOriginPrize(prize,cost);const title=prize.type==='stars'?`+${prize.stars} DEMO ⭐`:'Мишка Origin!';const desc=prize.type==='stars'?`${prize.stars} виртуальных Stars начислено на DEMO-баланс. Потрачено ${fmtDemoStars(cost)} DEMO ⭐. Настоящий кошелёк не затронут.`:'Редкий виртуальный Мишка Origin добавлен в DEMO-инвентарь. У него нет реальной стоимости или возможности вывода.';$('modalArt').textContent=prize.emoji;$('modalEyebrow').textContent=`ORIGIN BOX · DROP CHANCE ${prize.chance}%`;$('modalTitle').textContent=title;$('modalDesc').textContent=desc;$('resultModal').classList.add('show');try{tg?.HapticFeedback?.notificationOccurred(prize.id==='originBear'?'success':'warning');}catch(_){}currentCasePrize=null;renderOriginCase();},3750);}
+  function applyOriginPromo(){const input=$('originPromoInput');const msg=$('originPromoMessage');const code=input.value.trim().toLocaleUpperCase('ru-RU');if(caseSave.promoUsed){msg.className='origin-promo-message bad';msg.textContent='Промокод уже был использован. Он одноразовый.';return;}if(activeOriginPromo()){msg.className='origin-promo-message good';msg.textContent='Промокод уже активирован — скидка применится к следующему открытию.';showToast('Скидка КОЩЕЙ уже активна.');return;}if(code!=='КОЩЕЙ'){msg.className='origin-promo-message bad';msg.textContent='Промокод не найден. Проверь написание: КОЩЕЙ.';try{tg?.HapticFeedback?.notificationOccurred('error');}catch(_){}return;}caseSave.promoActive=true;saveCaseState();input.value='';renderOriginCase();showToast('КОЩЕЙ активирован: −5% на Origin Box!');try{tg?.HapticFeedback?.notificationOccurred('success');}catch(_){} }
+  function refillOriginDemo(){caseSave.balance=Math.round((caseSave.balance+90)*10)/10;saveCaseState();renderOriginCase();showToast('+90 виртуальных DEMO ⭐ добавлено.');}
+  function renderAll(){renderIdentity();updateSourceTargetVisual();$('sourceStrip').innerHTML=sourceStripMarkup();$('targetStrip').innerHTML=targetStripMarkup();renderInventory();renderTargetGrid();renderHistoryAndStats();renderWallet();renderOriginCase();syncNativeMainButton();}
+  function go(view){const allowed=['demo','cases','inventory','catalog','profile','wallet'];if(!allowed.includes(view))return;state.view=view;document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+view));document.querySelectorAll('[data-go]').forEach(b=>b.classList.toggle('active',b.dataset.go===view));document.querySelectorAll('.mobile-nav button').forEach(b=>b.classList.toggle('active',b.dataset.go===view||(view==='catalog'&&b.dataset.go==='demo')));try{tg?.HapticFeedback?.selectionChanged();}catch(_){}window.scrollTo({top:0,behavior:'smooth'});syncNativeMainButton();}
   function sendBotAction(payload){if(!tg||typeof tg.sendData!=='function'||!SNAPSHOT_OK){showToast('Открой Giftora кнопкой «Открыть Giftora» в чате бота.');return;}try{tg.sendData(JSON.stringify({v:1,...payload}));showToast(payload.action==='topup'?'Счёт отправлен в чат Telegram.':'Запрос отправлен боту — после ответа открой Giftora снова.');}catch(_){showToast('Не удалось отправить запрос. Открой Mini App из чата бота.');}}
   let mainButtonBound=false;
-  function syncNativeMainButton(){if(!tg?.MainButton)return;try{if(!mainButtonBound){tg.MainButton.onClick(()=>{if(state.view==='wallet')sendBotAction({action:'balance'});else if(state.view==='inventory')go('demo');else if(state.view==='profile')go('wallet');else if(state.view==='catalog')go('demo');else if(state.view==='demo')spin();});mainButtonBound=true;}if(state.view==='demo'){const params={text:'DEMO-АПГРЕЙД',color:'#ff9a2c',text_color:'#241407',is_visible:true,is_active:!state.rolling,has_shine_effect:true};tg.MainButton.setParams?.(params);tg.MainButton.show();}else if(state.view==='wallet'){tg.MainButton.setParams?.({text:'ОБНОВИТЬ БАЛАНС',color:'#ff9a2c',text_color:'#241407',is_visible:true,is_active:SNAPSHOT_OK&&!!tg.sendData});tg.MainButton.show();}else{tg.MainButton.hide();}}catch(_){} }
+  function syncNativeMainButton(){if(!tg?.MainButton)return;try{if(!mainButtonBound){tg.MainButton.onClick(()=>{if(state.view==='wallet')sendBotAction({action:'balance'});else if(state.view==='cases')openOriginBox();else if(state.view==='inventory')go('demo');else if(state.view==='profile')go('wallet');else if(state.view==='catalog')go('demo');else if(state.view==='demo')spin();});mainButtonBound=true;}if(state.view==='demo'){const params={text:'DEMO-АПГРЕЙД',color:'#ff9a2c',text_color:'#241407',is_visible:true,is_active:!state.rolling,has_shine_effect:true};tg.MainButton.setParams?.(params);tg.MainButton.show();}else if(state.view==='cases'){const params={text:`ОТКРЫТЬ ORIGIN BOX · ${fmtDemoStars(originPrice())} DEMO ⭐`,color:'#ff9a2c',text_color:'#241407',is_visible:true,is_active:!state.caseRolling&&caseSave.balance>=originPrice(),has_shine_effect:true};tg.MainButton.setParams?.(params);tg.MainButton.show();}else if(state.view==='wallet'){tg.MainButton.setParams?.({text:'ОБНОВИТЬ БАЛАНС',color:'#ff9a2c',text_color:'#241407',is_visible:true,is_active:SNAPSHOT_OK&&!!tg.sendData});tg.MainButton.show();}else{tg.MainButton.hide();}}catch(_){} }
   function ensureSelectedTarget(){const src=sourceItem();const tgt=targetGift();if(src&&tgt.value<=src.value){const next=CATALOG.find(g=>g.value>src.value);save.selectedTarget=next?next.id:CATALOG[CATALOG.length-1].id;}}
   function ensureInventoryNotEmpty(){if(save.inventory.length)return;const pack=[cloneGift('surprise'),cloneGift('marmalade'),cloneGift('plush')];save.inventory.push(...pack);save.selectedSource=pack[1].instanceId;showToast('Демо-коллекция пополнена стартовыми подарками.');}
   function addStarter(){const choices=['surprise','marmalade','plush','rose'];const g=cloneGift(choices[Math.floor(Math.random()*choices.length)]);save.inventory.push(g);save.selectedSource=g.instanceId;ensureSelectedTarget();saveState();renderAll();showToast('Добавлен виртуальный демо-подарок.');}
@@ -226,6 +438,9 @@
     const target=e.target.closest('[data-target-id]');if(target){selectTarget(target.dataset.targetId);return;}
     const pack=e.target.closest('[data-pack]');if(pack){sendBotAction({action:'topup',amount:Number(pack.dataset.pack)});return;}
     if(e.target.closest('#spinButton')){spin();return;}
+    if(e.target.closest('#openOriginBox')){openOriginBox();return;}
+    if(e.target.closest('#applyOriginPromo')){applyOriginPromo();return;}
+    if(e.target.closest('#refillOriginDemo')){refillOriginDemo();return;}
     if(e.target.closest('#refreshBalance')){sendBotAction({action:'balance'});return;}
     if(e.target.closest('#addStarter')){addStarter();return;}
     if(e.target.closest('#resetDemo')){resetDemo();return;}
@@ -234,9 +449,11 @@
     if(e.target.id==='resultModal'){$('resultModal').classList.remove('show');return;}
   });
   $('giftSearch').addEventListener('input',e=>{state.search=e.target.value;renderTargetGrid();});
+  $('originPromoInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();applyOriginPromo();}});
   document.querySelectorAll('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{state.filter=btn.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.classList.toggle('active',x===btn));renderTargetGrid();}));
+  function recoverPendingOriginCase(){const pending=caseSave.pending;if(!pending)return;const prize=CASE_PRIZES.find(p=>p.id===pending.prizeId);if(prize){settleOriginPrize(prize,pending.cost,true);}else{caseSave.pending=null;saveCaseState();}}
   function patchInventoryState(){if(!save.inventory.some(x=>x.instanceId===save.selectedSource))save.selectedSource=save.inventory[0]?.instanceId||null;ensureInventoryNotEmpty();ensureSelectedTarget();}
-  patchInventoryState();saveState();renderAll();
+  recoverPendingOriginCase();patchInventoryState();saveState();renderAll();
   async function loadPublishedGiftArtwork(){try{const response=await fetch('./assets/gifts/catalog.json?ts='+Date.now(),{cache:'no-store'});if(!response.ok)return;const data=await response.json();const artworks=(Array.isArray(data.gifts)?data.gifts:[]).filter(g=>typeof g.image==='string'&&/^\.\/assets\/gifts\/images\/[A-Za-z0-9_.-]+$/.test(g.image)).sort((a,b)=>toInt(a.star_count)-toInt(b.star_count));if(!artworks.length)return;CATALOG.forEach((gift,index)=>{const position=Math.round(index*(artworks.length-1)/Math.max(1,CATALOG.length-1));gift.image=artworks[position]?.image||'';});renderAll();}catch(_){/* Published artwork is optional; emoji art remains available offline. */}}
   loadPublishedGiftArtwork();
   if(!SNAPSHOT_OK)showToast('DEMO готов! Баланс появится при открытии через Telegram-бота.');
