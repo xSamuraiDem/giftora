@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#111111">
+<meta name="theme-color" content="#100e0b">
 <meta name="referrer" content="no-referrer">
-<title>GIFTORA — Origin Box & Demo Upgrader</title>
+<title>GIFTORA — Origin Box & Gift Contracts</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
 :root{color-scheme:dark;--bg:#101010;--bg2:#151515;--panel:#1a1a1a;--panel2:#202020;--panel3:#262626;--line:#343434;--line2:#484848;--orange:#ff941f;--orange2:#ffb64f;--amber:#ffda90;--text:#f7f4ef;--muted:#96918a;--green:#70e1a2;--red:#ff7171;--blue:#9aa8ff;--radius:16px;--safe-b:env(safe-area-inset-bottom,0px);font-synthesis:none}
@@ -138,6 +138,47 @@
 }
 @media(prefers-reduced-motion:reduce){.origin-feature:after,.origin-box-aura,.origin-box-cube,.origin-reeling .origin-box-cube{animation:none!important}.origin-reel{transition-duration:.01ms!important}}
 
+
+/* Giftora live-case / contract refresh */
+.dev-nav{background:#67471f!important;color:#ffd49a!important;border:1px solid #c9893d4d;letter-spacing:.35px!important}
+.case-payment-banner{display:flex;align-items:center;gap:12px;margin:0 0 13px;padding:13px 15px;border:1px solid #b87b383d;border-radius:14px;background:linear-gradient(110deg,#3a28170e,#1b1712 48%,#161616);box-shadow:inset 0 1px #ffffff07}
+.case-payment-icon{display:grid;place-items:center;flex:none;width:37px;height:37px;border-radius:11px;background:linear-gradient(145deg,#ffd47a,#f88d20);color:#2a1606;font-size:19px;font-weight:1000;box-shadow:0 0 25px #ff9c2220}
+.case-payment-copy{min-width:0;flex:1;display:flex;flex-direction:column;gap:3px}.case-payment-copy strong{font-size:11px;color:#f6d29e}.case-payment-copy span{font-size:9px;color:#9f9382;line-height:1.5}
+.case-payment-status{flex:none;padding:6px 8px;border:1px solid #b47b4540;border-radius:7px;background:#5a381613;color:#e8b875;font-size:7px;font-weight:1000;letter-spacing:.45px;text-align:center}
+.origin-feature-live{border-color:#5a4129;background:radial-gradient(ellipse at 22% 0%,#ff9e3020,transparent 46%),linear-gradient(145deg,#282019,#171513 72%)}
+.origin-feature-live .origin-badge{color:#ffd28b;border-color:#ad753d50;background:#ff9c2112}
+.origin-live-tag{border:1px solid #77c99c30;color:#a7e6be;background:#54b9850c;border-radius:6px;padding:4px 6px;font-size:7px;font-weight:1000;white-space:nowrap}
+.case-price-caption{margin-top:6px;color:#8e8273;font-size:8px;line-height:1.45}
+.origin-opening-live{border-color:#55402b;background:linear-gradient(180deg,#211b15,#141414)}
+.origin-live-pill-muted{border-color:#8d67382e;background:#ffb13e0a;color:#e8bd80}
+.real-case-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:14px 0 4px}
+.real-case-step{position:relative;min-width:0;display:flex;flex-direction:column;gap:5px;padding:12px;border:1px solid #ffffff0c;border-radius:11px;background:#ffffff03}
+.real-case-step>span{display:grid;place-items:center;width:22px;height:22px;border-radius:7px;border:1px solid #674d2d;background:#312215;color:#ffc371;font-size:8px;font-weight:1000}
+.real-case-step b{font-size:10px;color:#e9dfd2}.real-case-step small{font-size:8px;line-height:1.5;color:#8f867b}
+.case-rounding-note{margin-top:10px;padding:9px 10px;border:1px solid #ffffff0a;border-radius:8px;background:#ffffff03;color:#8c8275;font-size:8px;line-height:1.6}
+.origin-opening-live .origin-open-button{display:flex;align-items:center;justify-content:center;gap:9px}
+.origin-opening-live .origin-open-button span{font-size:15px}
+.origin-opening-live .origin-open-button:disabled{filter:grayscale(.7)}
+.case-live-banner-ready{border-color:#57bb803c;background:#132019}.case-live-banner-ready .case-payment-icon{background:linear-gradient(145deg,#9af0ba,#46b878)}.case-live-banner-ready .case-payment-status{color:#a8edc0;border-color:#4cb8784d;background:#32875314}
+.contract-hero{position:relative;overflow:hidden;margin-top:14px;padding:clamp(18px,4vw,34px);border:1px solid #4b3825;border-radius:22px;background:radial-gradient(ellipse at 50% -8%,#ff9c3020,transparent 44%),linear-gradient(145deg,#211b15,#151515 65%);box-shadow:inset 0 1px #ffffff08}
+.contract-hero h2{position:relative;margin:13px 0 7px;font-size:clamp(29px,5vw,44px);line-height:1;letter-spacing:-1.3px;font-weight:1000}.contract-hero h2 span{color:#ffb84f}
+.contract-hero>p{position:relative;max-width:670px;margin:0;color:#a59a8b;font-size:11px;line-height:1.7}
+.contract-status{position:relative;display:inline-flex;padding:7px 9px;border:1px solid #b27b384d;border-radius:7px;background:#ff9b1a10;color:#ffca81;font-size:8px;font-weight:1000;letter-spacing:1px}
+.contract-orbit{position:absolute;right:10%;top:3%;width:170px;height:170px;border:1px solid #ffb14824;border-radius:50%;display:grid;place-items:center;color:#ffb94e;font-size:42px;opacity:.75;pointer-events:none}
+.contract-orbit:before,.contract-orbit:after{content:"";position:absolute;inset:13px;border:1px dashed #ffb14820;border-radius:50%}.contract-orbit:after{inset:31px;border-style:solid}.contract-orbit i{position:absolute;top:22px;right:28px;font-style:normal;font-size:20px}.contract-orbit b{position:absolute;bottom:23px;left:27px;font-size:17px;font-weight:500}
+.contract-slots{position:relative;display:flex;align-items:center;justify-content:center;gap:11px;margin:28px 0 24px;padding:18px 10px;border:1px solid #ffffff0d;border-radius:16px;background:#0e0e0e6b}
+.contract-slot{position:relative;width:clamp(78px,11vw,116px);aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:1px dashed #7353307a;border-radius:12px;background:linear-gradient(145deg,#2a2117,#171513);box-shadow:inset 0 0 18px #ffac3010}
+.contract-slot>span{position:absolute;top:7px;left:8px;color:#8f806c;font-size:7px;font-weight:950}.contract-slot>b{font-size:clamp(25px,4vw,36px);filter:drop-shadow(0 6px 9px #0009)}.contract-slot small{color:#958778;font-size:7px;text-align:center}.contract-plus,.contract-equals{color:#8f7b60;font-size:19px;font-weight:600}.contract-result-slot{border-style:solid;border-color:#ad7b3e7a;background:radial-gradient(ellipse at 50% 20%,#ffad3b1d,transparent 65%),#20180f}.contract-result-slot>b{color:#ffbe61}.contract-feature-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.contract-feature-list>div{display:flex;gap:9px;min-width:0;padding:12px;border:1px solid #ffffff0b;border-radius:11px;background:#ffffff03}.contract-feature-list>div>span{color:#ffb54e;font-size:9px;font-weight:1000}.contract-feature-list>div>div{min-width:0;flex:1;display:flex;flex-direction:column;gap:4px}.contract-feature-list b{font-size:9px}.contract-feature-list small{color:#8f867b;font-size:8px;line-height:1.55}.contract-feature-list em{align-self:flex-start;color:#c6a476;font-style:normal;font-size:7px;white-space:nowrap}
+.contract-disabled-button{width:100%;margin-top:17px;padding:14px;border:1px solid #5a4935;border-radius:10px;background:linear-gradient(100deg,#4b351f,#322418);color:#d8b88a;font-size:10px;font-weight:1000;letter-spacing:.7px;opacity:.75!important}
+.contract-footnote{margin-top:9px;text-align:center;color:#82786a;font-size:8px;line-height:1.6}
+@media(max-width:900px){.contract-feature-list{grid-template-columns:1fr}}
+@media(max-width:650px){
+ .case-payment-banner{align-items:flex-start;gap:8px;padding:10px}.case-payment-icon{width:30px;height:30px;font-size:15px;border-radius:9px}.case-payment-copy strong{font-size:9px}.case-payment-copy span{font-size:8px}.case-payment-status{max-width:89px;font-size:6px;line-height:1.35;padding:5px}
+ .real-case-steps{gap:5px;margin-top:10px}.real-case-step{padding:8px 7px;gap:4px}.real-case-step>span{width:19px;height:19px;font-size:7px}.real-case-step b{font-size:8px}.real-case-step small{font-size:7px}
+ .contract-hero{padding:16px;border-radius:16px}.contract-orbit{width:112px;height:112px;right:-12px;top:13%;opacity:.35}.contract-slots{gap:5px;padding:10px 5px;margin:19px -4px 17px}.contract-slot{width:clamp(56px,18vw,84px);border-radius:9px}.contract-slot>span{top:5px;left:5px;font-size:6px}.contract-slot small{font-size:6px}.contract-plus,.contract-equals{font-size:13px}.contract-feature-list{gap:7px}.contract-feature-list>div{padding:10px}.contract-disabled-button{font-size:8px}
+ .mobile-nav{grid-template-columns:repeat(6,1fr)}.mobile-nav button{font-size:6px}.mobile-nav .mobile-icon{font-size:15px}
+}
+
 </style>
 </head>
 <body>
@@ -151,6 +192,7 @@
       <button class="nav-btn active" data-go="demo">Апгрейд <span class="nav-demo">DEMO</span></button>
       <button class="nav-btn" data-go="cases">Origin Box</button>
       <button class="nav-btn" data-go="inventory">Инвентарь</button>
+      <button class="nav-btn" data-go="contract">Контракт <span class="nav-demo dev-nav">В РАЗРАБОТКЕ</span></button>
       <button class="nav-btn" data-go="profile">Профиль</button>
       <button class="nav-btn" data-go="wallet">Stars</button>
     </nav>
@@ -223,55 +265,87 @@
 
 
 <section class="view" id="view-cases">
-  <div class="eyebrow"><span class="eyebrow-dot"></span> GIFTORA CASE LAB · LOCAL SIMULATION</div>
+  <div class="eyebrow"><span class="eyebrow-dot"></span> GIFTORA · PAID CASES</div>
   <div class="origin-head">
-    <div><h2>Origin <span>Box</span></h2><p>Открой виртуальный кейс, прокрути рулетку и собери коллекцию. Все награды и DEMO ⭐ существуют только в этом браузере — реальный кошелёк Telegram не затрагивается.</p></div>
-    <div class="origin-exclusive"><b>DEMO</b> OPEN · WIN · COLLECT</div>
+    <div><h2>Origin <span>Box</span></h2><p>Кейс с оплатой в Telegram Stars. Счёт и результат должны подтверждаться ботом: интерфейс не списывает звёзды и не выбирает выигрыш на клиенте.</p></div>
+    <div class="origin-exclusive"><b>30 XTR</b> TELEGRAM STARS</div>
+  </div>
+  <div class="case-payment-banner" id="originPaymentBanner">
+    <span class="case-payment-icon">✦</span>
+    <div class="case-payment-copy"><strong id="originPaymentTitle">Оплата через Telegram Stars</strong><span id="originPaymentDescription">Настоящее открытие требует включённого обработчика Origin Box в Python-боте. Пока он не подключён, ничего не списывается.</span></div>
+    <span class="case-payment-status" id="originPaymentState">БОТ НЕ ПОДКЛЮЧЁН</span>
   </div>
   <div class="origin-hero-grid">
-    <section class="origin-feature">
-      <div class="origin-feature-top"><div class="origin-label">GIFTORA ORIGINAL DROP</div><div class="origin-badge">LIMITED CASE</div></div>
+    <section class="origin-feature origin-feature-live">
+      <div class="origin-feature-top"><div class="origin-label">GIFTORA ORIGINAL DROP</div><div class="origin-badge">ORIGIN SERIES</div></div>
       <div class="origin-box-showcase">
         <div class="origin-box-art" id="originBoxArt"><div class="origin-box-aura"></div><div class="origin-box-cube"><span class="origin-box-emoji">🎁</span></div><span class="origin-box-spark one">✦</span><span class="origin-box-spark two">✧</span></div>
-        <div class="origin-case-copy"><div class="origin-case-title">Origin Box</div><div class="origin-case-description">Базовый кейс с балансными наградами и редким коллекционным Мишкой. Вероятности открыты до каждого запуска.</div><div class="origin-case-price"><strong id="originCasePrice">30 DEMO ⭐</strong><del id="originCaseOldPrice" hidden>30 ⭐</del><span class="origin-discount-label" id="originDiscountBadge" hidden>−5%</span></div></div>
+        <div class="origin-case-copy"><div class="origin-case-title">Origin Box</div><div class="origin-case-description">7 возможных результатов. Вероятности показаны заранее. После оплаты награду выбирает бот, а не JavaScript страницы.</div><div class="origin-case-price"><strong id="originCasePrice">30 Telegram Stars</strong><del id="originCaseOldPrice" hidden>30 ⭐</del><span class="origin-discount-label" id="originDiscountBadge" hidden>−5%</span></div><div class="case-price-caption" id="originPriceFinePrint">Цена счёта в XTR · без оплаты здесь на странице</div></div>
       </div>
-      <div class="origin-feature-foot"><span>Открытие <b>не списывает реальные Stars</b></span><span>7 наград · 100% шансов</span></div>
+      <div class="origin-feature-foot"><span>Платёж <b>30 XTR</b> через Telegram</span><span>7 исходов · шансы открыты</span></div>
     </section>
-    <aside class="origin-account">
-      <div><div class="origin-account-head"><div class="origin-account-title">ТВОЙ DEMO-БАЛАНС</div><span class="origin-demo-tag">НЕ РЕАЛЬНЫЕ ⭐</span></div><div class="origin-balance"><span id="originDemoBalance">90</span> <small>DEMO ⭐</small></div><div class="origin-account-desc">Эти виртуальные единицы тратятся только на Origin Box. Баланс Giftora Stars и реальные платежи остаются отдельно.</div><button id="refillOriginDemo" class="origin-refill">＋ ДОБАВИТЬ +90 DEMO ⭐</button></div>
+    <aside class="origin-account origin-account-live">
+      <div><div class="origin-account-head"><div class="origin-account-title">ТВОЙ GIFTORA БАЛАНС</div><span class="origin-live-tag">ВНУТРЕННИЙ</span></div><div class="origin-balance"><span id="originGiftoraBalance">—</span> <small>⭐</small></div><div class="origin-account-desc">Это внутренний баланс Giftora из последнего снимка бота. Он не равен личному балансу Telegram Stars. Кейс оплачивается отдельным счётом.</div><button class="origin-refill" data-go="wallet">ПОПОЛНИТЬ GIFTORA ⭐ ↗</button></div>
       <div class="origin-account-divider"></div>
-      <div class="origin-mini-stat"><div><div class="v" id="originOpenedCount">0</div><div class="l">Кейсов открыто</div></div><div><div class="v" id="originBearCount">0</div><div class="l">Мишек в коллекции</div></div></div>
+      <div class="origin-mini-stat"><div><div class="v">30 XTR</div><div class="l">Цена без промокода</div></div><div><div class="v">2%</div><div class="l">Шанс на Мишку Origin</div></div></div>
     </aside>
   </div>
-  <section class="origin-opening">
-    <div class="origin-opening-head"><div><div class="origin-opening-title">ПРОКРУТКА ORIGIN BOX</div><div class="origin-opening-sub">Награда выбирается по опубликованным шансам, прокрутка — анимация результата.</div></div><div class="origin-live-pill">LOCAL RNG · DEMO</div></div>
-    <div class="origin-reel-viewport" id="originReelViewport" aria-label="Демо-прокрутка кейса"><div class="origin-reel" id="originReelTrack"></div></div>
-    <div class="origin-opening-actions"><button id="openOriginBox" class="origin-open-button">ОТКРЫТЬ ORIGIN BOX · 30 DEMO ⭐</button><div class="origin-price-note"><strong id="originPriceCaption">30 DEMO ⭐</strong><span id="originDiscountCaption">Цена кейса</span></div></div>
-    <div id="originOpenStatus" class="origin-open-status" aria-live="polite">В кейсе нет реальных Telegram-подарков. Все исходы — локальная симуляция.</div>
+  <section class="origin-opening origin-opening-live">
+    <div class="origin-opening-head"><div><div class="origin-opening-title">ОТКРЫТИЕ ORIGIN BOX</div><div class="origin-opening-sub">В настоящем режиме прокрутка начинается после подтверждения счёта; результат возвращает бот.</div></div><div class="origin-live-pill origin-live-pill-muted" id="originInvoicePill">TELEGRAM XTR · 30 ⭐</div></div>
+    <div class="real-case-steps">
+      <div class="real-case-step"><span>01</span><b>Создать счёт</b><small>Бот готовит платёж на 30 XTR</small></div>
+      <div class="real-case-step"><span>02</span><b>Оплатить в Telegram</b><small>Подтверждение от Telegram</small></div>
+      <div class="real-case-step"><span>03</span><b>Получить результат</b><small>Награду рассчитывает сервер</small></div>
+    </div>
+    <div class="origin-opening-actions"><button id="openOriginBox" class="origin-open-button"><span>✦</span> ЗАПРОСИТЬ ОТКРЫТИЕ · 30 ⭐</button><div class="origin-price-note"><strong id="originPriceCaption">30 ⭐ XTR</strong><span id="originDiscountCaption">цена Telegram-счёта</span></div></div>
+    <div id="originOpenStatus" class="origin-open-status" aria-live="polite">Реальная оплата пока заблокирована до обновления обработчика в Python-боте. Локальная рулетка и фиктивное списание отключены.</div>
   </section>
   <div class="origin-support-grid">
     <section class="origin-promo-card">
       <div class="origin-section-head"><div class="origin-section-title">🎟 ПРОМОКОД</div><div class="origin-section-kicker">ORIGIN BOX ONLY</div></div>
-      <p class="origin-promo-desc">Введи <b style="color:#ffcb7f">КОЩЕЙ</b>, чтобы получить скидку 5% на следующее открытие Origin Box. Код действует один раз в этом браузере.</p>
-      <div class="origin-promo-row"><input id="originPromoInput" class="origin-promo-input" type="text" maxlength="24" placeholder="ВВЕДИ ПРОМОКОД" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Промокод"><button id="applyOriginPromo" class="origin-promo-apply">АКТИВИРОВАТЬ</button></div>
-      <div id="originPromoMessage" class="origin-promo-message" role="status" aria-live="polite">Промокод ещё не активирован. Скидка применяется только к DEMO-цене.</div>
+      <p class="origin-promo-desc">Код <b style="color:#ffcb7f">КОЩЕЙ</b> даёт скидку 5% на одно открытие. Сервер бота обязан самостоятельно проверить промокод и рассчитанную цену перед созданием счёта.</p>
+      <div class="origin-promo-row"><input id="originPromoInput" class="origin-promo-input" type="text" maxlength="24" placeholder="ВВЕДИ ПРОМОКОД" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Промокод"><button id="applyOriginPromo" class="origin-promo-apply">ПРИМЕНИТЬ</button></div>
+      <div id="originPromoMessage" class="origin-promo-message" role="status" aria-live="polite">30 XTR без скидки. Счёт будет создан только ботом после включения оплаты кейса.</div>
+      <div class="case-rounding-note">Важно: Telegram Stars оплачиваются целым количеством единиц. 30 × 95% = 28,5, поэтому для счёта используется округление до 29 XTR. Сервер должен применить то же правило.</div>
     </section>
     <section class="origin-math-card">
-      <div class="origin-section-head"><div class="origin-section-title">📐 МАТЕМАТИКА КЕЙСА</div><div class="origin-section-kicker">ОДИН ОТКРЫТЫЙ РАСПРЕДЕЛИТЕЛЬ</div></div>
-      <div class="origin-math-grid"><div class="origin-math-stat"><div class="origin-math-value" id="originOddsTotal">100%</div><div class="origin-math-label">Сумма вероятностей всех наград</div></div><div class="origin-math-stat"><div class="origin-math-value" id="originExpectedStars">4,22 ⭐</div><div class="origin-math-label">Среднее начисление DEMO ⭐ на открытие</div></div><div class="origin-math-stat"><div class="origin-math-value" id="originExpectedValue">5,22</div><div class="origin-math-label">Ожидаемая демо-ценность с учётом Мишки</div></div><div class="origin-math-stat"><div class="origin-math-value" id="originExpectedReturn">17,4%</div><div class="origin-math-label">Условная ценность относительно цены кейса</div></div></div>
-      <div class="origin-math-formula"><strong>Формула ожидания:</strong> сумма (вероятность × демо-ценность). Для баланса: 1×30% + 2×24% + 3×18% + 5×14% + 15×8% + 25×4% = <strong>4,22 DEMO ⭐</strong>. Мишка имеет условную коллекционную оценку 50 DEMO ⭐ и шанс 2%, поэтому общая условная ожидаемая ценность — <strong>5,22</strong>. Это не деньги и не обещание конкретного выигрыша.</div>
+      <div class="origin-section-head"><div class="origin-section-title">📐 МАТЕМАТИКА НАГРАД</div><div class="origin-section-kicker">100% TOTAL</div></div>
+      <div class="origin-math-grid"><div class="origin-math-stat"><div class="origin-math-value" id="originOddsTotal">100%</div><div class="origin-math-label">Сумма вероятностей</div></div><div class="origin-math-stat"><div class="origin-math-value" id="originExpectedStars">4,22 ⭐</div><div class="origin-math-label">Ожидаемый внутренний кредит Giftora</div></div><div class="origin-math-stat"><div class="origin-math-value" id="originExpectedValue">2%</div><div class="origin-math-label">Шанс на Мишку Origin</div></div><div class="origin-math-stat"><div class="origin-math-value" id="originExpectedReturn">—</div><div class="origin-math-label">Денежная окупаемость не рассчитывается</div></div></div>
+      <div class="origin-math-formula"><strong>Проверяемая формула:</strong> 1×0,30 + 2×0,24 + 3×0,18 + 5×0,14 + 15×0,08 + 25×0,04 = <strong>4,22 Giftora ⭐</strong> — среднее число внутренних кредитов за открытие, не гарантированная награда. 30 XTR — цена счёта Telegram; Giftora ⭐ и Telegram Stars — разные величины. Мишка — виртуальный предмет, пока выдача реальных подарков не подключена.</div>
     </section>
   </div>
   <section class="origin-odds-card">
-    <div class="origin-section-head"><div><div class="origin-section-title">СОДЕРЖИМОЕ ORIGIN BOX</div><div class="origin-opening-sub">Шансы видны до открытия · сумма проверяется автоматически</div></div><div class="origin-section-kicker">ODDS TABLE</div></div>
+    <div class="origin-section-head"><div><div class="origin-section-title">ВОЗМОЖНЫЕ НАГРАДЫ</div><div class="origin-opening-sub">Шансы фиксированы в конфигурации кейса. Результат выбирает сервер после оплаты.</div></div><div class="origin-section-kicker">DROP TABLE</div></div>
     <div class="origin-odds-grid" id="originOddsGrid"></div>
-    <div class="origin-odds-foot"><span>Точная сумма вероятностей: <strong id="originOddsFootTotal">100%</strong></span><span>Топ-дроп — Мишка Origin · шанс 2%</span></div>
+    <div class="origin-odds-foot"><span>Итого: <strong id="originOddsFootTotal">100%</strong></span><span>Топ-приз: Мишка Origin · 2%</span></div>
   </section>
   <section class="origin-history-card">
-    <div class="origin-section-head"><div class="origin-section-title">ПОСЛЕДНИЕ ОТКРЫТИЯ</div><div class="origin-section-kicker">LOCAL HISTORY</div></div>
-    <div id="originCaseHistory" class="origin-history-list"><div class="origin-empty">Открой первый Origin Box — результат появится здесь.</div></div>
+    <div class="origin-section-head"><div class="origin-section-title">ИСТОРИЯ ОТКРЫТИЙ</div><div class="origin-section-kicker">SERVER CONFIRMED ONLY</div></div>
+    <div id="originCaseHistory" class="origin-history-list"><div class="origin-empty">Здесь появятся только подтверждённые ботом оплаты и результаты. Неподтверждённых локальных выигрышей нет.</div></div>
   </section>
-  <div class="origin-warning"><strong>Важно о DEMO.</strong> Origin Box использует отдельный локальный баланс, который нельзя вывести, передать или обменять. Мишка — виртуальный предмет коллекции, а его оценка в 50 DEMO ⭐ нужна только для расчёта математики. Ничего из этого не является настоящими Telegram Stars или настоящим Telegram-подарком.</div>
+  <div class="origin-warning"><strong>Что получаешь:</strong> кейс оплачивается реальными Telegram Stars (XTR), если бот включил эту операцию. Награды «Giftora ⭐» являются внутренними кредитами приложения, а Мишка Origin пока виртуальный предмет. Ни один приз не отправляется в Telegram автоматически и нет вывода/обмена. Эта страница не содержит токена бота и не может сама создать или подтвердить платёж.</div>
+</section>
+
+<section class="view" id="view-contract">
+  <div class="eyebrow"><span class="eyebrow-dot"></span> GIFTORA · GIFT CONTRACT</div>
+  <div class="contract-hero">
+    <div class="contract-orbit"><span>✦</span><i>✧</i><b>◇</b></div>
+    <div class="contract-status">В РАЗРАБОТКЕ</div>
+    <h2>Gift <span>Contract</span></h2>
+    <p>Объедини несколько подарков, чтобы попытаться создать предмет следующего уровня. Собираем механику так, чтобы состав контракта, шанс и возможный результат были показаны до подтверждения.</p>
+    <div class="contract-slots">
+      <div class="contract-slot"><span>01</span><b>🎁</b><small>Слот подарка</small></div>
+      <div class="contract-plus">+</div>
+      <div class="contract-slot"><span>02</span><b>🌹</b><small>Слот подарка</small></div>
+      <div class="contract-plus">+</div>
+      <div class="contract-slot"><span>03</span><b>💎</b><small>Слот подарка</small></div>
+      <div class="contract-equals">=</div>
+      <div class="contract-slot contract-result-slot"><span>REWARD</span><b>❔</b><small>Новый предмет</small></div>
+    </div>
+    <div class="contract-feature-list"><div><span>01</span><div><b>Выбор предметов</b><small>Из реального серверного инвентаря, а не из временных карточек браузера.</small></div><em>В планах</em></div><div><span>02</span><div><b>Расчёт результата</b><small>Правила, допустимые комбинации и шанс будут опубликованы заранее.</small></div><em>В планах</em></div><div><span>03</span><div><b>Подтверждение</b><small>Изменение инвентаря — только после серверной проверки контракта.</small></div><em>В планах</em></div></div>
+    <button class="contract-disabled-button" disabled>КОНТРАКТ ПОКА НЕДОСТУПЕН</button>
+    <div class="contract-footnote">Функция находится в разработке. Пока контракт не списывает подарки, Stars или предметы.</div>
+  </div>
 </section>
 
 <section class="view" id="view-inventory">
@@ -309,13 +383,14 @@
   <div class="legal-note">Пополнение требует запуска через Telegram-бота и подтверждённого платежа. Не вводи данные банковской карты на этой странице.</div>
 </section>
 
-<footer class="footer"><div><div class="footer-mark">GIFTORA / DEMO LAB</div><div>Виртуальная коллекция · без вывода · без реальных предметов</div></div><div class="footer-mark">ORIGIN BOX · VIRTUAL DROPS</div></footer>
+<footer class="footer"><div><div class="footer-mark">GIFTORA / DEMO LAB</div><div>DEMO апгрейд · Origin Box через Telegram Stars · контракт в разработке</div></div><div class="footer-mark">GIFTORA · TELEGRAM XTR</div></footer>
 </main>
 </div>
 <nav class="mobile-nav" aria-label="Навигация приложения">
   <button data-go="demo" class="active"><span class="mobile-icon">↗</span><span>DEMO</span></button>
   <button data-go="cases"><span class="mobile-icon">▣</span><span>Кейс</span></button>
   <button data-go="inventory"><span class="mobile-icon">▦</span><span>Инвентарь</span></button>
+  <button data-go="contract"><span class="mobile-icon">◇</span><span>Контракт</span></button>
   <button data-go="profile"><span class="mobile-icon">◉</span><span>Профиль</span></button>
   <button data-go="wallet"><span class="mobile-icon">✦</span><span>Stars</span></button>
 </nav>
@@ -348,17 +423,17 @@
     {id:'heart',name:'Сердце вселенной',emoji:'💖',value:75000,rarity:'Мифический',tier:'legendary'}
   ];
   const starterIds = ['marmalade','plush','rose'];
-  const CASE_STORAGE_KEY = 'giftora_origin_box_demo_v1';
+  const CASE_STORAGE_KEY = 'giftora_origin_box_live_v2';
   const CASE_PRICE = 30;
-  const BEAR_DEMO_VALUE = 50;
+  const BEAR_DISPLAY_VALUE = 50;
   const CASE_PRIZES = [
-    {id:'star1',name:'1 ⭐ на баланс',short:'1 DEMO ⭐',emoji:'⭐',chance:30,type:'stars',stars:1,accent:'#a6a6a6'},
-    {id:'star2',name:'2 ⭐ на баланс',short:'2 DEMO ⭐',emoji:'✨',chance:24,type:'stars',stars:2,accent:'#b2bac8'},
-    {id:'star3',name:'3 ⭐ на баланс',short:'3 DEMO ⭐',emoji:'🌟',chance:18,type:'stars',stars:3,accent:'#68c9a0'},
-    {id:'star5',name:'5 ⭐ на баланс',short:'5 DEMO ⭐',emoji:'💫',chance:14,type:'stars',stars:5,accent:'#7ba6ff'},
-    {id:'star15',name:'15 ⭐ на баланс',short:'15 DEMO ⭐',emoji:'🌠',chance:8,type:'stars',stars:15,accent:'#b899ff'},
-    {id:'star25',name:'25 ⭐ на баланс',short:'25 DEMO ⭐',emoji:'💎',chance:4,type:'stars',stars:25,accent:'#ffb94d'},
-    {id:'originBear',name:'Мишка Origin',short:'ТОП-ПРИЗ',emoji:'🧸',chance:2,type:'item',demoValue:BEAR_DEMO_VALUE,accent:'#ffd16c'}
+    {id:'star1',name:'1 Giftora ⭐ на баланс',short:'+1 Giftora ⭐',emoji:'⭐',chance:30,type:'stars',stars:1,accent:'#a6a6a6'},
+    {id:'star2',name:'2 Giftora ⭐ на баланс',short:'+2 Giftora ⭐',emoji:'✨',chance:24,type:'stars',stars:2,accent:'#b2bac8'},
+    {id:'star3',name:'3 Giftora ⭐ на баланс',short:'+3 Giftora ⭐',emoji:'🌟',chance:18,type:'stars',stars:3,accent:'#68c9a0'},
+    {id:'star5',name:'5 Giftora ⭐ на баланс',short:'+5 Giftora ⭐',emoji:'💫',chance:14,type:'stars',stars:5,accent:'#7ba6ff'},
+    {id:'star15',name:'15 Giftora ⭐ на баланс',short:'+15 Giftora ⭐',emoji:'🌠',chance:8,type:'stars',stars:15,accent:'#b899ff'},
+    {id:'star25',name:'25 Giftora ⭐ на баланс',short:'+25 Giftora ⭐',emoji:'💎',chance:4,type:'stars',stars:25,accent:'#ffb94d'},
+    {id:'originBear',name:'Мишка Origin',short:'ТОП-ПРИЗ',emoji:'🧸',chance:2,type:'item',demoValue:BEAR_DISPLAY_VALUE,accent:'#ffd16c'}
   ];
   const now = () => Math.floor(Date.now()/1000);
   function toInt(v, fallback=0){ const n=Number(v); return Number.isFinite(n)?Math.trunc(n):fallback; }
@@ -372,12 +447,12 @@
   function normalizeStats(s){return {spins:Math.max(0,toInt(s?.spins)),wins:Math.max(0,toInt(s?.wins)),bestValue:Math.max(0,toInt(s?.bestValue))};}
   let save = safeLoad();
   const state = {view:'demo',filter:'all',search:'',rolling:false,lastResult:null,toastTimer:0,spinAngle:0,caseRolling:false,caseCost:0};
-  function defaultCaseSave(){return {balance:90,promoActive:false,promoUsed:false,opened:0,bearCount:0,history:[],pending:null};}
-  function loadCaseSave(){try{const raw=localStorage.getItem(CASE_STORAGE_KEY);if(!raw)return defaultCaseSave();const x=JSON.parse(raw);if(!x||typeof x!=='object')return defaultCaseSave();return {balance:Math.max(0,Math.round((Number(x.balance)||0)*10)/10),promoActive:!!x.promoActive,promoUsed:!!x.promoUsed,opened:Math.max(0,toInt(x.opened)),bearCount:Math.max(0,toInt(x.bearCount)),history:Array.isArray(x.history)?x.history.slice(0,6).filter(h=>h&&typeof h==='object'):[],pending:x.pending&&typeof x.pending.prizeId==='string'?{prizeId:x.pending.prizeId,cost:Math.max(0,Number(x.pending.cost)||CASE_PRICE),at:toInt(x.pending.at)}:null};}catch(_){return defaultCaseSave();}}
+  function defaultCaseSave(){return {promoActive:false,promoUsed:false,opened:0,bearCount:0,history:[],pending:null};}
+  function loadCaseSave(){try{const raw=localStorage.getItem(CASE_STORAGE_KEY);if(!raw)return defaultCaseSave();const x=JSON.parse(raw);if(!x||typeof x!=='object')return defaultCaseSave();return {promoActive:!!x.promoActive,promoUsed:!!x.promoUsed,opened:0,bearCount:0,history:[],pending:null};}catch(_){return defaultCaseSave();}}
   let caseSave = loadCaseSave();
-  let currentCasePrize = null;
-  let caseTimer = null;
   const user = (tg?.initDataUnsafe?.user)||{};
+  const ORIGIN_INVOICE_URL = qs.get('origin_invoice') || '';
+  const ORIGIN_CASE_READY = qs.get('origin_case_ready') === '1';
   const profile = {id:snapshotUserId||String(user.id||''),first:qs.get('first')||user.first_name||'',last:qs.get('last')||user.last_name||'',username:qs.get('username')||user.username||'',photo:user.photo_url||'',registered:toInt(qs.get('registered'),0)};
   function saveState(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(save));}catch(_){} }
   function sourceItem(){return save.inventory.find(x=>x.instanceId===save.selectedSource)||save.inventory[0]||null;}
@@ -402,28 +477,82 @@
   function renderInventory(){const items=[...save.inventory].sort((a,b)=>b.value-a.value);$('inventoryCount').textContent=`${items.length} ${items.length===1?'предмет':items.length<5?'предмета':'предметов'}`;$('inventoryGrid').innerHTML=items.map(invCardMarkup).join('')||'<div class="empty-note">Инвентарь пуст. Нажми «Демо-подарок», чтобы продолжить.</div>';}
   function renderHistoryAndStats(){const s=save.stats,best=bestItem();$('statSpins').textContent=fmt(s.spins);$('statWins').textContent=fmt(s.wins);$('statBest').textContent=best?fmt(best.value):fmt(s.bestValue);$('recentHistory').innerHTML=historyMarkup();$('profileItemCount').textContent=fmt(save.inventory.length);$('profileWins').textContent=fmt(s.wins);$('profileSpins').textContent=fmt(s.spins);$('profileWinRate').textContent=s.spins?Math.round(s.wins/s.spins*100)+'%':'0%';$('profileBestValue').textContent=best?fmt(best.value):fmt(s.bestValue);}
   function renderWallet(){const val=snapshotBalance===null?'—':fmt(snapshotBalance);$('headerBalance').textContent=val;$('walletBalance').textContent=val;$('walletTimestamp').textContent=SNAPSHOT_OK?`Снимок от бота · ${new Date(toInt(qs.get('at'),now())*1000).toLocaleString('ru-RU')}`:'Открой Giftora кнопкой бота, чтобы получить снимок баланса.';document.querySelectorAll('[data-pack]').forEach(b=>b.disabled=!(SNAPSHOT_OK&&tg&&typeof tg.sendData==='function'));$('refreshBalance').disabled=!(SNAPSHOT_OK&&tg&&typeof tg.sendData==='function');}
-  function saveCaseState(){try{localStorage.setItem(CASE_STORAGE_KEY,JSON.stringify(caseSave));}catch(_){}}
+  function saveCaseState(){try{localStorage.setItem(CASE_STORAGE_KEY,JSON.stringify(caseSave));}catch(_){} }
   function activeOriginPromo(){return caseSave.promoActive&&!caseSave.promoUsed;}
-  function originPrice(){return activeOriginPromo()?Math.round(CASE_PRICE*0.95*10)/10:CASE_PRICE;}
-  function fmtDemoStars(v){return new Intl.NumberFormat('ru-RU',{minimumFractionDigits:Number.isInteger(v)?0:1,maximumFractionDigits:1}).format(v);}
+  // XTR invoice amounts are integer Telegram Stars. 5% of 30 is 28.5, rounded to 29.
+  function originPrice(){return activeOriginPromo()?29:CASE_PRICE;}
+  function fmtDemoStars(v){return new Intl.NumberFormat('ru-RU',{maximumFractionDigits:0}).format(Math.round(Number(v)||0));}
   function fmtMath(v){return new Intl.NumberFormat('ru-RU',{minimumFractionDigits:2,maximumFractionDigits:2}).format(v);}
-  function chooseOriginPrize(){const roll=Math.random()*100;let tally=0;for(const prize of CASE_PRIZES){tally+=prize.chance;if(roll<tally)return prize;}return CASE_PRIZES[CASE_PRIZES.length-1];}
-  function originOddsMarkup(p){const cls=p.id==='originBear'?'bear':p.chance<=4?'legendary':'';const caption=p.type==='item'?'коллекционный предмет':'на DEMO-баланс';return `<article class="origin-odd ${cls}"><div class="origin-odd-art">${p.emoji}</div><div class="origin-odd-name">${escapeHtml(p.name)}</div><div class="origin-odd-chance">${fmtDemoStars(p.chance)}%</div><div class="origin-odd-caption">${caption}</div></article>`;}
-  function originHistoryMarkup(){if(!caseSave.history.length)return '<div class="origin-empty">Открой первый Origin Box — результат появится здесь.</div>';return caseSave.history.slice(0,3).map(h=>`<div class="origin-history-entry"><div class="origin-history-art">${escapeHtml(h.emoji||'🎁')}</div><div class="origin-history-copy"><div class="origin-history-name">${escapeHtml(h.name||'Награда')}</div><div class="origin-history-sub">${escapeHtml(h.when||'Недавно')} · шанс ${fmtDemoStars(h.chance||0)}%</div><div class="origin-history-reward">${escapeHtml(h.reward||'Демо-награда')}</div></div></div>`).join('');}
-  function renderOriginCase(){if(!$('originDemoBalance'))return;const price=state.caseRolling&&state.caseCost?state.caseCost:originPrice();$('originDemoBalance').textContent=fmtDemoStars(caseSave.balance);$('originOpenedCount').textContent=fmt(caseSave.opened);$('originBearCount').textContent=fmt(caseSave.bearCount);$('originCasePrice').textContent=`${fmtDemoStars(price)} DEMO ⭐`;$('originCaseOldPrice').hidden=!activeOriginPromo();$('originDiscountBadge').hidden=!activeOriginPromo();$('originPriceCaption').textContent=`${fmtDemoStars(price)} DEMO ⭐`;$('originDiscountCaption').textContent=activeOriginPromo()?'−5% промокод':'цена открытия';$('openOriginBox').textContent=state.caseRolling?'ПРОКРУТКА…':`ОТКРЫТЬ ORIGIN BOX · ${fmtDemoStars(price)} DEMO ⭐`;$('openOriginBox').disabled=state.caseRolling||caseSave.balance<price;$('originOpenStatus').textContent=state.caseRolling?'Кейс открыт — прокрутка уже идёт…':caseSave.balance<price?'Не хватает DEMO ⭐. Нажми «Добавить +90» — это бесплатный игровой баланс.':'Все награды виртуальные. Реальный кошелёк Giftora не меняется.';
-    const promo=$('originPromoMessage');if(caseSave.promoUsed){promo.className='origin-promo-message';promo.textContent='Промокод КОЩЕЙ уже использован. Скидка применялась к одному открытию.';}else if(activeOriginPromo()){promo.className='origin-promo-message good';promo.textContent='КОЩЕЙ активирован: −5% на следующее открытие. Цена снижена с 30 до 28,5 DEMO ⭐.';}else{promo.className='origin-promo-message';promo.textContent='Промокод ещё не активирован. Введи КОЩЕЙ — скидка 5% на одно открытие.';}
-    $('originOddsGrid').innerHTML=CASE_PRIZES.map(originOddsMarkup).join('');const total=CASE_PRIZES.reduce((sum,p)=>sum+p.chance,0);const expectedStars=CASE_PRIZES.reduce((sum,p)=>sum+(p.type==='stars'?p.chance*p.stars/100:0),0);const expectedValue=expectedStars+CASE_PRIZES.reduce((sum,p)=>sum+(p.type==='item'?p.chance*p.demoValue/100:0),0);$('originOddsTotal').textContent=fmtDemoStars(total)+'%';$('originOddsFootTotal').textContent=fmtDemoStars(total)+'%';$('originExpectedStars').textContent=fmtMath(expectedStars)+' ⭐';$('originExpectedValue').textContent=fmtMath(expectedValue);$('originExpectedReturn').textContent=fmtMath(expectedValue/price*100)+'%';$('originCaseHistory').innerHTML=originHistoryMarkup();syncNativeMainButton();}
-  function renderOriginReel(prize){const track=$('originReelTrack');const viewport=$('originReelViewport');if(!track||!viewport)return;const list=[];const winIndex=30;for(let i=0;i<39;i++)list.push(CASE_PRIZES[Math.floor(Math.random()*CASE_PRIZES.length)]);list[winIndex]=prize;track.style.transition='none';track.style.transform='translateX(0px)';track.innerHTML=list.map((p,i)=>`<div class="origin-reel-tile ${i===winIndex?'best':''}" style="--tile-accent:${p.accent}"><div class="art">${p.emoji}</div><div class="name">${escapeHtml(p.name)}</div><div class="amount">${p.type==='stars'?'+'+p.stars+' DEMO ⭐':(i===winIndex?'ТОП-ПРИЗ':'МИШКА')}</div></div>`).join('');void track.offsetWidth;requestAnimationFrame(()=>requestAnimationFrame(()=>{const tile=track.querySelector('.origin-reel-tile');const tileWidth=tile?tile.getBoundingClientRect().width:112;const gap=parseFloat(window.getComputedStyle(track).columnGap)||9;const tileCenter=winIndex*(tileWidth+gap)+tileWidth/2;const targetX=viewport.clientWidth/2-tileCenter;track.style.transition='transform 3.65s cubic-bezier(.10,.76,.08,1)';track.style.transform=`translateX(${targetX}px)`;}));}
-  function settleOriginPrize(prize,cost,silent=false){if(prize.type==='stars'){caseSave.balance=Math.round((caseSave.balance+prize.stars)*10)/10;}else{caseSave.bearCount++;const bear=cloneGift('plush');bear.name='Мишка Origin';bear.emoji='🧸';bear.value=1800;bear.rarity='Мифический';bear.tier='legendary';save.inventory.push(bear);save.stats.bestValue=Math.max(save.stats.bestValue,bear.value);saveState();}
-    caseSave.pending=null;caseSave.opened++;caseSave.history.unshift({at:now(),when:new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'}),id:prize.id,name:prize.name,emoji:prize.emoji,chance:prize.chance,reward:prize.type==='stars'?`+${prize.stars} DEMO ⭐`:'Добавлен в инвентарь'});caseSave.history=caseSave.history.slice(0,6);saveCaseState();if(!silent)renderAll();}
-  function openOriginBox(){if(state.caseRolling)return;const cost=originPrice();if(caseSave.balance<cost){showToast('Не хватает DEMO ⭐. Пополни тестовый баланс.');return;}const prize=chooseOriginPrize();state.caseRolling=true;state.caseCost=cost;currentCasePrize=prize;caseSave.balance=Math.round((caseSave.balance-cost)*10)/10;caseSave.pending={prizeId:prize.id,cost,at:now()};if(activeOriginPromo()){caseSave.promoActive=false;caseSave.promoUsed=true;}saveCaseState();renderOriginCase();$('originBoxArt').classList.add('origin-reeling');$('originReelTrack').style.transition='none';renderOriginReel(prize);try{tg?.HapticFeedback?.impactOccurred('medium');}catch(_){}window.clearTimeout(caseTimer);caseTimer=window.setTimeout(()=>{state.caseRolling=false;state.caseCost=0;$('originBoxArt').classList.remove('origin-reeling');settleOriginPrize(prize,cost);const title=prize.type==='stars'?`+${prize.stars} DEMO ⭐`:'Мишка Origin!';const desc=prize.type==='stars'?`${prize.stars} виртуальных Stars начислено на DEMO-баланс. Потрачено ${fmtDemoStars(cost)} DEMO ⭐. Настоящий кошелёк не затронут.`:'Редкий виртуальный Мишка Origin добавлен в DEMO-инвентарь. У него нет реальной стоимости или возможности вывода.';$('modalArt').textContent=prize.emoji;$('modalEyebrow').textContent=`ORIGIN BOX · DROP CHANCE ${prize.chance}%`;$('modalTitle').textContent=title;$('modalDesc').textContent=desc;$('resultModal').classList.add('show');try{tg?.HapticFeedback?.notificationOccurred(prize.id==='originBear'?'success':'warning');}catch(_){}currentCasePrize=null;renderOriginCase();},3750);}
-  function applyOriginPromo(){const input=$('originPromoInput');const msg=$('originPromoMessage');const code=input.value.trim().toLocaleUpperCase('ru-RU');if(caseSave.promoUsed){msg.className='origin-promo-message bad';msg.textContent='Промокод уже был использован. Он одноразовый.';return;}if(activeOriginPromo()){msg.className='origin-promo-message good';msg.textContent='Промокод уже активирован — скидка применится к следующему открытию.';showToast('Скидка КОЩЕЙ уже активна.');return;}if(code!=='КОЩЕЙ'){msg.className='origin-promo-message bad';msg.textContent='Промокод не найден. Проверь написание: КОЩЕЙ.';try{tg?.HapticFeedback?.notificationOccurred('error');}catch(_){}return;}caseSave.promoActive=true;saveCaseState();input.value='';renderOriginCase();showToast('КОЩЕЙ активирован: −5% на Origin Box!');try{tg?.HapticFeedback?.notificationOccurred('success');}catch(_){} }
-  function refillOriginDemo(){caseSave.balance=Math.round((caseSave.balance+90)*10)/10;saveCaseState();renderOriginCase();showToast('+90 виртуальных DEMO ⭐ добавлено.');}
+  function originOddsMarkup(p){const cls=p.id==='originBear'?'bear':p.chance<=4?'legendary':'';const caption=p.type==='item'?'виртуальный предмет':'на внутренний Giftora-баланс';return `<article class="origin-odd ${cls}"><div class="origin-odd-art">${p.emoji}</div><div class="origin-odd-name">${escapeHtml(p.name)}</div><div class="origin-odd-chance">${fmtDemoStars(p.chance)}%</div><div class="origin-odd-caption">${caption}</div></article>`;}
+  function originHistoryMarkup(){return '<div class="origin-empty">История появится после того, как бот начнёт сохранять подтверждённые открытия кейса. Браузер не создаёт фиктивные результаты.</div>';}
+  function renderOriginCase(){
+    if(!$('originGiftoraBalance'))return;
+    const price=originPrice();
+    $('originGiftoraBalance').textContent=snapshotBalance===null?'—':fmt(snapshotBalance);
+    $('originCasePrice').textContent=`${price} Telegram Stars`;
+    $('originCaseOldPrice').hidden=!activeOriginPromo();
+    $('originDiscountBadge').hidden=!activeOriginPromo();
+    $('originCaseOldPrice').textContent='30 ⭐';
+    $('originDiscountBadge').textContent='−5% → 29 ⭐';
+    $('originPriceCaption').textContent=`${price} ⭐ XTR`;
+    $('originDiscountCaption').textContent=activeOriginPromo()?'КОЩЕЙ · 5% с округлением':'цена счёта Telegram';
+    $('originInvoicePill').textContent=`TELEGRAM XTR · ${price} ⭐`;
+    $('openOriginBox').disabled=!(SNAPSHOT_OK&&tg&&typeof tg.sendData==='function')&&!ORIGIN_INVOICE_URL;
+    $('openOriginBox').innerHTML=`<span>✦</span> ЗАПРОСИТЬ ОТКРЫТИЕ · ${price} ⭐`;
+    const isConfigured=!!ORIGIN_INVOICE_URL || ORIGIN_CASE_READY;
+    $('originPaymentBanner').classList.toggle('case-live-banner-ready',isConfigured);
+    $('originPaymentState').textContent=isConfigured?'ИНТЕГРАЦИЯ НАЙДЕНА':'БОТ НЕ ПОДКЛЮЧЁН';
+    $('originPaymentTitle').textContent=isConfigured?'Telegram Stars · счёт доступен':'Оплата через Telegram Stars';
+    $('originPaymentDescription').textContent=isConfigured?'Счёт открывается в платёжном окне Telegram. Результат должен подтвердить и сохранить бот.':'Для настоящего списания нужен обработчик Origin Box в Python-боте. До его подключения оплата не запускается.';
+    $('originOpenStatus').textContent=isConfigured?'Платёж проходит через Telegram. Награду определяет сервер после успешного подтверждения; страница не выбирает приз сама.':'Интерфейс кейса готов, но текущий Python-бот ещё не поддерживает покупку Origin Box. HTML не может создать счёт и безопасно проверить оплату — ничего не списывается.';
+    $('originPromoInput').disabled=caseSave.promoUsed;
+    $('applyOriginPromo').disabled=caseSave.promoUsed;
+    const promo=$('originPromoMessage');
+    if(caseSave.promoUsed){promo.className='origin-promo-message';promo.textContent='Промокод уже помечен как использованный на этом устройстве. Окончательный статус должен проверять бот.';}
+    else if(activeOriginPromo()){promo.className='origin-promo-message good';promo.textContent='КОЩЕЙ распознан в интерфейсе: 30 × 0,95 = 28,5; счёт округлится до 29 XTR. Бот должен проверить скидку самостоятельно.';}
+    else{promo.className='origin-promo-message';promo.textContent='Введи КОЩЕЙ — интерфейс покажет расчёт скидки. Бот обязан подтвердить код до создания счёта.';}
+    $('originOddsGrid').innerHTML=CASE_PRIZES.map(originOddsMarkup).join('');
+    const total=CASE_PRIZES.reduce((sum,p)=>sum+p.chance,0);
+    const expectedCredits=CASE_PRIZES.reduce((sum,p)=>sum+(p.type==='stars'?p.chance*p.stars/100:0),0);
+    $('originOddsTotal').textContent=fmtDemoStars(total)+'%';
+    $('originOddsFootTotal').textContent=fmtDemoStars(total)+'%';
+    $('originExpectedStars').textContent=fmtMath(expectedCredits)+' ⭐';
+    $('originExpectedValue').textContent='2%';
+    $('originExpectedReturn').textContent='—';
+    $('originCaseHistory').innerHTML=originHistoryMarkup();
+    syncNativeMainButton();
+  }
+  function openOriginBox(){
+    if(state.caseRolling)return;
+    if(!SNAPSHOT_OK||!tg){showToast('Открой Giftora через кнопку приложения в чате Telegram-бота.');return;}
+    if(ORIGIN_INVOICE_URL&&typeof tg.openInvoice==='function'){
+      try{tg.openInvoice(ORIGIN_INVOICE_URL,status=>{if(status==='paid'){showToast('Telegram подтвердил оплату. Результат должен прислать бот — открой Giftora снова.');$('originOpenStatus').textContent='Оплата отмечена Telegram как успешная. Дождись сообщения бота с подтверждённым результатом.';}else if(status==='failed'){showToast('Платёж не завершён. Ничего не начислено.');}else{showToast('Окно оплаты закрыто без подтверждения.');}});}catch(_){showToast('Не получилось открыть счёт. Бот должен создать новый платёж.');}
+      return;
+    }
+    if(ORIGIN_CASE_READY&&typeof tg.sendData==='function'){
+      try{tg.sendData(JSON.stringify({v:1,action:'origin_box_purchase',case_id:'origin_box_v1',promo_code:activeOriginPromo()?'КОЩЕЙ':'',requested_price_stars:originPrice()}));}
+      catch(_){showToast('Не удалось отправить запрос боту.');}
+      return;
+    }
+    showToast('Реальная оплата Origin Box ещё не включена в Python-боте. Stars не списаны.');
+  }
+  function applyOriginPromo(){
+    const input=$('originPromoInput');const msg=$('originPromoMessage');const code=input.value.trim().toLocaleUpperCase('ru-RU');
+    if(caseSave.promoUsed){msg.className='origin-promo-message bad';msg.textContent='Промокод помечен использованным в этом браузере; бот всё равно должен проверить свой статус.';return;}
+    if(activeOriginPromo()){msg.className='origin-promo-message good';msg.textContent='КОЩЕЙ уже выбран. Цена интерфейса: 29 XTR после округления; сервер должен повторно проверить код.';showToast('КОЩЕЙ выбран для Origin Box.');return;}
+    if(code!=='КОЩЕЙ'){msg.className='origin-promo-message bad';msg.textContent='Промокод не распознан. Проверь написание: КОЩЕЙ.';try{tg?.HapticFeedback?.notificationOccurred('error');}catch(_){}return;}
+    caseSave.promoActive=true;saveCaseState();input.value='';renderOriginCase();showToast('КОЩЕЙ применён в интерфейсе. Счёт появится только после проверки ботом.');try{tg?.HapticFeedback?.notificationOccurred('success');}catch(_){}
+  }
+  function recoverPendingOriginCase(){
+    // Intentionally no client-side reward settlement. Case rewards must be issued after server-side successful_payment.
+    caseSave.pending=null;
+    saveCaseState();
+  }
   function renderAll(){renderIdentity();updateSourceTargetVisual();$('sourceStrip').innerHTML=sourceStripMarkup();$('targetStrip').innerHTML=targetStripMarkup();renderInventory();renderTargetGrid();renderHistoryAndStats();renderWallet();renderOriginCase();syncNativeMainButton();}
-  function go(view){const allowed=['demo','cases','inventory','catalog','profile','wallet'];if(!allowed.includes(view))return;state.view=view;document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+view));document.querySelectorAll('[data-go]').forEach(b=>b.classList.toggle('active',b.dataset.go===view));document.querySelectorAll('.mobile-nav button').forEach(b=>b.classList.toggle('active',b.dataset.go===view||(view==='catalog'&&b.dataset.go==='demo')));try{tg?.HapticFeedback?.selectionChanged();}catch(_){}window.scrollTo({top:0,behavior:'smooth'});syncNativeMainButton();}
+  function go(view){const allowed=['demo','cases','inventory','catalog','contract','profile','wallet'];if(!allowed.includes(view))return;state.view=view;document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+view));document.querySelectorAll('[data-go]').forEach(b=>b.classList.toggle('active',b.dataset.go===view));document.querySelectorAll('.mobile-nav button').forEach(b=>b.classList.toggle('active',b.dataset.go===view||(view==='catalog'&&b.dataset.go==='demo')));try{tg?.HapticFeedback?.selectionChanged();}catch(_){}window.scrollTo({top:0,behavior:'smooth'});syncNativeMainButton();}
   function sendBotAction(payload){if(!tg||typeof tg.sendData!=='function'||!SNAPSHOT_OK){showToast('Открой Giftora кнопкой «Открыть Giftora» в чате бота.');return;}try{tg.sendData(JSON.stringify({v:1,...payload}));showToast(payload.action==='topup'?'Счёт отправлен в чат Telegram.':'Запрос отправлен боту — после ответа открой Giftora снова.');}catch(_){showToast('Не удалось отправить запрос. Открой Mini App из чата бота.');}}
   let mainButtonBound=false;
-  function syncNativeMainButton(){if(!tg?.MainButton)return;try{if(!mainButtonBound){tg.MainButton.onClick(()=>{if(state.view==='wallet')sendBotAction({action:'balance'});else if(state.view==='cases')openOriginBox();else if(state.view==='inventory')go('demo');else if(state.view==='profile')go('wallet');else if(state.view==='catalog')go('demo');else if(state.view==='demo')spin();});mainButtonBound=true;}if(state.view==='demo'){const params={text:'DEMO-АПГРЕЙД',color:'#ff9a2c',text_color:'#241407',is_visible:true,is_active:!state.rolling,has_shine_effect:true};tg.MainButton.setParams?.(params);tg.MainButton.show();}else if(state.view==='cases'){const params={text:`ОТКРЫТЬ ORIGIN BOX · ${fmtDemoStars(originPrice())} DEMO ⭐`,color:'#ff9a2c',text_color:'#241407',is_visible:true,is_active:!state.caseRolling&&caseSave.balance>=originPrice(),has_shine_effect:true};tg.MainButton.setParams?.(params);tg.MainButton.show();}else if(state.view==='wallet'){tg.MainButton.setParams?.({text:'ОБНОВИТЬ БАЛАНС',color:'#ff9a2c',text_color:'#241407',is_visible:true,is_active:SNAPSHOT_OK&&!!tg.sendData});tg.MainButton.show();}else{tg.MainButton.hide();}}catch(_){} }
+  function syncNativeMainButton(){if(!tg?.MainButton)return;try{if(!mainButtonBound){tg.MainButton.onClick(()=>{if(state.view==='wallet')sendBotAction({action:'balance'});else if(state.view==='cases')openOriginBox();else if(state.view==='inventory')go('demo');else if(state.view==='profile')go('wallet');else if(state.view==='catalog')go('demo');else if(state.view==='demo')spin();});mainButtonBound=true;}if(state.view==='demo'){const params={text:'DEMO-АПГРЕЙД',color:'#ff9a2c',text_color:'#241407',is_visible:true,is_active:!state.rolling,has_shine_effect:true};tg.MainButton.setParams?.(params);tg.MainButton.show();}else if(state.view==='cases'){const amount=originPrice();const params={text:`ORIGIN BOX · ${amount} XTR ⭐`,color:'#ff9a2c',text_color:'#241407',is_visible:true,is_active:SNAPSHOT_OK&&!state.caseRolling,has_shine_effect:true};tg.MainButton.setParams?.(params);tg.MainButton.show();}else if(state.view==='wallet'){tg.MainButton.setParams?.({text:'ОБНОВИТЬ БАЛАНС',color:'#ff9a2c',text_color:'#241407',is_visible:true,is_active:SNAPSHOT_OK&&!!tg.sendData});tg.MainButton.show();}else{tg.MainButton.hide();}}catch(_){} }
   function ensureSelectedTarget(){const src=sourceItem();const tgt=targetGift();if(src&&tgt.value<=src.value){const next=CATALOG.find(g=>g.value>src.value);save.selectedTarget=next?next.id:CATALOG[CATALOG.length-1].id;}}
   function ensureInventoryNotEmpty(){if(save.inventory.length)return;const pack=[cloneGift('surprise'),cloneGift('marmalade'),cloneGift('plush')];save.inventory.push(...pack);save.selectedSource=pack[1].instanceId;showToast('Демо-коллекция пополнена стартовыми подарками.');}
   function addStarter(){const choices=['surprise','marmalade','plush','rose'];const g=cloneGift(choices[Math.floor(Math.random()*choices.length)]);save.inventory.push(g);save.selectedSource=g.instanceId;ensureSelectedTarget();saveState();renderAll();showToast('Добавлен виртуальный демо-подарок.');}
@@ -440,7 +569,6 @@
     if(e.target.closest('#spinButton')){spin();return;}
     if(e.target.closest('#openOriginBox')){openOriginBox();return;}
     if(e.target.closest('#applyOriginPromo')){applyOriginPromo();return;}
-    if(e.target.closest('#refillOriginDemo')){refillOriginDemo();return;}
     if(e.target.closest('#refreshBalance')){sendBotAction({action:'balance'});return;}
     if(e.target.closest('#addStarter')){addStarter();return;}
     if(e.target.closest('#resetDemo')){resetDemo();return;}
@@ -451,12 +579,11 @@
   $('giftSearch').addEventListener('input',e=>{state.search=e.target.value;renderTargetGrid();});
   $('originPromoInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();applyOriginPromo();}});
   document.querySelectorAll('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{state.filter=btn.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.classList.toggle('active',x===btn));renderTargetGrid();}));
-  function recoverPendingOriginCase(){const pending=caseSave.pending;if(!pending)return;const prize=CASE_PRIZES.find(p=>p.id===pending.prizeId);if(prize){settleOriginPrize(prize,pending.cost,true);}else{caseSave.pending=null;saveCaseState();}}
   function patchInventoryState(){if(!save.inventory.some(x=>x.instanceId===save.selectedSource))save.selectedSource=save.inventory[0]?.instanceId||null;ensureInventoryNotEmpty();ensureSelectedTarget();}
   recoverPendingOriginCase();patchInventoryState();saveState();renderAll();
   async function loadPublishedGiftArtwork(){try{const response=await fetch('./assets/gifts/catalog.json?ts='+Date.now(),{cache:'no-store'});if(!response.ok)return;const data=await response.json();const artworks=(Array.isArray(data.gifts)?data.gifts:[]).filter(g=>typeof g.image==='string'&&/^\.\/assets\/gifts\/images\/[A-Za-z0-9_.-]+$/.test(g.image)).sort((a,b)=>toInt(a.star_count)-toInt(b.star_count));if(!artworks.length)return;CATALOG.forEach((gift,index)=>{const position=Math.round(index*(artworks.length-1)/Math.max(1,CATALOG.length-1));gift.image=artworks[position]?.image||'';});renderAll();}catch(_){/* Published artwork is optional; emoji art remains available offline. */}}
   loadPublishedGiftArtwork();
-  if(!SNAPSHOT_OK)showToast('DEMO готов! Баланс появится при открытии через Telegram-бота.');
+  if(!SNAPSHOT_OK)showToast('Открой Giftora через кнопку бота, чтобы получить профиль и баланс.');
   if(tg?.BackButton){try{tg.BackButton.onClick(()=>go('demo'));}catch(_){}}
 })();
 </script>
