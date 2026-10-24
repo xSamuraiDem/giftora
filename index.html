@@ -347,12 +347,34 @@ renderAll();
 .gxm{border:1.5px solid #3b342a;border-radius:13px;background:#ffffff03;padding:14px 9px;text-align:center;color:#d9cfbd;cursor:pointer;transition:.18s}
 .gxm .i{font-size:26px;display:block;margin-bottom:5px}.gxm b{display:block;font-size:11px}.gxm small{display:block;color:#857a69;font-size:8px;line-height:1.5;margin-top:4px}
 .gxm.sel{border-color:#ffb446;background:#ff9b2414;box-shadow:0 0 22px #ff9b2422}
-#gxErr{color:#ff7777;font-size:10px;text-align:center;min-height:15px;margin-bottom:6px}
+.gerr{color:#ff7777;font-size:10px;text-align:center;min-height:15px;margin-bottom:8px}.gcode{text-align:center;letter-spacing:9px;font-size:24px!important;font-weight:1000;margin-bottom:8px}#gxErrX{color:#ff7777;font-size:10px;text-align:center;min-height:15px;margin-bottom:6px}
 </style>
-<div id="gxGate"><div class="gxbox"><h2>GIFT <span>UPGRADER</span></h2><p>Регистрация: придумай ник. Его увидят другие игроки в ленте дропов.</p>
-<label class="label" for="gxName">Username</label><input class="field" id="gxName" maxlength="20" placeholder="Например: Neo" style="margin-bottom:14px">
-<div class="label">Режим игры</div><div class="gxmodes"><div class="gxm sel" data-m="demo"><span class="i">🧪</span><b>DEMO</b><small>Виртуальные монеты и подарки. Без риска, ничего не списывается</small></div><div class="gxm" data-m="real"><span class="i">⭐</span><b>РЕАЛЬНЫЙ</b><small>Мой инвентарь и баланс Giftora Stars (через бота)</small></div></div>
-<div id="gxErr"></div><button class="btn primary full upgrade-cta" id="gxGo">ВОЙТИ</button></div></div>
+<style id="gxpro">
+.gxb{width:15px;height:15px;vertical-align:-2px;margin-left:4px;display:inline-block}
+.uc{display:flex;align-items:center;gap:11px;border:1px solid #382f24;border-radius:13px;background:linear-gradient(150deg,#201c16,#151412);padding:11px;margin-bottom:8px}
+.uc .av{width:44px;height:44px;border-radius:14px;background:linear-gradient(140deg,#ffd683,#ff9a25 60%,#77330c);color:#2e1b08;display:grid;place-items:center;font-weight:1000;font-size:18px;flex:none}
+.uc .in{flex:1;min-width:0}.uc b{display:block;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.uc small{display:block;color:#8c8171;font-size:9px;margin-top:2px}
+.uc .st{color:#ffca7c;font-weight:1000;font-size:11px}
+.gxsw{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;font-size:10px;color:#b9ad98}
+.gxsw input{width:38px;height:20px;accent-color:#ff9b27}
+.gxform{display:grid;gap:8px;margin-bottom:6px}.gxform .inputrow{display:flex;gap:8px}
+.gxcrate{font-size:78px;text-align:center;animation:floatart 3s ease-in-out infinite;filter:drop-shadow(0 0 22px #ff9b2790)}
+.gxtimer{text-align:center;font-weight:1000;font-size:21px;color:#ffca7c;margin:4px 0 12px;letter-spacing:1px}
+@media(max-width:900px){.mobile-nav{display:flex;overflow-x:auto;gap:3px;scrollbar-width:none}.mobile-nav .navbtn{flex:0 0 68px}.mobile-nav::-webkit-scrollbar{display:none}}
+.scene{perspective:640px;height:150px;display:grid;place-items:center;margin:4px 0 8px;position:relative}
+.scene:after{content:"";position:absolute;bottom:6px;width:110px;height:16px;background:radial-gradient(#ff9b2766,transparent 70%)}
+.cube{width:84px;height:84px;position:relative;transform-style:preserve-3d;animation:cs 9s linear infinite}
+.cube .f{position:absolute;inset:0;display:grid;place-items:center;font-size:34px;font-style:normal;border:2px solid #ffc15e;background:linear-gradient(135deg,#ffa42ae0,#8a3a0fe0);box-shadow:inset 0 0 24px #ffe0a07a}
+.f.front{transform:translateZ(42px)}.f.back{transform:rotateY(180deg) translateZ(42px)}.f.right{transform:rotateY(90deg) translateZ(42px)}.f.left{transform:rotateY(-90deg) translateZ(42px)}.f.top{transform:rotateX(90deg) translateZ(42px)}.f.bottom{transform:rotateX(-90deg) translateZ(42px)}
+.cube.shake{animation:cshake .35s linear infinite}.cube.burst{animation:cburst .8s ease-out forwards}
+.tilt{transition:transform .18s;transform-style:preserve-3d;will-change:transform}
+@keyframes cs{from{transform:rotateX(-22deg) rotateY(0)}to{transform:rotateX(-22deg) rotateY(360deg)}}
+@keyframes cshake{0%,100%{transform:rotateX(-22deg) rotateY(0) translateX(0)}25%{transform:rotateX(-14deg) rotateY(8deg) translateX(-5px) scale(1.08)}75%{transform:rotateX(-28deg) rotateY(-8deg) translateX(5px) scale(1.08)}}
+@keyframes cburst{to{transform:rotateX(-22deg) rotateY(540deg) scale(1.9);opacity:0}}
+</style>
+<div id="gxGate"><div class="gxbox"><h2>GIFT <span>UPGRADER</span></h2><p id="gTxt">Подтверди, что ты не робот: бот отправит 6-значный код в Telegram.</p>
+<div id="gStep1"><div class="label">Режим игры</div><div class="gxmodes"><div class="gxm sel" data-m="demo"><span class="i">🧪</span><b>DEMO</b><small>Виртуальные монеты и подарки</small></div><div class="gxm" data-m="real"><span class="i">⭐</span><b>РЕАЛЬНЫЙ</b><small>Мой инвентарь и баланс через бота</small></div></div><div class="gerr" id="gErr1"></div><button class="btn primary full upgrade-cta" id="gSend">ПОЛУЧИТЬ КОД</button></div>
+<div id="gStep2" class="hidden"><input class="field gcode" id="gCode" inputmode="numeric" maxlength="6" placeholder="000000"><div class="gerr" id="gErr2"></div><button class="btn primary full upgrade-cta" id="gVerify">ПОДТВЕРДИТЬ</button><button class="btn full" id="gAgain" style="margin-top:8px">Отправить код заново</button></div></div></div>
 <script type="module" id="gxdemojs">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import {getDatabase,ref,push,onValue,update,increment,query,limitToLast} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
@@ -384,18 +406,135 @@ const _save=window.saveDemo;
 window.saveDemo=function(){_save();const h=demoState.history[0];if(!h||!h.demo||h.created_at===lastTs)return;lastTs=h.created_at;
  const contract=String(h.source).startsWith('Контракт'),ok=!!h.success,res=byName(h.target),src=byName(h.source);
  publish({u:(reg&&reg.name)||'Player',kind:contract?'contract':'upgrade',from:h.source,to:ok?(h.target):null,val:ok?(res?res.value:0):(src?src.value:0),ok,ts:Date.now()})};
-/* ---- регистрация / режим ---- */
-function apply(){$('gxBadge').textContent=reg.mode==='demo'?'DEMO · ВИРТУАЛЬНЫЕ МОНЕТЫ':'РЕАЛЬНЫЙ РЕЖИМ';
- user.username=reg.name;try{setUpgradeMode(reg.mode);setContractMode(reg.mode)}catch(e){}renderAll()}
-function openGate(){const n=$('gxName');n.value=(reg&&reg.name)||tg?.initDataUnsafe?.user?.username||'';sel=(reg&&reg.mode)||'demo';
- document.querySelectorAll('.gxm').forEach(x=>x.classList.toggle('sel',x.dataset.m===sel));$('gxGate').classList.add('on')}
-document.querySelectorAll('.gxm').forEach(x=>x.onclick=()=>{sel=x.dataset.m;document.querySelectorAll('.gxm').forEach(y=>y.classList.toggle('sel',y===x))});
-$('gxGo').onclick=()=>{const n=$('gxName').value.trim().replace(/[^\wа-яА-ЯёЁ.\-]/g,'');
- if(n.length<3){$('gxErr').textContent='Username: минимум 3 символа (буквы, цифры, _ . -)';return}
- reg={name:n.slice(0,20),mode:sel};localStorage.setItem(K,JSON.stringify(reg));$('gxErr').textContent='';$('gxGate').classList.remove('on');apply();
- showToast(sel==='demo'?'DEMO: виртуальные монеты, всё безопасно':'Реальный режим включён')};
-$('gxChange').onclick=openGate;
-if(reg)apply();else openGate();
+/* ---- режим (после проверки) ---- */
+window.__gxMode=()=>reg&&reg.mode;
+window.__gxApply=(name,mode)=>{reg={name,mode};localStorage.setItem(K,JSON.stringify(reg));$('gxBadge').textContent=mode==='demo'?'DEMO · ВИРТУАЛЬНЫЕ МОНЕТЫ':'РЕАЛЬНЫЙ РЕЖИМ';user.username=name;try{setUpgradeMode(mode);setContractMode(mode)}catch(e){}renderAll()};
+$('gxChange').onclick=()=>window.__gxGate&&window.__gxGate(true);
+</script>
+<script type="module" id="gxpromod">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {getDatabase,ref,push,onValue,get,query,orderByChild,equalTo} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+const ADMIN='8515868917',$=id=>document.getElementById(id),esc=escapeText,tgu=tg?.initDataUnsafe?.user,UID=tgu?String(tgu.id):null,ISADM=UID===ADMIN;
+const db=getDatabase(initializeApp({apiKey:"AIzaSyBZ8Qm4BeX6U1vCMNb-_FgNBp0OQUkC-9k",authDomain:"tetete-d31c8.firebaseapp.com",databaseURL:"https://tetete-d31c8-default-rtdb.firebaseio.com",projectId:"tetete-d31c8",appId:"1:130781376435:web:8588052eb0f36ce99fe5c6"},'gxmain'));
+let off=0,ME={},busy=false;onValue(ref(db,'.info/serverTimeOffset'),s=>off=s.val()||0);
+const ICO={check:'<svg class="gxb" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#3b9bff"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',crown:'<svg class="gxb" viewBox="0 0 24 24"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 11H5z" fill="#ffc43d" stroke="#b9791a"/></svg>'};
+const bdg=u=>u?((u.check?ICO.check:'')+(u.crown?ICO.crown:'')):'';
+const nm=u=>esc(u?.username||'Player');
+async function act(type,p={}){
+ if(!tg?.initData){showToast('Открой приложение внутри Telegram');return{ok:false}}
+ const r=push(ref(db,'actions'),{type,p,initData:tg.initData,ts:Date.now()});
+ return new Promise(res=>{let d=0;const un=onValue(ref(db,'actions/'+r.key+'/result'),s=>{if(s.exists()&&!d){d=1;un();const v=s.val();if(!v.ok)showToast(v.msg||'Ошибка');res(v)}});
+  setTimeout(()=>{if(!d){d=1;un();showToast('Бот не отвечает, попробуй позже');res({ok:false})}},15000)})}
+/* ---------- вкладки ---------- */
+const CUBE=['front','back','right','left','top','bottom'].map(c=>`<i class="f ${c}">🎁</i>`).join('');
+const PG={daily:['🎁','Кейсы'],friends:['👥','Друзья'],admin:['🛠','Админ']};
+const sec=(id,h)=>{const e=document.createElement('section');e.className='page';e.id='page-'+id;e.innerHTML=h;document.querySelector('main.main').appendChild(e)};
+const head=(o,t,d)=>`<div class="pagehead"><div><div class="overline">${o}</div><h1 class="pagetitle">${t}</h1><div class="pagedesc">${d}</div></div></div>`;
+sec('daily',head('GIFTORA · CASES','Кейсы','Welcome Case открывается один раз, Daily Case раз в 24 часа.')+`<div class="panel hidden" id="rPanel"><div class="panelbody"><div class="reel-window" id="dReel"><div class="reel-track" id="dTrack"></div></div></div></div>
+<div class="panel" style="margin-top:12px"><div class="panelbody"><div class="paneltitle">WELCOME CASE <span class="pill green">1 РАЗ</span></div><div class="scene"><div class="cube" id="cubeW">${CUBE}</div></div><div class="tiny" style="text-align:center;margin-bottom:10px">Гарантированный подарок. Нужен для засчёта рефералов.</div><button class="btn primary full" id="wOpen">ОТКРЫТЬ БЕСПЛАТНО</button></div></div>
+<div class="panel" style="margin-top:12px"><div class="panelbody"><div class="paneltitle">DAILY CASE <span class="pill orange">24 ЧАСА</span></div><div class="scene"><div class="cube" id="cubeD">${CUBE}</div></div><div class="gxtimer" id="dTimer">—</div>
+<div class="btnrow"><button class="btn primary" style="flex:1" id="dOpen">ОТКРЫТЬ</button><button class="btn ghost-orange" style="flex:1" id="dFast">⚡ СРАЗУ</button></div></div></div>
+<div class="sectionbar"><div><h3>МОИ ПОДАРКИ</h3></div></div><div class="gift-grid" id="myInv"></div>
+<div class="sectionbar"><div><h3>ЧТО В DAILY</h3></div></div><div class="case-odds" id="dOdds"></div>
+<div class="sectionbar"><div><h3>ПРОМОКОД</h3><p>Один раз на аккаунт</p></div></div><div class="panel"><div class="panelbody"><div class="inputrow"><input class="field" id="pCode" placeholder="Введи промокод" maxlength="20"><button class="btn primary" id="pGo">ОК</button></div></div></div>`);
+sec('friends',head('GIFTORA · SOCIAL','Друзья','Поиск по Telegram ID, своему ID или нику.')+`<div class="panel"><div class="panelbody"><div id="meCard"></div>
+<label class="gxsw"><span>🔒 Не принимать заявки в друзья</span><input type="checkbox" id="blk"></label><div class="inputrow"><input class="field" id="fq" placeholder="User ID или @ник"><button class="btn primary" id="fgo">НАЙТИ</button></div><div id="fres" style="margin-top:10px"></div></div></div>
+<div class="sectionbar"><div><h3>РЕФЕРАЛЫ</h3></div></div><div class="panel"><div class="panelbody"><div class="referral-link" id="refLink">—</div><div class="ref-stats"><div class="ref-stat"><strong id="rfN">0</strong><small>ЗАСЧИТАНО</small></div><div class="ref-stat"><strong id="rfS">0</strong><small>ЗАРАБОТАНО ⭐</small></div><div class="ref-stat"><strong>+5 ⭐</strong><small>ЗА ДРУГА</small></div></div><div class="tiny" style="margin-top:9px">Друг засчитывается, когда прошёл проверку, открыл кейс и получил подарок. Накрутка не работает.</div><button class="btn primary full" style="margin-top:10px" id="rfCopy">КОПИРОВАТЬ ССЫЛКУ</button></div></div><div class="sectionbar"><div><h3>ЗАЯВКИ</h3></div></div><div id="freq"></div><div class="sectionbar"><div><h3>МОИ ДРУЗЬЯ</h3></div></div><div id="flist"></div>`);
+if(ISADM)sec('admin',head('ADMIN','Админ-панель','Все действия проверяет бот по твоему ID.')+`<div class="panel"><div class="panelbody gxform">
+<div class="paneltitle">ПРОМОКОД</div><div class="inputrow"><input class="field" id="aCode" placeholder="КОД"><input class="field" id="aStars" type="number" placeholder="⭐" style="max-width:80px"><input class="field" id="aMax" type="number" placeholder="Лимит" style="max-width:90px"></div>
+<button class="btn primary" id="aCreate">СОЗДАТЬ ПРОМОКОД</button><div class="divider"></div>
+<div class="paneltitle">УДАЛИТЬ АКТИВАЦИЮ</div><div class="inputrow"><input class="field" id="rCode" placeholder="Код"><input class="field" id="rUid" placeholder="User ID (пусто = все)"></div><button class="btn" id="aReset">УДАЛИТЬ АКТИВАЦИИ</button><div class="divider"></div>
+<div class="paneltitle">ID В ПРОФИЛЕ</div><div class="inputrow"><input class="field" id="iUid" placeholder="User ID"><input class="field" id="iNew" placeholder="Новый ID"></div><button class="btn" id="aId">СМЕНИТЬ ID</button><div class="divider"></div>
+<div class="paneltitle">ЗНАЧКИ</div><input class="field" id="bUid" placeholder="User ID"><label class="gxsw"><span>☑️ Верификация</span><input type="checkbox" id="bCheck"></label><label class="gxsw"><span>👑 Корона</span><input type="checkbox" id="bCrown"></label><button class="btn primary" id="aBadge">ВЫДАТЬ / ЗАБРАТЬ</button></div></div>
+<div class="sectionbar"><div><h3>ПРОМОКОДЫ</h3></div><button class="btn sm" id="aList">ОБНОВИТЬ</button></div><div class="panel"><div class="panelbody" id="aPromos"><div class="grid-empty">Нажми «Обновить»</div></div></div>`);
+function navBtn(id,cls,wrap){const b=document.createElement('button');b.className='navbtn';b.dataset.page=id;b.innerHTML=`<span class="navico">${PG[id][0]}</span>${wrap?'':' '}${PG[id][1]}`;b.onclick=()=>{navigate(id);if(id==='friends')loadFriendsUI()};return b}
+const ids=['daily','friends'].concat(ISADM?['admin']:[]);
+const sb=document.querySelector('.sidebar'),tip=sb.querySelector('.sidebar-tip'),mn=document.querySelector('.mobile-nav');
+for(const id of ids){sb.insertBefore(navBtn(id),tip);mn.appendChild(navBtn(id,1))}
+/* ---------- профиль / баланс ---------- */
+const bal=document.createElement('span');bal.className='pill orange';document.querySelector('.gxmode')?.prepend(bal);
+const _rp=window.renderProfile;window.renderProfile=function(){_rp();const pn=$('profileName');if(pn&&ME.username)pn.insertAdjacentHTML('beforeend',bdg(ME));const pi=$('profileId');if(pi&&ME.display_id)pi.textContent='ID: '+ME.display_id}
+function meCard(){const c=$('meCard');if(!c)return;c.innerHTML=`<div class="uc"><div class="av">${esc((ME.username||'?')[0]||'?').toUpperCase()}</div><div class="in"><b>${nm(ME)}${bdg(ME)}</b><small>ID: ${esc(ME.display_id||UID||'—')}</small></div><div class="st">${ME.stars||0} ⭐</div></div>`}
+let BOTU='';function refUI(){if(UID&&BOTU){referralURL=`https://t.me/${BOTU}?start=ref_${UID}`;botUsername=BOTU}
+ refCount=ME.ref_count||0;refCommissionMilli=(ME.ref_stars||0)*1000;$('refLink').textContent=referralURL||'—';$('rfN').textContent=refCount;$('rfS').textContent=ME.ref_stars||0}
+onValue(ref(db,'meta/bot_username'),s=>{BOTU=s.val()||'';refUI()});
+$('rfCopy').onclick=()=>{if(!referralURL)return showToast('Ссылка пока недоступна');navigator.clipboard?.writeText(referralURL);showToast('Ссылка скопирована')};
+function invUI(){const g=$('myInv'),e=Object.entries(ME.inv||{}).filter(x=>x[1]>0&&GIFT_ART[x[0]]);
+ g.innerHTML=e.length?'':'<div class="grid-empty">Пока пусто. Открой Welcome Case — получишь первый подарок!</div>';
+ for(const [c,n] of e){const it=itemByCode(c),d=document.createElement('div');d.className='gift-card tilt';d.innerHTML=`<img class="gift-art" src="${GIFT_ART[c]}"><div class="gift-meta"><div class="gift-title">${esc(it.name)} ×${n}</div><div class="gift-bottom"><span class="gift-price">${it.value} ⭐</span><span class="gift-rarity">${esc(it.rarity)}</span></div></div>`;g.appendChild(d)}}
+/* 3D-наклон карточек */
+document.addEventListener('pointermove',e=>{const t=e.target.closest?.('.tilt');if(!t)return;const r=t.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;t.style.transform=`perspective(500px) rotateY(${x*22}deg) rotateX(${-y*22}deg) scale(1.04)`});
+document.addEventListener('pointerout',e=>{const t=e.target.closest?.('.tilt');if(t)t.style.transform=''});
+/* ---------- проверка на робота ---------- */
+let gMode='demo',first=true;const G=document.getElementById.bind(document);
+function gate(modeOnly){G('gStep1').classList.remove('hidden');G('gStep2').classList.add('hidden');G('gErr1').textContent='';G('gSend').textContent=modeOnly?'СОХРАНИТЬ РЕЖИМ':'ПОЛУЧИТЬ КОД';G('gTxt').textContent=modeOnly?'Выбери режим игры.':'Подтверди, что ты не робот: бот отправит 6-значный код в Telegram.';
+ gMode=window.__gxMode()||'demo';document.querySelectorAll('.gxm').forEach(x=>x.classList.toggle('sel',x.dataset.m===gMode));gate.modeOnly=!!modeOnly;G('gxGate').classList.add('on')}
+window.__gxGate=gate;
+document.querySelectorAll('.gxm').forEach(x=>x.onclick=()=>{gMode=x.dataset.m;document.querySelectorAll('.gxm').forEach(y=>y.classList.toggle('sel',y===x))});
+const applyMode=()=>window.__gxApply(ME.username||tgu?.first_name||'Player',gMode);
+G('gSend').onclick=async()=>{if(gate.modeOnly){applyMode();G('gxGate').classList.remove('on');return}
+ if(!UID){G('gErr1').textContent='Открой приложение внутри Telegram через бота';return}
+ G('gSend').disabled=true;const r=await act('send_code');G('gSend').disabled=false;if(!r.ok){G('gErr1').textContent=r.msg||'Ошибка';return}
+ G('gStep1').classList.add('hidden');G('gStep2').classList.remove('hidden');G('gTxt').textContent='Код отправлен в чат с ботом. Введи 6 цифр.'};
+G('gAgain').onclick=async()=>{const r=await act('send_code');G('gErr2').textContent=r.ok?'Новый код отправлен':(r.msg||'')};
+G('gVerify').onclick=async()=>{const c=G('gCode').value.trim();if(c.length!==6){G('gErr2').textContent='Введи ровно 6 цифр';return}
+ const r=await act('verify_code',{code:c});if(!r.ok){G('gErr2').textContent=r.msg||'Неверный код';return}
+ G('gErr2').textContent='';G('gxGate').classList.remove('on');setTimeout(applyMode,700);showToast('Проверка пройдена ✔')};
+if(UID)onValue(ref(db,'users/'+UID),s=>{ME=s.val()||{};bal.textContent=`⭐ ${ME.stars||0}`;meCard();$('blk').checked=!!ME.block_requests;invUI();refUI();try{renderProfile()}catch(e){}
+ if(first){first=false;if(ME.verified)window.__gxApply(ME.username||tgu.first_name||'Player',window.__gxMode()||'demo');else gate(false)}});
+else gate(false);
+/* ---------- кейсы ---------- */
+const sleep=t=>new Promise(r=>setTimeout(r,t));
+const PR=[{id:'s1',n:'1 ⭐',w:34,c:'#4b69ff'},{id:'s2',n:'2 ⭐',w:25,c:'#4b69ff'},{id:'s3',n:'3 ⭐',w:16,c:'#8847ff'},{id:'s4',n:'4 ⭐',w:10,c:'#8847ff'},{id:'s5',n:'5 ⭐',w:7,c:'#d32ce6'},{id:'s10',n:'10 ⭐',w:4,c:'#eb4b4b'},{id:'heart',n:'Сердечко',w:2.5,c:'#ffb21e',art:'heart'},{id:'bear',n:'Мишка',w:1.5,c:'#ffb21e',art:'bear'}];
+const WPR=[['rose',34],['heart',26],['lollipop',16],['candle',10],['cupcake',7],['bouquet',4],['rabbit',2],['bear',1]].map(([c,w])=>({id:c,n:itemByCode(c).name,w,art:c,c:itemByCode(c).accent}));
+const rnd=T=>{const tw=T.reduce((a,p)=>a+p.w,0);let r=Math.random()*tw;for(const p of T)if((r-=p.w)<0)return p;return T[0]};
+const tile=p=>{const t=document.createElement('div');t.className='reel-tile';t.style.setProperty('--tile',p.c);t.innerHTML=(p.art?`<img src="${GIFT_ART[p.art]}">`:`<div style="font:1000 30px sans-serif;color:#ffca7c">${p.n.split(' ')[0]}⭐</div>`)+`<b>${esc(p.n)}</b>`;return t};
+const TW=PR.reduce((a,p)=>a+p.w,0);$('dOdds').innerHTML=PR.map(p=>`<div class="odds-card tilt"><div class="oddsinfo"><b>${p.n}</b><small>${(p.w/TW*100).toFixed(1)}%</small></div></div>`).join('');
+const L=()=>(ME.last_daily||0)+864e5-(Date.now()+off);
+setInterval(()=>{const l=L(),v=!!ME.verified;$('dOpen').disabled=$('dFast').disabled=!(l<=0&&!busy&&v);$('wOpen').disabled=!(v&&!ME.welcome_done&&!busy);$('wOpen').textContent=ME.welcome_done?'УЖЕ ОТКРЫТ ✔':'ОТКРЫТЬ БЕСПЛАТНО';
+ $('dTimer').textContent=!v?'ПРОЙДИ ПРОВЕРКУ':l<=0?'ГОТОВ К ОТКРЫТИЮ!':[l/36e5|0,(l/6e4|0)%60,(l/1e3|0)%60].map(n=>String(n).padStart(2,'0')).join(':')},1000);
+async function openCase(kind,fast){if(busy)return;busy=true;const W=kind==='welcome',cube=$(W?'cubeW':'cubeD');
+ const r=await act(W?'welcome_open':'daily_open');if(!r.ok){busy=false;return}
+ const T=W?WPR:PR,win=T.find(p=>p.id===r.data.prize);cube.className='cube shake';try{tg.HapticFeedback.impactOccurred('heavy')}catch(e){}await sleep(fast?400:1000);cube.className='cube burst';
+ const pn=$('rPanel'),tr=$('dTrack'),rw=$('dReel'),N=48;pn.classList.remove('hidden');tr.innerHTML='';for(let i=0;i<60;i++)tr.appendChild(tile(i===N?win:rnd(T)));
+ tr.style.transition='none';tr.style.transform='translateX(0)';tr.offsetWidth;pn.scrollIntoView({behavior:'smooth',block:'center'});
+ const step=tr.children[1].offsetLeft-tr.children[0].offsetLeft,tw=tr.children[0].offsetWidth,x=-(N*step+tw/2-rw.clientWidth/2+(Math.random()-.5)*tw*.6),dur=fast?900:6500;
+ tr.style.transition=`transform ${dur}ms cubic-bezier(.08,.72,.12,1)`;tr.style.transform=`translateX(${x}px)`;await sleep(dur+400);
+ try{tg.HapticFeedback.notificationOccurred('success')}catch(e){}
+ showModal('ТЫ ВЫИГРАЛ',win.n+(win.art?' — добавлен в инвентарь':' — зачислено на баланс'),win.art||'star','ЗАБРАТЬ');
+ pn.classList.add('hidden');cube.className='cube';busy=false}
+$('wOpen').onclick=()=>openCase('welcome',0);$('dOpen').onclick=()=>openCase('daily',0);$('dFast').onclick=()=>openCase('daily',1);
+$('pGo').onclick=async()=>{const r=await act('promo_redeem',{code:$('pCode').value});if(r.ok){showToast(r.msg);$('pCode').value=''}};
+/* ---------- Друзья ---------- */
+const card=(uid,u,btns,showStars)=>{const d=document.createElement('div');d.className='uc';
+ d.innerHTML=`<div class="av">${esc((u.username||'?')[0]).toUpperCase()}</div><div class="in"><b>${nm(u)}${bdg(u)}</b><small>ID: ${esc(u.display_id||uid)}</small></div>${showStars?`<div class="st">${u.stars||0} ⭐</div>`:''}`;
+ for(const [t,f,cls] of btns){const b=document.createElement('button');b.className='btn sm '+(cls||'');b.textContent=t;b.onclick=f;d.appendChild(b)}return d};
+let FR={},fu={},ib=[],uns={};
+function drawFriends(){const l=$('flist');if(!l)return;l.innerHTML='';const k=Object.keys(FR);if(!k.length)l.innerHTML='<div class="grid-empty">Друзей пока нет. Найди кого-нибудь выше.</div>';
+ for(const id of k)if(fu[id])l.appendChild(card(id,fu[id],[['✕',async()=>{if(confirm('Удалить из друзей?'))await act('friend_remove',{uid:id})},'']],1))}
+function loadFriendsUI(){}
+if(UID){onValue(ref(db,'users/'+UID+'/friends'),s=>{FR=s.val()||{};for(const id of Object.keys(FR))if(!uns[id])uns[id]=onValue(ref(db,'users/'+id),x=>{fu[id]=x.val()||{};drawFriends()});drawFriends()});
+ onValue(ref(db,'users/'+UID+'/requests_in'),s=>{const b=$('freq');b.innerHTML='';const v=s.val()||{};const k=Object.keys(v);if(!k.length)b.innerHTML='<div class="grid-empty">Новых заявок нет</div>';
+  for(const id of k)b.appendChild(card(id,{username:v[id].username,display_id:id},[['✔',()=>act('friend_accept',{uid:id}),'primary'],['✕',()=>act('friend_decline',{uid:id}),'']]))})}
+$('blk').onchange=e=>act('set_privacy',{block:e.target.checked});
+$('fgo').onclick=async()=>{const q=$('fq').value.trim().replace(/^@/,''),box=$('fres');if(!q)return;box.innerHTML='<div class="tiny">Ищем…</div>';const found={};
+ try{if(/^\d+$/.test(q)){const a=await get(ref(db,'users/'+q));if(a.exists())found[q]=a.val();const b=await get(query(ref(db,'users'),orderByChild('display_id'),equalTo(q)));b.forEach(c=>{found[c.key]=c.val()})}
+ else{const c=await get(query(ref(db,'users'),orderByChild('username_lc'),equalTo(q.toLowerCase())));c.forEach(x=>{found[x.key]=x.val()})}}catch(e){}
+ box.innerHTML='';const ks=Object.keys(found);if(!ks.length){box.innerHTML='<div class="grid-empty">Никого не нашли</div>';return}
+ for(const id of ks){const u=found[id];let btn;
+  if(id===UID)btn=[['Это ты',()=>{},'']];else if(FR[id])btn=[['Удалить',()=>act('friend_remove',{uid:id}),'']];else if(u.block_requests)btn=[['Заявки закрыты',()=>{},'']];
+  else btn=[['+ В друзья',async()=>{const r=await act('friend_request',{uid:id});if(r.ok)showToast(r.msg)},'primary']];
+  box.appendChild(card(id,u,btn,FR[id]))}};
+/* ---------- Админ ---------- */
+if(ISADM){const v=i=>$(i).value.trim();
+ const list=async()=>{const r=await act('promo_list');const b=$('aPromos');if(!r.ok)return;b.innerHTML='';if(!r.data.length)b.innerHTML='<div class="grid-empty">Промокодов нет</div>';
+  for(const p of r.data){const d=document.createElement('div');d.className='uc';d.innerHTML=`<div class="in"><b>${esc(p.code)} · ${p.stars} ⭐</b><small>активаций ${p.uses}/${p.max||'∞'}</small></div>`;
+   for(const [t,f] of [['Сброс',()=>act('promo_reset',{code:p.code}).then(list)],['🗑',()=>act('promo_delete',{code:p.code}).then(list)]]){const bt=document.createElement('button');bt.className='btn sm';bt.textContent=t;bt.onclick=f;d.appendChild(bt)}b.appendChild(d)}};
+ $('aList').onclick=list;
+ $('aCreate').onclick=async()=>{const r=await act('promo_create',{code:v('aCode'),stars:+v('aStars'),max:+v('aMax')||0});if(r.ok){showToast(r.msg);list()}};
+ $('aReset').onclick=async()=>{const r=await act('promo_reset',{code:v('rCode'),uid:v('rUid')});if(r.ok){showToast(r.msg);list()}};
+ $('aId').onclick=async()=>{const r=await act('set_display_id',{uid:v('iUid'),new_id:v('iNew')});if(r.ok)showToast(r.msg)};
+ $('aBadge').onclick=async()=>{const r=await act('set_badges',{uid:v('bUid'),check:$('bCheck').checked,crown:$('bCrown').checked});if(r.ok)showToast(r.msg)}}
 </script>
 </body>
 </html>
