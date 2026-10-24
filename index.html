@@ -3,567 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Giftora Upgrader</title>
+    <title>Telegram Mini App</title>
+    <!-- Скрипт Telegram WebApp -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            user-select: none;
         }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: #0a0a0f;
-            color: #fff;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* Loading Screen */
-        #loading-screen {
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(circle at center, #1a0a2e 0%, #0a0a0f 70%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: radial-gradient(circle at top, #1e293b, #0f172a);
+            color: #ffffff;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            z-index: 1000;
-            transition: opacity 0.6s ease, visibility 0.6s;
-        }
-
-        #loading-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader-container {
-            text-align: center;
-        }
-
-        .gift-icon {
-            font-size: 80px;
-            animation: float 2s ease-in-out infinite, glow 1.5s ease-in-out infinite alternate;
-            margin-bottom: 20px;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        @keyframes glow {
-            from { filter: drop-shadow(0 0 10px #a855f7); }
-            to { filter: drop-shadow(0 0 25px #c084fc); }
-        }
-
-        .loading-title {
-            font-size: 28px;
-            font-weight: 700;
-            background: linear-gradient(90deg, #c084fc, #818cf8, #c084fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 200% auto;
-            animation: shine 2s linear infinite;
-            margin-bottom: 10px;
-        }
-
-        @keyframes shine {
-            to { background-position: 200% center; }
-        }
-
-        .loading-subtitle {
-            color: #a1a1aa;
-            font-size: 14px;
-            margin-bottom: 30px;
-        }
-
-        .progress-bar {
-            width: 260px;
-            height: 6px;
-            background: #27272a;
-            border-radius: 10px;
+            height: 100vh;
             overflow: hidden;
-            margin: 0 auto 15px;
         }
-
-        .progress-fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #a855f7, #818cf8);
-            border-radius: 10px;
-            transition: width 0.3s ease;
-            box-shadow: 0 0 15px #a855f7;
-        }
-
-        .loading-percent {
-            font-size: 13px;
-            color: #71717a;
-        }
-
-        /* Main Content */
-        .screen {
-            display: none;
-            min-height: 100vh;
-            padding: 20px 16px 40px;
-        }
-
-        .screen.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Profile Confirmation */
-        .profile-card {
-            background: linear-gradient(145deg, #1e1b2e, #16141f);
-            border: 1px solid #3f3f46;
-            border-radius: 24px;
-            padding: 28px 20px;
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 28px;
+            padding: 35px 25px;
+            width: 88%;
+            max-width: 360px;
             text-align: center;
-            max-width: 380px;
-            margin: 40px auto;
-            box-shadow: 0 10px 40px rgba(168, 85, 247, 0.15);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
         }
-
-        .avatar {
-            width: 100px;
-            height: 100px;
+        .avatar-box {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
             border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #a855f7;
-            margin-bottom: 16px;
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
-        }
-
-        .avatar-placeholder {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #a855f7, #6366f1);
+            margin: 0 auto 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 40px;
-            margin: 0 auto 16px;
-            border: 3px solid #c084fc;
+            font-size: 32px;
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
         }
-
-        .profile-name {
+        h1 {
             font-size: 22px;
             font-weight: 700;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
-
-        .profile-username {
-            color: #a1a1aa;
-            font-size: 15px;
-            margin-bottom: 16px;
-        }
-
-        .profile-info {
-            background: #0f0f14;
-            border-radius: 12px;
-            padding: 12px;
-            margin-bottom: 24px;
-            text-align: left;
+        p.sub {
             font-size: 14px;
-        }
-
-        .profile-info div {
-            display: flex;
-            justify-content: space-between;
-            padding: 6px 0;
-            border-bottom: 1px solid #27272a;
-        }
-
-        .profile-info div:last-child {
-            border-bottom: none;
-        }
-
-        .profile-info span {
-            color: #a1a1aa;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 12px;
-        }
-
-        .btn {
-            flex: 1;
-            padding: 14px;
-            border: none;
-            border-radius: 14px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.15s, opacity 0.15s;
-        }
-
-        .btn:active {
-            transform: scale(0.97);
-        }
-
-        .btn-yes {
-            background: linear-gradient(135deg, #a855f7, #7c3aed);
-            color: white;
-            box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4);
-        }
-
-        .btn-no {
-            background: #27272a;
-            color: #d4d4d8;
-        }
-
-        /* Main Screen */
-        .header {
-            text-align: center;
+            color: #94a3b8;
             margin-bottom: 28px;
         }
-
-        .header h1 {
-            font-size: 26px;
+        .online-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 10px 20px;
+            border-radius: 100px;
+            color: #10b981;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            background-color: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #10b981;
+            animation: pulse 1.5s infinite;
+        }
+        .count {
+            font-size: 56px;
             font-weight: 800;
-            background: linear-gradient(90deg, #c084fc, #818cf8);
+            letter-spacing: -1px;
+            background: linear-gradient(180deg, #ffffff, #94a3b8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            margin: 5px 0 10px;
         }
-
-        .header p {
-            color: #71717a;
-            font-size: 13px;
-            margin-top: 4px;
-        }
-
-        .section {
-            background: linear-gradient(145deg, #1a1726, #121016);
-            border: 1px solid #2e2a3a;
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 16px;
-        }
-
-        .section-title {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* Donation packages */
-        .packages {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .package {
-            background: #0f0e14;
-            border: 1px solid #3f3f46;
-            border-radius: 14px;
-            padding: 16px 12px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .package:hover, .package:active {
-            border-color: #a855f7;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.2);
-        }
-
-        .package .stars {
-            font-size: 22px;
-            font-weight: 800;
-            color: #c084fc;
-        }
-
-        .package .price {
-            font-size: 13px;
-            color: #a1a1aa;
-            margin-top: 4px;
-        }
-
-        .package.featured {
-            border-color: #a855f7;
-            background: linear-gradient(145deg, #1e1630, #120e1c);
-        }
-
-        .donate-btn {
-            width: 100%;
-            margin-top: 16px;
-            padding: 16px;
-            background: linear-gradient(135deg, #a855f7, #6366f1);
-            color: white;
-            border: none;
-            border-radius: 14px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(168, 85, 247, 0.35);
-        }
-
-        .donate-btn:active {
-            transform: scale(0.98);
-        }
-
-        /* Profile section in main */
-        .mini-profile {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .mini-avatar {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #a855f7;
-        }
-
-        .mini-info .name {
-            font-weight: 700;
-            font-size: 16px;
-        }
-
-        .mini-info .details {
-            font-size: 13px;
-            color: #a1a1aa;
-            margin-top: 2px;
-        }
-
-        .stars-balance {
-            margin-top: 12px;
-            background: #0f0e14;
-            border-radius: 12px;
-            padding: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .stars-balance .amount {
-            font-size: 20px;
-            font-weight: 800;
-            color: #facc15;
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.7; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.7; }
         }
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div id="loading-screen">
-        <div class="loader-container">
-            <div class="gift-icon">🎁</div>
-            <div class="loading-title">Giftora Upgrader</div>
-            <div class="loading-subtitle">Загрузка апгрейдера подарков...</div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progress"></div>
-            </div>
-            <div class="loading-percent" id="percent">0%</div>
+
+    <div class="card">
+        <div class="avatar-box">🚀</div>
+        <h1 id="username">Игрок</h1>
+        <p class="sub">Тестовый режим Mini App</p>
+
+        <div class="online-badge">
+            <div class="dot"></div>
+            <span>Сейчас в приложении</span>
         </div>
+
+        <div class="count" id="online-count">...</div>
     </div>
 
-    <!-- Confirmation Screen -->
-    <div class="screen" id="confirm-screen">
-        <div class="profile-card">
-            <div id="avatar-container"></div>
-            <div class="profile-name" id="confirm-name">—</div>
-            <div class="profile-username" id="confirm-username">—</div>
-            <div class="profile-info">
-                <div><span>ID</span> <b id="confirm-id">—</b></div>
-                <div><span>Язык</span> <b id="confirm-lang">—</b></div>
-                <div><span>Premium</span> <b id="confirm-premium">—</b></div>
-            </div>
-            <p style="color:#a1a1aa; font-size:14px; margin-bottom:20px;">Это ты? Подтверди вход в Giftora Upgrader</p>
-            <div class="buttons">
-                <button class="btn btn-yes" onclick="confirmUser()">✅ Да, это я</button>
-                <button class="btn btn-no" onclick="cancelUser()">❌ Нет</button>
-            </div>
-        </div>
-    </div>
+    <!-- Подключение Firebase и логики онлайна -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
+        import { getDatabase, ref, onValue, push, onDisconnect, set, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-    <!-- Main Screen -->
-    <div class="screen" id="main-screen">
-        <div class="header">
-            <h1>🎁 Giftora Upgrader</h1>
-            <p>Апгрейд Telegram подарков</p>
-        </div>
-
-        <!-- Profile -->
-        <div class="section">
-            <div class="section-title">👤 Твой профиль</div>
-            <div class="mini-profile">
-                <div id="main-avatar"></div>
-                <div class="mini-info">
-                    <div class="name" id="main-name">—</div>
-                    <div class="details" id="main-details">—</div>
-                </div>
-            </div>
-            <div class="stars-balance">
-                <div>
-                    <div style="font-size:13px; color:#a1a1aa;">Giftora Stars</div>
-                    <div class="amount" id="stars-balance">0</div>
-                </div>
-                <div style="font-size:24px;">⭐</div>
-            </div>
-        </div>
-
-        <!-- Donation -->
-        <div class="section">
-            <div class="section-title">⭐ Донат Giftora Stars</div>
-            <div class="packages">
-                <div class="package" onclick="selectPackage(100, '100 Stars')">
-                    <div class="stars">100</div>
-                    <div class="price">Stars</div>
-                </div>
-                <div class="package" onclick="selectPackage(500, '500 Stars')">
-                    <div class="stars">500</div>
-                    <div class="price">Stars</div>
-                </div>
-                <div class="package featured" onclick="selectPackage(1000, '1000 Stars')">
-                    <div class="stars">1000</div>
-                    <div class="price">⭐ Популярно</div>
-                </div>
-                <div class="package" onclick="selectPackage(2500, '2500 Stars')">
-                    <div class="stars">2500</div>
-                    <div class="price">Stars</div>
-                </div>
-            </div>
-            <button class="donate-btn" id="donate-btn" onclick="donate()">
-                Пополнить Giftora Stars
-            </button>
-            <p style="text-align:center; color:#71717a; font-size:12px; margin-top:12px;">
-                Оплата через Telegram Stars • 1:1
-            </p>
-        </div>
-    </div>
-
-    <script>
+        // Инициализация Telegram WebApp
         const tg = window.Telegram.WebApp;
-        tg.ready();
         tg.expand();
+        tg.ready();
 
-        let user = tg.initDataUnsafe?.user || {
-            id: 123456789,
-            first_name: "Demo",
-            username: "demo_user",
-            language_code: "ru",
-            is_premium: false
+        // Выводим имя пользователя из Telegram, если открыто внутри ТГ
+        const user = tg.initDataUnsafe?.user;
+        if (user && user.first_name) {
+            document.getElementById('username').innerText = user.first_name;
+        }
+
+        // Твой конфиг Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyBZ8Qm4BeX6U1vCMNb-_FgNBp0OQUkC-9k",
+            authDomain: "tetete-d31c8.firebaseapp.com",
+            databaseURL: "https://tetete-d31c8-default-rtdb.firebaseio.com",
+            projectId: "tetete-d31c8",
+            storageBucket: "tetete-d31c8.firebasestorage.app",
+            messagingSenderId: "130781376435",
+            appId: "1:130781376435:web:8588052eb0f36ce99fe5c6",
+            measurementId: "G-B9J1GPPJZF"
         };
 
-        let selectedAmount = 1000;
-        let starsBalance = parseInt(localStorage.getItem('giftora_stars') || '0');
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getDatabase(app);
 
-        // Loading animation
-        function startLoading() {
-            const progress = document.getElementById('progress');
-            const percent = document.getElementById('percent');
-            let p = 0;
-            const interval = setInterval(() => {
-                p += Math.random() * 12 + 4;
-                if (p >= 100) {
-                    p = 100;
-                    clearInterval(interval);
-                    setTimeout(finishLoading, 400);
-                }
-                progress.style.width = p + '%';
-                percent.textContent = Math.floor(p) + '%';
-            }, 180);
-        }
+        // Ссылки на ветки БД
+        const onlineListRef = ref(db, 'online_users');
+        const connectedRef = ref(db, '.info/connected');
 
-        function finishLoading() {
-            document.getElementById('loading-screen').classList.add('hidden');
-            if (localStorage.getItem('giftora_confirmed') === 'true') {
-                showMain();
-            } else {
-                showConfirm();
+        // Отслеживание подключения клиента
+        onValue(connectedRef, (snap) => {
+            if (snap.val() === true) {
+                // Создаем уникальную запись для текущей сессии
+                const mySessionRef = push(onlineListRef);
+                
+                // Когда вкладка/аппка закроется — запись сама удалится из БД
+                onDisconnect(mySessionRef).remove();
+                
+                // Записываем данные о входе
+                set(mySessionRef, {
+                    user_id: user?.id || "guest",
+                    name: user?.first_name || "Guest",
+                    joined_at: serverTimestamp()
+                });
             }
-        }
+        });
 
-        function showConfirm() {
-            document.getElementById('confirm-screen').classList.add('active');
-
-            const name = user.first_name || 'Пользователь';
-            const username = user.username ? '@' + user.username : 'нет username';
-            const id = user.id;
-            const lang = user.language_code || '—';
-            const premium = user.is_premium ? 'Да 💎' : 'Нет';
-
-            document.getElementById('confirm-name').textContent = name;
-            document.getElementById('confirm-username').textContent = username;
-            document.getElementById('confirm-id').textContent = id;
-            document.getElementById('confirm-lang').textContent = lang;
-            document.getElementById('confirm-premium').textContent = premium;
-
-            const avatarContainer = document.getElementById('avatar-container');
-            if (user.photo_url) {
-                avatarContainer.innerHTML = `<img class="avatar" src="${user.photo_url}" alt="Avatar">`;
-            } else {
-                avatarContainer.innerHTML = `<div class="avatar-placeholder">${name.charAt(0)}</div>`;
-            }
-        }
-
-        function showMain() {
-            document.getElementById('confirm-screen').classList.remove('active');
-            document.getElementById('main-screen').classList.add('active');
-
-            const name = user.first_name || 'Пользователь';
-            const username = user.username ? '@' + user.username : '';
-            const id = user.id;
-
-            document.getElementById('main-name').textContent = name;
-            document.getElementById('main-details').textContent = `${username} • ID: ${id}`;
-            document.getElementById('stars-balance').textContent = starsBalance;
-
-            const avatarEl = document.getElementById('main-avatar');
-            if (user.photo_url) {
-                avatarEl.innerHTML = `<img class="mini-avatar" src="${user.photo_url}" alt="Avatar">`;
-            } else {
-                avatarEl.innerHTML = `<div class="mini-avatar" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#a855f7,#6366f1);font-weight:700;">${name.charAt(0)}</div>`;
-            }
-        }
-
-        function confirmUser() {
-            localStorage.setItem('giftora_confirmed', 'true');
-            showMain();
-            tg.HapticFeedback.impactOccurred('medium');
-        }
-
-        function cancelUser() {
-            tg.showAlert('Регистрация отменена. Закрой приложение и попробуй снова.');
-            tg.close();
-        }
-
-        function selectPackage(amount, label) {
-            selectedAmount = amount;
-            document.querySelectorAll('.package').forEach(p => p.classList.remove('featured'));
-            event.currentTarget.classList.add('featured');
-            document.getElementById('donate-btn').textContent = `Пополнить на ${amount} ⭐`;
-            tg.HapticFeedback.selectionChanged();
-        }
-
-        function donate() {
-            // В реальном Mini App здесь будет вызов invoice или backend
-            // Пока демо-логика
-            starsBalance += selectedAmount;
-            localStorage.setItem('giftora_stars', starsBalance);
-            document.getElementById('stars-balance').textContent = starsBalance;
-            tg.HapticFeedback.notificationOccurred('success');
-            tg.showAlert(`+${selectedAmount} Giftora Stars добавлено!\n(демо-режим)`);
-        }
-
-        // Start
-        startLoading();
+        // Считаем количество записей в ветке online_users в реальном времени
+        onValue(onlineListRef, (snap) => {
+            const count = snap.exists() ? Object.keys(snap.val()).length : 0;
+            document.getElementById('online-count').innerText = count;
+        });
     </script>
 </body>
 </html>
