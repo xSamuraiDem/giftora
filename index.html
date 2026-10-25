@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="theme-color" content="#0a0a0c"><title>GIFTORA UPGRADER</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Russo+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Rubik:wght@700;800;900&family=Russo+One&display=swap" rel="stylesheet">
 <style>
 :root{--y:#ffd60a;--o:#ff5a1f;--bg:#0a0a0c;--p:#141418;--p2:#1c1c22;--l:#2a2a32;--t:#f4f4f6;--m:#8b8b97;--g:#37d67a;--r:#ff4757}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -63,7 +63,42 @@ input,select,textarea{width:100%;background:#0d0d10;border:1px solid var(--l);co
 .ir{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--l)}.ir b{text-align:right;overflow-wrap:anywhere}
 .em0{text-align:center;color:var(--m);padding:22px;grid-column:1/-1}
 .btn{position:relative;overflow:hidden}.btn:before{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(90deg,transparent,#fff8,transparent);transform:skewX(-20deg);animation:shn 3.2s infinite}.btn:disabled:before{display:none}@keyframes shn{to{left:140%}}
-</style></head><body>
+h1,h2,h3,.f,.btn,nav button{font-family:Rubik,'Russo One',sans-serif;font-weight:800}
+body{background:radial-gradient(ellipse at 50% -5%,#2a2406,transparent 55%),repeating-linear-gradient(45deg,#0d0d10 0 3px,#0a0a0c 3px 6px)}
+.wrap{max-width:1380px}.chv{width:30px;height:30px;display:block;filter:drop-shadow(0 0 8px #ffd60a66)}
+.brand{display:flex;align-items:center;gap:10px}
+nav{background:none;gap:2px;border-bottom:1px solid #1e1e24;padding-bottom:0}
+nav button{background:transparent;border:0;border-bottom:3px solid transparent;border-radius:0;color:#7a7a86;padding:12px 13px}
+nav button.on{background:linear-gradient(#ffd60a18,transparent);color:var(--y);border-bottom-color:var(--y);box-shadow:none}
+.card,.panel{background:linear-gradient(180deg,#18181c,#111114);border:1px solid #23232a;border-radius:14px}
+.btn{border-radius:10px;background:linear-gradient(180deg,#ffe51f,#ffd000);box-shadow:0 0 0 1px #ffd60a,0 8px 28px #ffd60a33}
+.btn.imp{display:flex;align-items:center;justify-content:center;gap:12px;font-size:21px;padding:20px;max-width:430px;margin:14px auto 0}.btn.imp .chv{width:24px;height:24px;filter:none}
+.btn.imp .chv use{fill:#111}
+.uh{display:flex;align-items:center;justify-content:center;gap:12px;margin:8px 0 2px}.uh h1{margin:0;font-size:32px;letter-spacing:1px}.uh .chv{width:42px;height:42px}
+.tools{display:flex;gap:6px;margin:0 0 10px}.tools button{background:#141418;border:1px solid #23232a;border-radius:8px;color:#8b8b97;font-size:15px;padding:7px 10px;cursor:pointer}.tools button.on{color:var(--y);border-color:#5a4b0a}
+.uw{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:900px){.uw{grid-template-columns:230px 1fr 400px 1fr}}
+.rail{background:#0f0f12;border:1px solid #1e1e24;border-radius:14px;padding:8px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.rl{display:flex;flex-direction:column;gap:6px;max-height:560px;overflow:auto}
+@media(max-width:899px){.rail .rl{flex-direction:row}.rail .wd{min-width:175px}}
+.vs{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(120deg,#26262c,#101013);border-radius:10px;padding:14px;font:800 15px/1.1 Rubik}.vs em{color:var(--y);font-style:normal}.vs span{font:900 40px Rubik;color:var(--y);font-style:italic;text-shadow:0 0 18px #ffd60a66}
+.wd{display:flex;align-items:flex-end;min-height:84px;border-radius:10px;padding:10px;text-align:left;overflow:hidden;border:1px solid #2a2a32;border-left:3px solid #8b5cf6;background:linear-gradient(120deg,#3a2466,#17171b 75%)}
+.wd.r2{background:linear-gradient(120deg,#6b4a1c,#17171b 75%);border-left-color:#d19a3a}
+.wd .wt b{display:block;font:800 13px Rubik;text-transform:uppercase}.wd .wt small{font-size:10px}
+.wde{font-size:46px;position:absolute;right:8px;top:6px;animation:sway 3s ease-in-out infinite;filter:drop-shadow(0 8px 6px #000a)}
+.wd.sel{border-color:var(--y);box-shadow:0 0 0 1px var(--y),0 0 22px #ffd60a33}
+.panel{min-height:430px;display:flex;flex-direction:column;align-items:center;text-align:center;overflow:hidden;position:relative}
+.pt{font:800 14px Rubik;margin:8px 0 2px;color:#fff;text-transform:none}.ph{color:#80808c}
+.usel{flex:1;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;width:100%;margin:10px 0}
+.emp .chv{width:96px;height:96px;transform:rotate(180deg)}.emp.up .chv{transform:none}
+.mini{text-align:center;min-width:90px}.mini b{display:block;font-size:11px;text-transform:uppercase}
+.mid{text-align:center}.wheelBox{max-width:420px}.wheelBox svg{transition:filter .4s}
+#tk{transform-origin:200px 200px;animation:rot 60s linear infinite}@keyframes rot{to{transform:rotate(360deg)}}
+.wheelBox.gw svg{filter:drop-shadow(0 0 36px #37d67acc)}.wheelBox.gl svg{filter:drop-shadow(0 0 36px #ff4757cc)}
+.ctr .chv{width:120px;height:120px;animation:pul 2.4s ease-in-out infinite}@keyframes pul{50%{transform:translateY(-6px);opacity:.85}}
+.chance{display:inline-flex;gap:14px;align-items:baseline;background:#111114;border:1px solid #26262d;border-radius:12px;padding:10px 18px;margin-top:6px}.chance b{font:900 22px Rubik;color:var(--y)}.chance small{text-transform:uppercase;letter-spacing:1px;font-size:10px}
+.res{font-family:Rubik}.gc{overflow:hidden;border-radius:10px}.gc:after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,#fff1 50%,transparent 60%);transform:translateX(-100%);transition:.6s;pointer-events:none}.gc:hover:after{transform:translateX(100%)}
+</style></head><body><svg width="0" height="0" style="position:absolute"><symbol id="chv" viewBox="0 0 100 100"><path d="M50 12 92 44v22L50 34 8 66V44Z" fill="#ffd60a"/><path d="M50 46 92 78v16L50 64 8 94V78Z" fill="#8a6c05"/></symbol></svg>
 
 <div class="ov hidden" id="legal"><div class="card md"><h2>Правила и конфиденциальность</h2>
 <p class="sub"><b>Данные.</b> Приложение получает из Telegram ID, имя, username и фото; профиль, баланс Stars, инвентарь и лоты хранятся в Firebase Realtime Database. Код входа одноразовый, действует 30 секунд — никому его не сообщай.<br><b>Правила.</b> Запрещены взлом, обход проверок, скам, спам, оскорбления и использование чужих аккаунтов. Подарки и Stars внутри приложения — игровые внутренние предметы, а не настоящие подарки Telegram. Апгрейд — игра на удачу: можно потерять предметы. Маркет берёт комиссию 10% с продажи игроку-продавцу. Нарушители блокируются.<br><b>Возраст.</b> Пользуйся, только если это разрешено законом твоей страны.</p>
@@ -71,7 +106,7 @@ input,select,textarea{width:100%;background:#0d0d10;border:1px solid var(--l);co
 <button class="btn" id="lgb" disabled>Принять и продолжить</button></div></div>
 
 <div class="wrap">
-<header class="top"><div class="brand f">GIFTORA<b>UPGRADER</b></div><div class="hr"><div class="pill"><i class="dot"></i><span id="onl">—</span></div><div class="pill bal hidden" id="balp">⭐ <span id="bal">0</span></div><button class="av hidden" id="avt"></button></div></header>
+<header class="top"><div class="brand f"><svg class="chv"><use href="#chv"/></svg><span>GIFTORA<b>UPGRADER</b></span></div><div class="hr"><div class="pill"><i class="dot"></i><span id="onl">—</span></div><div class="pill bal hidden" id="balp">⭐ <span id="bal">0</span></div><button class="av hidden" id="avt"></button></div></header>
 <nav id="nav" class="hidden"><button data-v="up">⬆ Апгрейд</button><button data-v="mk">🛒 Маркет</button><button data-v="inv">🎒 Инвентарь</button><button data-v="cs">📦 Кейс</button><button data-v="ch">💬 Чат</button><button data-v="sh">⭐ Шоп</button><button data-v="pf">👤 Профиль</button><button data-v="sp">🎧 Поддержка</button><button data-v="nw">📰 Новости</button><button data-v="ad" id="adTab" class="hidden">⚙ Админ</button></nav>
 
 <section class="view" id="v-auth">
@@ -82,12 +117,20 @@ input,select,textarea{width:100%;background:#0d0d10;border:1px solid var(--l);co
 <div class="card hidden" id="a2"><h2>Введи код</h2><p class="sub">Код из чата с ботом · осталось <b id="tmr" style="color:var(--y)">30</b> с · попыток: <b id="trl">5</b></p>
 <input class="field" id="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="••••••"><button class="btn" id="verBtn" style="margin-top:12px">Подтвердить</button><button class="btn g" id="bk" style="margin-top:8px">Запросить новый код</button><div class="st" id="verSt"></div></div></section>
 
-<section class="view hidden" id="v-up"><div class="ug">
-<div class="panel"><h3>Выбери свои предметы</h3><div class="grid scroll" id="ul"></div><label class="sub" style="display:block;margin:10px 0 5px">Добавить Stars с баланса</label><input id="ust" type="number" min="0" value="0"></div>
-<div><div class="wheelBox"><svg viewBox="0 0 400 400"><circle cx="200" cy="200" r="178" fill="none" stroke="#2a2a32" stroke-width="2" stroke-dasharray="2 8"/><circle cx="200" cy="200" r="150" fill="none" stroke="#1c1c22" stroke-width="26"/><circle id="arc" cx="200" cy="200" r="150" fill="none" stroke="#ffd60a" stroke-width="26" stroke-dasharray="0 943" transform="rotate(-90 200 200)" style="filter:drop-shadow(0 0 10px #ffd60a88)"/><circle cx="200" cy="200" r="118" fill="#101014" stroke="#2a2a32"/><g id="ptr"><path d="M200 50 L189 14 L211 14Z" fill="#ff5a1f"/></g></svg>
-<div class="ctr"><div><b id="pc">—</b><small>шанс</small></div></div></div>
-<button class="btn" id="ub" style="margin-top:10px" disabled>⬆ Улучшить</button><div id="ur"></div><div class="sub" style="text-align:center;margin-top:8px">Шанс = твоя стоимость / стоимость цели (с запасом дома 5%, максимум 90%)</div></div>
-<div class="panel"><h3>Выбери желаемый подарок</h3><div class="grid" id="ut"></div></div></div></section>
+<section class="view hidden" id="v-up">
+<div class="uh"><svg class="chv"><use href="#chv"/></svg><h1>UPGRADER</h1></div>
+<div class="tools"><button id="tsnd" class="on" title="Звук">🔊</button><button id="tfast" title="Быстрая прокрутка">⚡</button></div>
+<div class="uw">
+<div class="rail"><div class="vs"><b>МОЙ<br><em>ИНВЕНТАРЬ</em></b><span>VS</span></div><div id="ul" class="rl"></div></div>
+<div class="panel"><h3 class="pt">Выбери предметы или баланс</h3><small class="ph">Можно выбрать несколько предметов</small><div id="usel" class="usel"></div><input id="ust" type="number" min="0" value="0" placeholder="Stars с баланса" style="max-width:220px"></div>
+<div class="mid"><div class="wheelBox"><svg viewBox="0 0 400 400"><defs><linearGradient id="rg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd60a"/><stop offset="1" stop-color="#ff4a1a"/></linearGradient></defs>
+<g id="tk"></g><circle cx="200" cy="200" r="176" fill="none" stroke="url(#rg)" stroke-width="1.5" opacity=".7"/><circle cx="200" cy="200" r="150" fill="none" stroke="#1d1d21" stroke-width="34"/><circle cx="200" cy="200" r="150" fill="none" stroke="#0a0a0c" stroke-width="10" stroke-dasharray="2 7.4"/><circle cx="200" cy="200" r="130" fill="#0f0f12" stroke="#222228" stroke-width="3"/>
+<g transform="rotate(180 200 200)"><circle id="arc" cx="200" cy="200" r="150" fill="none" stroke="#ffd60a" stroke-width="34" stroke-dasharray="0 943" transform="rotate(-90 200 200)" style="filter:drop-shadow(0 0 8px #ffd60a99)"/><circle id="arc2" cx="200" cy="200" r="150" fill="none" stroke="#ff4a1a" stroke-width="34" stroke-dasharray="0 943" transform="rotate(-90 200 200)"/><g id="ptr"><path d="M200 70 L186 28 L214 28Z" fill="#ff7a1a" stroke="#fff3" style="filter:drop-shadow(0 0 6px #ff5a1f)"/></g></g></svg>
+<div class="ctr"><svg class="chv"><use href="#chv"/></svg></div></div>
+<div class="chance"><small>Шанс</small><b id="pc">—</b><small id="mx2">x—</small></div>
+<button class="btn imp" id="ub" disabled><svg class="chv"><use href="#chv"/></svg>Улучшить</button><div id="ur"></div></div>
+<div class="panel"><h3 class="pt">Выбери предмет для апгрейда</h3><small class="ph">Только дороже твоей ставки</small><div id="utv" class="usel"></div><div class="rl" id="ut" style="width:100%;flex-direction:column"></div></div>
+</div></section>
 
 <section class="view hidden" id="v-mk"><div class="card"><h2>🛒 Маркет подарков</h2><p class="sub">Открой товар, чтобы увидеть все предложения и кто выставил цену. Комиссия маркета — 10% с продажи.</p>
 <div class="row" style="margin:12px 0"><input id="mq" placeholder="🔍 Поиск подарка"><select id="ms" style="max-width:150px"><option value="a">Сначала дешёвые</option><option value="d">Сначала дорогие</option><option value="n">По названию</option></select></div>
@@ -168,15 +211,22 @@ const myStars=()=>Math.max(0,Math.floor(+$('ust').value||0));
 const you=()=>items().filter(i=>sel.has(i.id)).reduce((s,i)=>s+i.value,0)+myStars();
 const chance=()=>{const y=you(),t=tgt?G[tgt].v:0;return y>0&&t>y?Math.min(90,Math.max(1,y/t*95)):0};
 async function rUp(){await me();sel=new Set([...sel].filter(i=>(P.inventory||{})[i]));draw()}
-function draw(){const y=you();$('ul').innerHTML=items().map(i=>`<div class="it ${rar(i.value)} ${sel.has(i.id)?'sel':''}" data-i="${i.id}">${obj(i.type)}<h3>${esc(i.name)}</h3><div class="pr">${i.value} ⭐</div></div>`).join('')||'<div class="em0">Инвентарь пуст.<br>Купи подарок на маркете или открой кейс.</div>';
-$('ut').innerHTML=Object.entries(G).map(([k,g])=>`<div class="it gc ${rar(g.v)} ${tgt===k?'sel':''} ${g.v<=y?'off':''}" data-t="${k}">${obj(k)}<h3>${g.n}</h3><div class="pr">${g.v} ⭐</div></div>`).join('');
-if(tgt&&G[tgt].v<=y)tgt=null;const c=chance();$('arc').setAttribute('stroke-dasharray',`${c/100*CIRC} ${CIRC}`);$('pc').textContent=c?c.toFixed(1)+'%':'—';$('ub').disabled=!c||spin}
+const CHV='<svg class="chv"><use href="#chv"/></svg>',EMP=`<div class="emp">${CHV}</div>`,EMU=`<div class="emp up">${CHV}</div>`;
+const wd=(d,t,n,v,x)=>`<div class="it wd ${rar(v)} ${x||''}" ${d}><div class="wt"><b>${esc(n)}</b><small>${v} ⭐ · Gift</small></div><span class="wde">${G[t].e}</span></div>`;
+function draw(){const y=you(),a=items();if(tgt&&G[tgt].v<=y)tgt=null;
+$('ul').innerHTML=a.map(i=>wd('data-i="'+i.id+'"',i.type,i.name,i.value,sel.has(i.id)?'sel':'')).join('')||'<div class="em0">Инвентарь пуст.<br>Купи подарок на маркете или открой кейс.</div>';
+const ch=a.filter(i=>sel.has(i.id)),ms=myStars();
+$('usel').innerHTML=ch.length||ms?ch.map(i=>`<div class="mini">${obj(i.type)}<b>${esc(i.name)}</b></div>`).join('')+(ms?`<div class="mini"><div class="obj"><div class="em">⭐</div><i></i></div><b>${ms} ⭐</b></div>`:''):EMP;
+$('ut').innerHTML=Object.entries(G).map(([k,g])=>wd('data-t="'+k+'"',k,g.n,g.v,(tgt===k?'sel ':'')+(g.v<=y?'off':''))).join('');
+$('utv').innerHTML=tgt?`<div class="mini">${obj(tgt,1)}<b>${G[tgt].n}</b><div class="pr">${G[tgt].v} ⭐</div></div>`:EMU;
+const c=chance(),h=c*1.8;$('arc').setAttribute('stroke-dasharray',`${c/100*CIRC} ${CIRC}`);$('arc').setAttribute('transform',`rotate(${-90-h} 200 200)`);$('arc2').setAttribute('stroke-dasharray',`${.35*c/100*CIRC} ${CIRC}`);$('arc2').setAttribute('transform',`rotate(${-90-.35*h} 200 200)`);
+$('pc').textContent=c?c.toFixed(1)+'%':'—';$('mx2').textContent=tgt&&y?'x'+(G[tgt].v/y).toFixed(2):'x—';$('ub').disabled=!c||spin}
 $('ul').onclick=e=>{const d=e.target.closest('[data-i]');if(!d||spin)return;sel.has(d.dataset.i)?sel.delete(d.dataset.i):sel.add(d.dataset.i);draw()};
 $('ut').onclick=e=>{const d=e.target.closest('[data-t]');if(!d||spin||d.classList.contains('off'))return;tgt=d.dataset.t;draw()};$('ust').oninput=draw;
 $('ub').onclick=async()=>{if(spin)return;spin=true;$('ub').disabled=true;$('ur').innerHTML='';try{await me();const ids=[...sel].filter(i=>(P.inventory||{})[i]),stars=myStars();if(stars>Number(P.starsBalance||0))throw Error('Недостаточно Stars');if(!ids.length&&!stars)throw Error('Выбери предметы');const c=chance();if(!c)throw Error('Выбери цель дороже ставки');
 const win=Math.random()*100<c,roll=win?Math.random()*c:c+Math.random()*(100-c);
 for(const i of ids)await dbDel(`profiles/${K}/inventory/${i}`);if(stars)await dbSet(`profiles/${K}/starsBalance`,Number(P.starsBalance)-stars);if(win)await addItem(tgt);
-const p=$('ptr');p.style.transition='none';p.style.transform='rotate(0deg)';void p.getBoundingClientRect();p.style.transition='transform 5s cubic-bezier(.12,.7,.1,1)';p.style.transform=`rotate(${360*6+roll*3.6}deg)`;await sleep(5200);
+const p=$('ptr');p.style.transition='none';p.style.transform='rotate(0deg)';void p.getBoundingClientRect();p.style.transition=`transform ${fast?1.2:5}s cubic-bezier(.12,.7,.1,1)`;p.style.transform=`rotate(${360*6+(roll-c/2)*3.6}deg)`;await sleep(fast?1400:5200);beep(win?880:160,.35);const wb=document.querySelector('.wheelBox');wb.classList.add(win?'gw':'gl');setTimeout(()=>wb.classList.remove('gw','gl'),1600);
 $('ur').innerHTML=win?`<div class="res w">🎉 Победа! ${G[tgt].e} ${G[tgt].n}</div>`:`<div class="res l">Не повезло — предметы сгорели</div>`;sel.clear();await me()}catch(e){$('ur').innerHTML=`<div class="st show err">${esc(e.message)}</div>`}finally{spin=false;draw()}};
 /* ===== MARKET ===== */
 async function rMk(){const d=await dbGet('market/listings').catch(()=>null)||{};L=Object.entries(d).map(([id,l])=>({id,...l}));await me();drawMk()}
@@ -250,4 +300,8 @@ if(d.pf){const p=await dbGet('profiles/'+d.pf);if(!p)return;$('mbody').innerHTML
 if(d.tk||d.rs||d.rp){if(!await isStaff())return;const id=d.tk||d.rs||d.rp,t=await dbGet('support_tickets/'+id);if(!t)return;if(d.tk){t.status='in_progress';t.assignedName=nm();t.assignedTo=K}if(d.rs){t.status='resolved';t.resolvedAt=Date.now();t.resolvedBy=K}if(d.rp){const x=$('r-'+id).value.trim();if(!x||t.status==='resolved')return;t.messages=t.messages||{};t.messages[Date.now()+'_'+Math.random().toString(36).slice(2,6)]={uid:+K,authorName:nm(),staff:true,text:x,timestamp:Date.now()};t.status='in_progress';t.assignedName=nm()}await dbSet('support_tickets/'+id,t);rSp();if(isO())rAd()}
 if(!isO())return;if(d.bl&&okId(d.bl)){const r=prompt('Причина?','Нарушение правил');if(r===null)return;await dbSet('support_blacklist/'+d.bl,{uid:+d.bl,reason:r.slice(0,120),by:OWN,createdAt:Date.now()});rAd()}
 if(d.rv){await dbSet('support_staff/'+d.rv,{uid:+d.rv,active:false,revokedAt:Date.now()});rAd()}if(d.ub){await dbDel('support_blacklist/'+d.ub);rAd()}}catch(x){console.warn(x)}});
+let fast=false,snd=true;
+$('tk').innerHTML=[...Array(72)].map((_,i)=>`<line x1="200" y1="6" x2="200" y2="${i%6?12:18}" stroke="#4a4a52" stroke-width="${i%6?1:2}" transform="rotate(${i*5} 200 200)"/>`).join('');
+$('tsnd').onclick=()=>{snd=!snd;$('tsnd').classList.toggle('on',snd)};$('tfast').onclick=()=>{fast=!fast;$('tfast').classList.toggle('on',fast)};
+function beep(f,d){if(!snd)return;try{const c=new(window.AudioContext||webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();o.frequency.value=f;g.gain.value=.05;o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+d)}catch{}}
 </script></body></html>
