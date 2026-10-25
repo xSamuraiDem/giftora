@@ -20,6 +20,33 @@
 .legalCheck{display:flex;align-items:flex-start;gap:10px;font-size:12px;line-height:1.5;color:#f2ddca;margin:12px 0 16px;cursor:pointer}.legalCheck input{accent-color:#ff7900;width:18px;height:18px;flex-shrink:0;margin:1px 0 0}
 .legalTiny{font-size:10px;color:#a9866d;line-height:1.5;margin-top:10px}.legalDenied{font-size:11px;color:#ffb09b;margin-top:10px;display:none}.legalDenied.show{display:block}
 
+
+/* GIFTORA UI refresh */
+:root{--bg:#090909;--panel:#141414;--orange:#ff7818;--gold:#ffb34c;--muted:#a7a09a}
+body{background:radial-gradient(ellipse at 50% -15%,#57250e 0,transparent 42%),radial-gradient(ellipse at 100% 55%,#26150c 0,transparent 35%),#090909;padding:20px 15px 36px}
+.wrap{max-width:470px}
+.top{padding:10px 2px 18px;margin-bottom:10px;border-bottom:1px solid #ffffff10}
+.brand{font-size:13px;letter-spacing:1.8px}.logo{border-radius:14px;background:linear-gradient(145deg,#ffc36c,#ff6b0a);box-shadow:0 0 30px #ff78183a, inset 0 1px 0 #fff7}
+.online,.profileTop{background:#15110e;border-color:#4a2b19;color:#f5c79f;backdrop-filter:blur(12px)}
+.hero{padding:22px 8px 24px;margin:4px 0 8px;position:relative}
+.heroIcon{width:92px;height:92px;border-radius:28px;background:linear-gradient(145deg,#32190c,#15100d);border-color:#ff8a1940;box-shadow:0 0 60px #ff781817,inset 0 1px 0 #ffffff12}
+h1{font-size:clamp(27px,7vw,34px);letter-spacing:-1.2px;text-shadow:0 4px 28px #ff76191a}
+.sub{color:#b9aaa0;font-size:13px}
+.card{background:linear-gradient(145deg,#1b1a19f5,#101010f7 78%);border:1px solid #ffffff12;border-radius:22px;padding:21px;box-shadow:0 20px 60px #0007,inset 0 1px 0 #ffffff08;backdrop-filter:blur(16px)}
+.steps{gap:7px}.step{background:#39312b;height:4px}.step.active{background:linear-gradient(90deg,#ff6a13,#ffc15a);box-shadow:0 0 12px #ff781844}
+.label{color:#e6a56e;font-size:10px;letter-spacing:1.7px}
+.captcha{background:#0d0c0b;border-color:#ffffff15;transition:border-color .2s,background .2s}.captcha:has(input:checked){border-color:#ff8b36;background:#211309}
+.captcha input{border-color:#8c7664}.btn{background:linear-gradient(110deg,#ff6b12,#ffa32f);box-shadow:0 8px 26px #ff6b122c,inset 0 1px 0 #ffffff55;transition:transform .16s,filter .16s;min-height:48px}
+.btn:not(:disabled):active{transform:scale(.985);filter:brightness(.94)}.btn:disabled{filter:saturate(.4)}
+.secondary{background:#211914;border-color:#ffffff17;color:#ffd0a5;box-shadow:none}
+.field,.textField{background:#0b0b0b;border-color:#ffffff1b}.field{letter-spacing:10px}.field::placeholder{color:#655b53;letter-spacing:8px}
+.nav{padding:5px;background:#111;border:1px solid #ffffff0c;border-radius:15px}.nav button{border:1px solid transparent;background:transparent;border-radius:11px;color:#9f9389;padding:13px 8px}.nav button.active{background:linear-gradient(135deg,#39200f,#20130b);border-color:#9a4d20;color:#ffbd78;box-shadow:inset 0 1px 0 #ffffff0b}
+.profileTop{border-radius:14px}.avatarBig{background:linear-gradient(145deg,#3d210f,#17100a);border-color:#ff831e;border-radius:23px;box-shadow:0 0 25px #ff78181b}
+.filePick{border-color:#72401f;background:#17100b}.status{border-radius:12px;padding:12px 13px}.status.err{background:#2b1210;border-color:#75342b;color:#ffb8a9}.status.ok{background:#102318;border-color:#286344;color:#b7f3cb}
+.footer{color:#6f6259;letter-spacing:1.8px;font-size:9px;padding:12px 0}
+.legalOverlay{background:rgba(5,4,3,.96)}.legalModal{background:linear-gradient(150deg,#20140d,#0d0b09 75%);border-color:#75401f;box-shadow:0 28px 120px #000e,inset 0 1px 0 #ffffff0a}.legalScroll{background:#0c0b0a;border-color:#ffffff15}
+@media(min-width:600px){body{padding-top:30px}.hero{padding-top:28px}.card{padding:23px}}
+
 </style></head>
 <body>
 
@@ -102,7 +129,7 @@ const $=id=>document.getElementById(id);const initData=tg?.initData||"";const tg
 let avatarData=localStorage.getItem('giftora_avatar')||'';
 const localProfile=JSON.parse(localStorage.getItem('giftora_profile')||'{}');
 function status(id,msg,type){const e=$(id);e.textContent=msg;e.className='status show '+type}
-async function api(path,body={}){if(API_URL.includes('YOUR-BACKEND'))throw Error('Укажи публичный URL Python-сервера в API_URL.');const r=await fetch(API_URL+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...body,initData})});const d=await r.json().catch(()=>({detail:'Ошибка ответа сервера'}));if(!r.ok)throw Error(d.detail||'Ошибка запроса');return d}
+async function api(path,body={}){if(API_URL.includes('YOUR-PUBLIC-PYTHON-SERVER'))throw Error('Сервер ещё не подключён: в index.html укажи свой публичный HTTPS-адрес Python API. Firebase-конфиг не заменяет API, который отправляет код в Telegram.');if(!initData)throw Error('Открой приложение кнопкой «Запустить» внутри Telegram-бота.');let r;try{r=await fetch(API_URL.replace(/\/$/,'')+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...body,initData}),signal:AbortSignal.timeout(10000)});}catch(e){if(e.name==='TimeoutError')throw Error('Сервер не ответил за 10 секунд. Проверь, что Python API запущен и доступен по HTTPS.');throw Error('Не удалось связаться с сервером (Failed to fetch). Проверь публичный HTTPS-адрес, CORS и доступность Python API.');}const d=await r.json().catch(()=>({detail:'Сервер вернул ответ не в формате JSON.'}));if(!r.ok)throw Error(d.detail||('Ошибка сервера: HTTP '+r.status));return d}
 function setAvatar(src){avatarData=src||'';const preview=$('avatarPreview');preview.innerHTML='';if(avatarData){const img=document.createElement('img');img.src=avatarData;preview.append(img)}else preview.textContent=(($('displayName').value||tgUser.first_name||'G').trim()[0]||'G').toUpperCase();const top=$('profileShortcut');top.innerHTML='';if(avatarData){const img=document.createElement('img');img.src=avatarData;top.append(img)}else top.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="#ff9a35" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>'}
 function refreshProfile(){const name=$('displayName').value.trim()||tgUser.first_name||'Пользователь';$('profileNameView').textContent=name;$('profileIdView').textContent='Telegram ID: '+(tgUser.id||'доступен в Telegram');$('descCount').textContent=$('description').value.length+' / 160';setAvatar(avatarData)}
 function switchView(which){const profile=which==='profile';$('homeView').classList.toggle('hidden',profile);$('profileView').classList.toggle('hidden',!profile);$('homeTab').classList.toggle('active',!profile);$('profileTab').classList.toggle('active',profile);if(profile)refreshProfile()}
@@ -115,7 +142,7 @@ $('robotCheck').onchange=e=>$('requestBtn').disabled=!e.target.checked;
 $('requestBtn').onclick=async()=>{ $('requestBtn').disabled=true;status('requestStatus','Отправляем запрос…','ok');try{await api('/api/request-code');$('requestPanel').classList.add('hidden');$('verifyPanel').classList.remove('hidden')}catch(e){status('requestStatus',e.message,'err');$('requestBtn').disabled=!$('robotCheck').checked}};
 $('verifyBtn').onclick=async()=>{const code=$('codeInput').value.replace(/\D/g,'');if(code.length!==6){status('verifyStatus','Введи все 6 цифр.','err');return}$('verifyBtn').disabled=true;try{await api('/api/verify-code',{code});$('verifyPanel').classList.add('hidden');$('successPanel').classList.remove('hidden');$('accountStatus').textContent='Подтверждён'}catch(e){status('verifyStatus',e.message,'err')}finally{$('verifyBtn').disabled=false}};
 $('backBtn').onclick=()=>{$('verifyPanel').classList.add('hidden');$('requestPanel').classList.remove('hidden');$('requestBtn').disabled=!$('robotCheck').checked;$('codeInput').value=''};
-async function refreshOnline(){try{const r=await fetch(API_URL+'/api/online');if(r.ok){const d=await r.json();$('onlineCount').textContent=d.online??'—'}if(initData)await fetch(API_URL+'/api/heartbeat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData})})}catch{$('onlineCount').textContent='—'}}refreshOnline();setInterval(refreshOnline,30000);
+async function refreshOnline(){if(API_URL.includes('YOUR-PUBLIC-PYTHON-SERVER')){$('onlineCount').textContent='—';return}try{const base=API_URL.replace(/\/$/,'');const r=await fetch(base+'/api/online',{signal:AbortSignal.timeout(7000)});if(r.ok){const d=await r.json();$('onlineCount').textContent=d.online??'—'}else $('onlineCount').textContent='—';if(initData)await fetch(base+'/api/heartbeat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData}),signal:AbortSignal.timeout(7000)})}catch{$('onlineCount').textContent='—'}}refreshOnline();setInterval(refreshOnline,30000);
 </script>
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
