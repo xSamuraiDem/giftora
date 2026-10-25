@@ -1,86 +1,119 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#100803">
-<title>GIFTORA UPGRADER</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#100803"><title>GIFTORA UPGRADER</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
 :root{color-scheme:dark;--bg:#100803;--panel:#1b0e07;--orange:#ff7900;--gold:#ffb52e;--muted:#ad8a70}
-*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -10%,#5c2608 0,transparent 48%),radial-gradient(circle at 100% 100%,#311305 0,transparent 38%),var(--bg);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:#fff;display:flex;justify-content:center;padding:22px 16px 32px}
-.wrap{width:100%;max-width:440px}.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}.brand{display:flex;gap:10px;align-items:center;font-weight:900;letter-spacing:1.7px;font-size:13px}.logo{width:40px;height:40px;border-radius:13px;background:linear-gradient(145deg,#ffb52e,#f45a00);display:grid;place-items:center;box-shadow:0 0 25px #ff790044}.logo svg{width:25px}.online{border:1px solid #583017;border-radius:20px;padding:7px 10px;color:#ffc078;font-size:11px;display:flex;align-items:center;gap:6px;background:#1b0d06}.dot{width:7px;height:7px;border-radius:50%;background:#71e49a;box-shadow:0 0 8px #71e49a}
-.hero{text-align:center;margin:16px 0 25px}.heroIcon{width:88px;height:88px;margin:0 auto 17px;border-radius:26px;border:1px solid #ff8a304a;background:linear-gradient(145deg,#3a1908,#180b05);display:grid;place-items:center;box-shadow:0 0 45px #ff650018,inset 0 0 24px #ff790012}.heroIcon svg{width:49px;filter:drop-shadow(0 0 10px #ff7900)}h1{font-size:28px;line-height:1.08;letter-spacing:-.8px;margin:0 0 10px;font-weight:950}h1 span{color:var(--orange)}.sub{color:#c5a48c;font-size:13px;line-height:1.6;margin:0 auto;max-width:310px}
-.card{background:linear-gradient(155deg,#241208,#170b06 72%);border:1px solid #613016;border-radius:22px;padding:21px;box-shadow:0 18px 55px #0005}.steps{display:flex;gap:9px;margin-bottom:21px}.step{flex:1;height:3px;border-radius:4px;background:#48230f}.step.active{background:linear-gradient(90deg,#ff5c00,#ffbd35)}.label{font-size:11px;letter-spacing:1.3px;text-transform:uppercase;color:#c49a7b;font-weight:800;margin-bottom:11px}.captcha{display:flex;align-items:center;gap:12px;border:1px solid #55301c;background:#120904;border-radius:13px;padding:14px 13px;margin:15px 0 16px;cursor:pointer}.captcha input{appearance:none;width:23px;height:23px;border:1.5px solid #a77b5a;border-radius:6px;background:#1b0d06;margin:0;display:grid;place-items:center;flex-shrink:0}.captcha input:checked{background:var(--orange);border-color:var(--orange)}.captcha input:checked:after{content:'✓';font-weight:900;color:#160902;font-size:17px}.captcha b{font-size:13px}.captcha small{display:block;color:#a98a73;font-size:11px;margin-top:3px}.btn{width:100%;border:0;border-radius:13px;padding:15px 14px;background:linear-gradient(100deg,#ff6500,#ff9f16);color:#1b0a00;font-weight:950;font-size:14px;letter-spacing:.2px;box-shadow:0 7px 22px #ff65002a;cursor:pointer}.btn:disabled{opacity:.42;cursor:not-allowed;box-shadow:none}.secondary{background:#2a160b;border:1px solid #63351a;color:#ffd0a1;box-shadow:none;margin-top:10px}.field{width:100%;background:#100803;border:1px solid #653519;color:white;border-radius:13px;padding:15px;text-align:center;font-size:23px;letter-spacing:8px;font-weight:900;outline:none}.field:focus{border-color:var(--orange);box-shadow:0 0 0 3px #ff790018}.hint{color:#b99a83;font-size:11px;line-height:1.5;text-align:center;margin:12px 0 0}.status{display:none;margin-top:13px;padding:11px 12px;border-radius:10px;font-size:12px;line-height:1.45}.status.show{display:block}.status.err{background:#3a100b;border:1px solid #84321d;color:#ffb2a0}.status.ok{background:#102a18;border:1px solid #285c39;color:#b5f5c9}.hidden{display:none!important}.footer{text-align:center;color:#7d5c45;font-size:10px;letter-spacing:1.4px;margin-top:21px}.successMark{font-size:42px;color:#ff9c1b;margin-bottom:8px}
-</style>
-</head>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -10%,#5c2608 0,transparent 48%),radial-gradient(circle at 100% 100%,#311305 0,transparent 38%),var(--bg);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:#fff;display:flex;justify-content:center;padding:18px 14px 30px}
+.wrap{width:100%;max-width:440px}.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:25px}.brand{display:flex;gap:10px;align-items:center;font-weight:900;letter-spacing:1.5px;font-size:12px}.logo{width:39px;height:39px;border-radius:13px;background:linear-gradient(145deg,#ffb52e,#f45a00);display:grid;place-items:center;box-shadow:0 0 25px #ff790044}.logo svg{width:25px}.right{display:flex;gap:8px;align-items:center}.online,.profileTop{border:1px solid #583017;border-radius:20px;padding:8px 10px;color:#ffc078;font-size:11px;display:flex;align-items:center;gap:6px;background:#1b0d06}.dot{width:7px;height:7px;border-radius:50%;background:#71e49a;box-shadow:0 0 8px #71e49a}.profileTop{width:39px;height:39px;border-radius:14px;padding:0;justify-content:center;cursor:pointer;overflow:hidden}.profileTop img{width:100%;height:100%;object-fit:cover}.profileTop svg{width:21px}
+.hero{text-align:center;margin:12px 0 24px}.heroIcon{width:83px;height:83px;margin:0 auto 15px;border-radius:25px;border:1px solid #ff8a304a;background:linear-gradient(145deg,#3a1908,#180b05);display:grid;place-items:center;box-shadow:0 0 45px #ff650018,inset 0 0 24px #ff790012}.heroIcon svg{width:47px;filter:drop-shadow(0 0 10px #ff7900)}h1{font-size:27px;line-height:1.08;letter-spacing:-.8px;margin:0 0 10px;font-weight:950}h1 span{color:var(--orange)}.sub{color:#c5a48c;font-size:13px;line-height:1.6;margin:0 auto;max-width:310px}
+.card{background:linear-gradient(155deg,#241208,#170b06 72%);border:1px solid #613016;border-radius:22px;padding:20px;box-shadow:0 18px 55px #0005;margin-bottom:13px}.steps{display:flex;gap:9px;margin-bottom:20px}.step{flex:1;height:3px;border-radius:4px;background:#48230f}.step.active{background:linear-gradient(90deg,#ff5c00,#ffbd35)}.label{font-size:11px;letter-spacing:1.3px;text-transform:uppercase;color:#c49a7b;font-weight:800;margin-bottom:11px}.captcha{display:flex;align-items:center;gap:12px;border:1px solid #55301c;background:#120904;border-radius:13px;padding:14px 13px;margin:15px 0 16px;cursor:pointer}.captcha input{appearance:none;width:23px;height:23px;border:1.5px solid #a77b5a;border-radius:6px;background:#1b0d06;margin:0;display:grid;place-items:center;flex-shrink:0}.captcha input:checked{background:var(--orange);border-color:var(--orange)}.captcha input:checked:after{content:'✓';font-weight:900;color:#160902;font-size:17px}.captcha b{font-size:13px}.captcha small{display:block;color:#a98a73;font-size:11px;margin-top:3px}.btn{width:100%;border:0;border-radius:13px;padding:15px 14px;background:linear-gradient(100deg,#ff6500,#ff9f16);color:#1b0a00;font-weight:950;font-size:13px;letter-spacing:.2px;box-shadow:0 7px 22px #ff65002a;cursor:pointer}.btn:disabled{opacity:.42;cursor:not-allowed;box-shadow:none}.secondary{background:#2a160b;border:1px solid #63351a;color:#ffd0a1;box-shadow:none;margin-top:10px}.field,.textField{width:100%;background:#100803;border:1px solid #653519;color:white;border-radius:13px;padding:14px;font-size:14px;outline:none}.field{text-align:center;font-size:23px;letter-spacing:8px;font-weight:900}.field:focus,.textField:focus{border-color:var(--orange);box-shadow:0 0 0 3px #ff790018}.hint{color:#b99a83;font-size:11px;line-height:1.5;text-align:center;margin:12px 0 0}.status{display:none;margin-top:13px;padding:11px 12px;border-radius:10px;font-size:12px;line-height:1.45}.status.show{display:block}.status.err{background:#3a100b;border:1px solid #84321d;color:#ffb2a0}.status.ok{background:#102a18;border:1px solid #285c39;color:#b5f5c9}.hidden{display:none!important}.footer{text-align:center;color:#7d5c45;font-size:10px;letter-spacing:1.4px;margin-top:20px}.nav{display:flex;gap:8px;margin:0 0 15px}.nav button{flex:1;background:#1c0d06;border:1px solid #512812;border-radius:12px;padding:11px 8px;color:#c9a187;font-weight:800;font-size:12px;cursor:pointer}.nav button.active{color:#ffb35c;border-color:#ff7900;background:#301405}.profileHead{display:flex;align-items:center;gap:14px;margin-bottom:19px}.avatarBig{width:74px;height:74px;border-radius:22px;border:2px solid #ff7900;background:#301506;display:grid;place-items:center;overflow:hidden;flex-shrink:0;color:#ff9a26;font-size:25px;font-weight:900}.avatarBig img{width:100%;height:100%;object-fit:cover}.profileName{font-size:18px;font-weight:900;overflow-wrap:anywhere}.profileId{color:#ad8a70;font-size:11px;margin-top:4px}.fieldLabel{display:block;color:#c49a7b;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin:14px 0 7px}.filePick{display:block;text-align:center;padding:12px;border:1px dashed #81431e;border-radius:12px;color:#ffc078;font-size:12px;cursor:pointer}.filePick input{display:none}.small{font-size:11px;color:#ad8a70;line-height:1.5}.successMark{font-size:42px;color:#ff9c1b;margin-bottom:8px}
+
+.legalOverlay{position:fixed;inset:0;z-index:9999;background:rgba(8,4,1,.94);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
+.legalModal{width:100%;max-width:460px;max-height:min(90vh,820px);overflow:auto;background:linear-gradient(155deg,#291407,#130904 75%);border:1px solid #9b4c1b;border-radius:22px;padding:22px;box-shadow:0 25px 100px #000b}
+.legalBrand{font-size:10px;font-weight:900;letter-spacing:2px;color:#ff9b36;margin-bottom:12px}
+.legalModal h2{font-size:24px;line-height:1.15;margin:0 0 9px}.legalLead{font-size:12px;line-height:1.6;color:#c6a58c;margin:0 0 17px}
+.legalScroll{max-height:36vh;overflow:auto;border:1px solid #593018;background:#120904;border-radius:13px;padding:14px;margin-bottom:15px;font-size:12px;line-height:1.6;color:#d9c0ad}
+.legalScroll h3{font-size:13px;color:#ffb15d;margin:13px 0 4px}.legalScroll h3:first-child{margin-top:0}.legalScroll p{margin:5px 0 10px}
+.legalCheck{display:flex;align-items:flex-start;gap:10px;font-size:12px;line-height:1.5;color:#f2ddca;margin:12px 0 16px;cursor:pointer}.legalCheck input{accent-color:#ff7900;width:18px;height:18px;flex-shrink:0;margin:1px 0 0}
+.legalTiny{font-size:10px;color:#a9866d;line-height:1.5;margin-top:10px}.legalDenied{font-size:11px;color:#ffb09b;margin-top:10px;display:none}.legalDenied.show{display:block}
+
+</style></head>
 <body>
+
+<div class="legalOverlay" id="legalOverlay" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
+ <section class="legalModal">
+  <div class="legalBrand">GIFTORA UPGRADER · ДОСТУП</div>
+  <h2 id="legalTitle">Правила и политика конфиденциальности</h2>
+  <p class="legalLead">Перед использованием Mini App ознакомься с условиями. Пока ты не примешь их, перейти к приложению нельзя.</p>
+  <div class="legalScroll" tabindex="0">
+   <h3>1. О сервисе</h3>
+   <p>GIFTORA UPGRADER — интерфейс для работы с цифровыми подарками и функциями апгрейда. Доступные функции могут меняться. Не совершай платежи и не передавай ценные предметы, если условия конкретной операции не показаны и не понятны.</p>
+   <h3>2. Какие данные используются</h3>
+   <p>Для подтверждения входа приложение получает данные Telegram Mini App, например Telegram ID и имя пользователя, и проверяет подпись Telegram на сервере. При запросе входа бот отправляет одноразовый шестизначный код, который действует 30 секунд.</p>
+   <p>Имя профиля и описание могут сохраняться на сервере. В текущей версии загруженная аватарка сохраняется локально в браузере на твоём устройстве и может быть потеряна при очистке данных браузера. Счётчик онлайна использует временные отметки активности.</p>
+   <h3>3. Для чего нужны данные</h3>
+   <p>Данные используются для входа, работы профиля, защиты от частых запросов, поддержки работы приложения и устранения ошибок. Мы не просим пароль Telegram, код входа Telegram или доступ к твоему аккаунту.</p>
+   <h3>4. Хранение и безопасность</h3>
+   <p>Данные профиля, записанные сервером, хранятся в базе SQLite на сервере проекта. Одноразовые коды хранятся временно и удаляются после успешной проверки или истечения срока. Абсолютную безопасность передачи и хранения данных гарантировать невозможно — не сообщай коды другим лицам.</p>
+   <h3>5. Передача третьим сторонам</h3>
+   <p>Для работы используются Telegram и инфраструктура хостинга, на котором размещены Mini App и сервер. Не публикуй в профиле личные сведения, адреса, пароли или платёжные данные.</p>
+   <h3>6. Правила использования</h3>
+   <p>Запрещены попытки взлома, обхода проверки входа, автоматизированные злоупотребления, вмешательство в работу сервиса, мошенничество и использование чужих аккаунтов без разрешения. Доступ может быть ограничен при подозрении на злоупотребление.</p>
+   <h3>7. Возраст и изменения</h3>
+   <p>Используй сервис только если это разрешено правилами Telegram и законодательством, применимым к тебе. Текст условий может обновляться; при существенных изменениях мы можем запросить повторное согласие.</p>
+   <h3>8. Контакты и запросы</h3>
+   <p>Если нужно исправить или удалить серверные данные, обратись к владельцу бота через его Telegram-профиль. Перед публикацией сервиса владелец должен добавить актуальный контакт и проверить эти условия с учётом своей юрисдикции.</p>
+   <p><b>Важно:</b> это стартовый шаблон условий, а не юридическая консультация. Владелец проекта должен проверить его и указать реальные контактные данные и сроки хранения.</p>
+  </div>
+  <label class="legalCheck"><input type="checkbox" id="legalAgree"><span>Я прочитал(а) и принимаю правила использования и политику конфиденциальности GIFTORA UPGRADER.</span></label>
+  <button class="btn" id="legalContinue" disabled>ПРИНЯТЬ И ПРОДОЛЖИТЬ</button>
+  <div class="legalDenied" id="legalDenied">Чтобы продолжить, нужно принять условия. Если не согласен — закрой Mini App.</div>
+  <div class="legalTiny">Согласие сохраняется на этом устройстве. При очистке данных браузера его нужно будет подтвердить снова.</div>
+ </section>
+</div>
 <main class="wrap">
- <header class="top">
-  <div class="brand"><div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#241004" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V9M12 9C4 9 4 2 8 3c3 1 4 6 4 6Zm0 0c8 0 8-7 4-6-3 1-4 6-4 6ZM3 11h18v10H3zM3 15h18"/></svg></div><div>GIFTORA<br><span style="color:#ff8a19">UPGRADER</span></div></div>
-  <div class="online"><i class="dot"></i><span id="onlineCount">…</span> онлайн</div>
- </header>
- <section class="hero">
-  <div class="heroIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#ff8a19" stroke-width="3.2" stroke-linejoin="round"><path d="M32 57V25M32 25C12 25 10 8 20 7c8-1 12 18 12 18Zm0 0C52 25 54 8 44 7c-8-1-12 18-12 18ZM7 29h50v28H7zM7 39h50M32 29v28"/></svg></div>
-  <h1>ДОБРО ПОЖАЛОВАТЬ<br>В <span>GIFTORA</span></h1>
-  <p class="sub">Подтверди вход через Telegram и переходи к апгрейду подарков.</p>
- </section>
- <section class="card" id="requestPanel">
-  <div class="steps"><div class="step active"></div><div class="step"></div><div class="step"></div></div>
-  <div class="label">Шаг 01 / Проверка</div>
-  <div style="font-size:15px;font-weight:850">Подтверди, что ты не робот</div>
-  <label class="captcha"><input type="checkbox" id="robotCheck"><span><b>Я не робот</b><small>Проверка перед отправкой кода</small></span></label>
-  <button class="btn" id="requestBtn" disabled>ПОЛУЧИТЬ КОД В БОТЕ</button>
-  <p class="hint">Код будет отправлен в официальный бот Giftora. Никому его не передавай.</p>
-  <div class="status" id="requestStatus"></div>
- </section>
- <section class="card hidden" id="verifyPanel">
-  <div class="steps"><div class="step active"></div><div class="step active"></div><div class="step"></div></div>
-  <div class="label">Шаг 02 / Подтверждение</div>
-  <div style="font-size:15px;font-weight:850;margin-bottom:8px">Введи 6-значный код</div>
-  <p class="sub" style="text-align:left;margin:0 0 16px;max-width:none">Открой чат с ботом — код уже отправлен туда. Он действует 30 секунд.</p>
-  <input class="field" id="codeInput" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="••••••">
-  <button class="btn" id="verifyBtn" style="margin-top:14px">ПОДТВЕРДИТЬ ВХОД</button>
-  <button class="btn secondary" id="backBtn">ЗАПРОСИТЬ НОВЫЙ КОД</button>
-  <div class="status" id="verifyStatus"></div>
- </section>
- <section class="card hidden" id="successPanel" style="text-align:center">
-  <div class="successMark">✓</div><h2 style="margin:0 0 8px">Ты в системе!</h2>
-  <p class="sub">Подтверждение прошло успешно. Можно возвращаться в Telegram.</p>
-  <button class="btn" id="closeBtn" style="margin-top:20px">ГОТОВО</button>
- </section>
- <div class="footer">SECURE ACCESS · GIFTORA UPGRADER</div>
-</main>
+<header class="top">
+ <div class="brand"><div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#241004" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V9M12 9C4 9 4 2 8 3c3 1 4 6 4 6Zm0 0c8 0 8-7 4-6-3 1-4 6-4 6ZM3 11h18v10H3zM3 15h18"/></svg></div><div>GIFTORA<br><span style="color:#ff8a19">UPGRADER</span></div></div>
+ <div class="right"><div class="online"><i class="dot"></i><span id="onlineCount">—</span> онлайн</div><button class="profileTop" id="profileShortcut" aria-label="Профиль"><svg viewBox="0 0 24 24" fill="none" stroke="#ff9a35" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></button></div>
+</header>
+<nav class="nav"><button id="homeTab" class="active">⬆ Апгрейдер</button><button id="profileTab">♙ Профиль</button></nav>
+<div id="homeView">
+<section class="hero"><div class="heroIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#ff8a19" stroke-width="3.2" stroke-linejoin="round"><path d="M32 57V25M32 25C12 25 10 8 20 7c8-1 12 18 12 18Zm0 0C52 25 54 8 44 7c-8-1-12 18-12 18ZM7 29h50v28H7zM7 39h50M32 29v28"/></svg></div><h1>ДОБРО ПОЖАЛОВАТЬ<br>В <span>GIFTORA</span></h1><p class="sub">Подтверди вход через Telegram и переходи к апгрейду подарков.</p></section>
+<section class="card" id="requestPanel"><div class="steps"><div class="step active"></div><div class="step"></div><div class="step"></div></div><div class="label">Шаг 01 / Проверка</div><div style="font-size:15px;font-weight:850">Подтверди, что ты не робот</div><label class="captcha"><input type="checkbox" id="robotCheck"><span><b>Я не робот</b><small>Проверка перед отправкой кода</small></span></label><button class="btn" id="requestBtn" disabled>ПОЛУЧИТЬ КОД В БОТЕ</button><p class="hint">Код придёт в официальный бот Giftora и действует 30 секунд.</p><div class="status" id="requestStatus"></div></section>
+<section class="card hidden" id="verifyPanel"><div class="steps"><div class="step active"></div><div class="step active"></div><div class="step"></div></div><div class="label">Шаг 02 / Подтверждение</div><div style="font-size:15px;font-weight:850;margin-bottom:8px">Введи 6-значный код</div><p class="sub" style="text-align:left;margin:0 0 16px;max-width:none">Открой чат с ботом и введи код из сообщения.</p><input class="field" id="codeInput" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="••••••"><button class="btn" id="verifyBtn" style="margin-top:14px">ПОДТВЕРДИТЬ ВХОД</button><button class="btn secondary" id="backBtn">ЗАПРОСИТЬ НОВЫЙ КОД</button><div class="status" id="verifyStatus"></div></section>
+<section class="card hidden" id="successPanel" style="text-align:center"><div class="successMark">✓</div><h2 style="margin:0 0 8px">Ты в системе!</h2><p class="sub">Подтверждение прошло успешно.</p><button class="btn" id="goProfile" style="margin-top:20px">ОТКРЫТЬ ПРОФИЛЬ</button></section>
+</div>
+<div id="profileView" class="hidden">
+<section class="card"><div class="label">GIFTORA / Личный кабинет</div><div class="profileHead"><div class="avatarBig" id="avatarPreview">G</div><div><div class="profileName" id="profileNameView">Твой профиль</div><div class="profileId" id="profileIdView">Telegram ID: —</div><div class="small" style="margin-top:7px">Настрой профиль под себя</div></div></div>
+<label class="fieldLabel">Аватар профиля</label><label class="filePick">＋ Загрузить изображение<input type="file" id="avatarFile" accept="image/png,image/jpeg,image/webp"></label><div class="small" style="margin-top:7px">Изображение хранится в этом браузере на твоём устройстве.</div>
+<label class="fieldLabel" for="displayName">Отображаемое имя</label><input class="textField" id="displayName" maxlength="32" placeholder="Как тебя показывать">
+<label class="fieldLabel" for="description">Описание</label><textarea class="textField" id="description" rows="3" maxlength="160" placeholder="Расскажи немного о себе…"></textarea>
+<button class="btn" id="saveProfile" style="margin-top:17px">СОХРАНИТЬ ПРОФИЛЬ</button><div class="status" id="profileStatus"></div>
+</section>
+<section class="card"><div class="label">Твой аккаунт</div><div style="display:flex;justify-content:space-between;gap:12px;font-size:13px"><span style="color:#ad8a70">Статус</span><b style="color:#ffad4d" id="accountStatus">Не подтверждён</b></div><div style="display:flex;justify-content:space-between;gap:12px;font-size:13px;margin-top:13px"><span style="color:#ad8a70">Описание</span><span id="descCount">0 / 160</span></div></section>
+</div>
+<div class="footer">SECURE ACCESS · GIFTORA UPGRADER</div></main>
 <script>
-const tg = window.Telegram?.WebApp;
-tg?.ready(); tg?.expand();
-const API_URL = "https://YOUR-BACKEND-DOMAIN.example.com"; // Замени на публичный URL своего Python-сервера
-const $ = id => document.getElementById(id);
-let initData = tg?.initData || "";
-function showStatus(id,msg,type){const el=$(id);el.textContent=msg;el.className='status show '+type}
-async function api(path,body){
- if(!API_URL || API_URL.includes('YOUR-BACKEND')) throw new Error('Сначала укажи публичный URL Python-сервера в API_URL.');
- const r=await fetch(API_URL+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...body,initData})});
- const data=await r.json().catch(()=>({detail:'Сервер вернул некорректный ответ'}));
- if(!r.ok)throw new Error(data.detail||'Ошибка запроса');return data;
+const tg=window.Telegram?.WebApp;tg?.ready();tg?.expand();
+
+const legalOverlay=document.getElementById('legalOverlay');
+const legalAgree=document.getElementById('legalAgree');
+const legalContinue=document.getElementById('legalContinue');
+const legalAcceptedKey='giftora_legal_accepted_v1';
+function applyLegalGate(){
+ const accepted=localStorage.getItem(legalAcceptedKey)==='yes';
+ legalOverlay.classList.toggle('hidden',accepted);
+ document.body.style.overflow=accepted?'':'hidden';
 }
-$('robotCheck').addEventListener('change',e=>$('requestBtn').disabled=!e.target.checked);
-$('requestBtn').onclick=async()=>{ $('requestBtn').disabled=true;showStatus('requestStatus','Отправляем запрос…','ok');
- try{await api('/api/request-code',{});$('requestPanel').classList.add('hidden');$('verifyPanel').classList.remove('hidden');}
- catch(e){showStatus('requestStatus',e.message,'err');$('requestBtn').disabled=!$('robotCheck').checked;}};
-$('verifyBtn').onclick=async()=>{const code=$('codeInput').value.replace(/\D/g,'');if(code.length!==6){showStatus('verifyStatus','Введи все 6 цифр.','err');return}
- $('verifyBtn').disabled=true;try{await api('/api/verify-code',{code});$('verifyPanel').classList.add('hidden');$('successPanel').classList.remove('hidden');}
- catch(e){showStatus('verifyStatus',e.message,'err');}finally{$('verifyBtn').disabled=false;}};
-$('backBtn').onclick=()=>{$('verifyPanel').classList.add('hidden');$('requestPanel').classList.remove('hidden');$('requestBtn').disabled=!$('robotCheck').checked;$('codeInput').value='';};
-$('closeBtn').onclick=()=>tg?.close();
-async function refreshOnline(){
- try {
-   const r=await fetch(API_URL+'/api/online');
-   if(r.ok){const d=await r.json();$('onlineCount').textContent=d.online??'—'}
-   if(initData) await fetch(API_URL+'/api/heartbeat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData})});
- } catch {$('onlineCount').textContent='—'}
-}
-refreshOnline(); setInterval(refreshOnline,30000);
-</script>
-</body>
-</html>
+legalAgree.addEventListener('change',()=>{legalContinue.disabled=!legalAgree.checked;document.getElementById('legalDenied').classList.remove('show')});
+legalContinue.addEventListener('click',()=>{
+ if(!legalAgree.checked){document.getElementById('legalDenied').classList.add('show');return}
+ localStorage.setItem(legalAcceptedKey,'yes');
+ if(initData && !API_URL.includes('YOUR-BACKEND')){api('/api/legal/accept',{accepted:true,version:'2026-10-25-v1'}).catch(()=>{});}
+ applyLegalGate();
+});
+applyLegalGate();
+
+const API_URL="https://YOUR-BACKEND-DOMAIN.example.com"; // Укажи публичный HTTPS URL Python-сервера
+const $=id=>document.getElementById(id);const initData=tg?.initData||"";const tgUser=tg?.initDataUnsafe?.user||{};
+let avatarData=localStorage.getItem('giftora_avatar')||'';
+const localProfile=JSON.parse(localStorage.getItem('giftora_profile')||'{}');
+function status(id,msg,type){const e=$(id);e.textContent=msg;e.className='status show '+type}
+async function api(path,body={}){if(API_URL.includes('YOUR-BACKEND'))throw Error('Укажи публичный URL Python-сервера в API_URL.');const r=await fetch(API_URL+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...body,initData})});const d=await r.json().catch(()=>({detail:'Ошибка ответа сервера'}));if(!r.ok)throw Error(d.detail||'Ошибка запроса');return d}
+function setAvatar(src){avatarData=src||'';const preview=$('avatarPreview');preview.innerHTML='';if(avatarData){const img=document.createElement('img');img.src=avatarData;preview.append(img)}else preview.textContent=(($('displayName').value||tgUser.first_name||'G').trim()[0]||'G').toUpperCase();const top=$('profileShortcut');top.innerHTML='';if(avatarData){const img=document.createElement('img');img.src=avatarData;top.append(img)}else top.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="#ff9a35" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>'}
+function refreshProfile(){const name=$('displayName').value.trim()||tgUser.first_name||'Пользователь';$('profileNameView').textContent=name;$('profileIdView').textContent='Telegram ID: '+(tgUser.id||'доступен в Telegram');$('descCount').textContent=$('description').value.length+' / 160';setAvatar(avatarData)}
+function switchView(which){const profile=which==='profile';$('homeView').classList.toggle('hidden',profile);$('profileView').classList.toggle('hidden',!profile);$('homeTab').classList.toggle('active',!profile);$('profileTab').classList.toggle('active',profile);if(profile)refreshProfile()}
+$('homeTab').onclick=()=>switchView('home');$('profileTab').onclick=()=>switchView('profile');$('profileShortcut').onclick=()=>switchView('profile');$('goProfile').onclick=()=>switchView('profile');
+$('displayName').value=localProfile.name||tgUser.first_name||'';$('description').value=localProfile.description||'';setAvatar(avatarData);refreshProfile();
+$('avatarFile').onchange=async e=>{const file=e.target.files?.[0];if(!file)return;if(file.size>2*1024*1024){status('profileStatus','Файл должен быть меньше 2 МБ.','err');return}const reader=new FileReader();reader.onload=()=>{setAvatar(reader.result);try{localStorage.setItem('giftora_avatar',reader.result)}catch{status('profileStatus','Не удалось сохранить изображение в браузере.','err')}};reader.readAsDataURL(file)};
+$('displayName').oninput=refreshProfile;$('description').oninput=refreshProfile;
+$('saveProfile').onclick=async()=>{const profile={name:$('displayName').value.trim().slice(0,32),description:$('description').value.trim().slice(0,160)};localStorage.setItem('giftora_profile',JSON.stringify(profile));refreshProfile();try{if(initData&&!API_URL.includes('YOUR-BACKEND'))await api('/api/profile/save',{...profile});status('profileStatus','Профиль сохранён.','ok')}catch(e){status('profileStatus','Сохранено на этом устройстве. Сервер: '+e.message,'err')}};
+$('robotCheck').onchange=e=>$('requestBtn').disabled=!e.target.checked;
+$('requestBtn').onclick=async()=>{ $('requestBtn').disabled=true;status('requestStatus','Отправляем запрос…','ok');try{await api('/api/request-code');$('requestPanel').classList.add('hidden');$('verifyPanel').classList.remove('hidden')}catch(e){status('requestStatus',e.message,'err');$('requestBtn').disabled=!$('robotCheck').checked}};
+$('verifyBtn').onclick=async()=>{const code=$('codeInput').value.replace(/\D/g,'');if(code.length!==6){status('verifyStatus','Введи все 6 цифр.','err');return}$('verifyBtn').disabled=true;try{await api('/api/verify-code',{code});$('verifyPanel').classList.add('hidden');$('successPanel').classList.remove('hidden');$('accountStatus').textContent='Подтверждён'}catch(e){status('verifyStatus',e.message,'err')}finally{$('verifyBtn').disabled=false}};
+$('backBtn').onclick=()=>{$('verifyPanel').classList.add('hidden');$('requestPanel').classList.remove('hidden');$('requestBtn').disabled=!$('robotCheck').checked;$('codeInput').value=''};
+async function refreshOnline(){try{const r=await fetch(API_URL+'/api/online');if(r.ok){const d=await r.json();$('onlineCount').textContent=d.online??'—'}if(initData)await fetch(API_URL+'/api/heartbeat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({initData})})}catch{$('onlineCount').textContent='—'}}refreshOnline();setInterval(refreshOnline,30000);
+</script></body></html>
