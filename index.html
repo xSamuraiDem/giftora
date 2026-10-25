@@ -19,6 +19,18 @@
 .legalScroll h3{font-size:13px;color:#ffb15d;margin:13px 0 4px}.legalScroll h3:first-child{margin-top:0}.legalScroll p{margin:5px 0 10px}
 .legalCheck{display:flex;align-items:flex-start;gap:10px;font-size:12px;line-height:1.5;color:#f2ddca;margin:12px 0 16px;cursor:pointer}.legalCheck input{accent-color:#ff7900;width:18px;height:18px;flex-shrink:0;margin:1px 0 0}
 .legalTiny{font-size:10px;color:#a9866d;line-height:1.5;margin-top:10px}.legalDenied{font-size:11px;color:#ffb09b;margin-top:10px;display:none}.legalDenied.show{display:block}
+/* GIFTORA onboarding / rotate puzzle */
+.puzzle{border:1px solid #653719;background:radial-gradient(circle at 50% 35%,#3c1a08,#100803 72%);border-radius:17px;padding:15px;margin:15px 0 13px;text-align:center;overflow:hidden}
+.puzzleTop{display:flex;align-items:center;justify-content:space-between;color:#c9a187;font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
+.puzzleStage{height:150px;display:grid;place-items:center;position:relative;border-radius:13px;background:linear-gradient(135deg,#170b05,#211006);border:1px solid #512812;overflow:hidden}
+.puzzleStage:before,.puzzleStage:after{content:"";position:absolute;border:1px solid #ff8a191f;border-radius:50%;width:180px;height:180px}.puzzleStage:after{width:125px;height:125px}
+.rotateArt{width:104px;height:104px;position:relative;z-index:1;transition:transform .22s ease;filter:drop-shadow(0 0 20px #ff790044)}
+.rotateArt svg{width:100%;height:100%}.puzzleControls{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px}
+.rotateBtn{width:45px;height:42px;border-radius:12px;border:1px solid #6a3719;background:#2a150a;color:#ffbd75;font-size:21px;cursor:pointer}
+.angleLabel{min-width:84px;color:#ffe0b8;font-size:12px;font-weight:850}
+.puzzleHelp{font-size:11px;color:#ad8a70;line-height:1.5;margin-top:9px}
+.puzzleSolved{display:inline-flex;align-items:center;gap:6px;color:#9af0b3;font-size:11px;font-weight:800}
+.accountIdentity{display:flex;align-items:center;gap:13px}.identityMeta{min-width:0;flex:1}.identityRow{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid #49230f;font-size:12px}.identityRow:last-child{border-bottom:0}.identityRow span{color:#ad8a70}.identityRow b{text-align:right;overflow-wrap:anywhere;max-width:65%}.ageBox{margin-top:14px;border:1px solid #613016;background:linear-gradient(135deg,#271306,#160a04);border-radius:14px;padding:13px}.ageBox strong{display:block;color:#ffb15d;font-size:13px;margin-bottom:5px}.ageBox p{margin:0;color:#b99a83;font-size:10px;line-height:1.5}
 
 </style></head>
 <body>
@@ -32,8 +44,8 @@
    <h3>1. О сервисе</h3>
    <p>GIFTORA UPGRADER — интерфейс для работы с цифровыми подарками и функциями апгрейда. Доступные функции могут меняться. Не совершай платежи и не передавай ценные предметы, если условия конкретной операции не показаны и не понятны.</p>
    <h3>2. Какие данные используются</h3>
-   <p>Для подтверждения входа приложение получает данные Telegram Mini App, например Telegram ID и имя пользователя, и проверяет подпись Telegram ботом перед отправкой кода. При запросе входа бот отправляет одноразовый шестизначный код, который действует 30 секунд.</p>
-   <p>Имя профиля и описание сохраняются в Firebase Realtime Database. В текущей версии загруженная аватарка сохраняется локально в браузере на твоём устройстве и может быть потеряна при очистке данных браузера. Счётчик онлайна использует временные отметки активности.</p>
+   <p>Для подтверждения входа приложение получает данные Telegram Mini App, например Telegram ID, имя, username и доступную фотографию, а бот проверяет подпись Telegram перед отправкой кода. При запросе входа бот отправляет одноразовый шестизначный код, который действует 30 секунд.</p>
+   <p>Идентификатор, имя, username и доступная фотография Telegram показываются из данных Mini App. Статус регистрации и описание сохраняются в Firebase Realtime Database. Счётчик онлайна использует временные отметки активности.</p>
    <h3>3. Для чего нужны данные</h3>
    <p>Данные используются для входа, работы профиля, защиты от частых запросов, поддержки работы приложения и устранения ошибок. Мы не просим пароль Telegram, код входа Telegram или доступ к твоему аккаунту.</p>
    <h3>4. Хранение и безопасность</h3>
@@ -57,24 +69,24 @@
 <main class="wrap">
 <header class="top">
  <div class="brand"><div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#241004" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V9M12 9C4 9 4 2 8 3c3 1 4 6 4 6Zm0 0c8 0 8-7 4-6-3 1-4 6-4 6ZM3 11h18v10H3zM3 15h18"/></svg></div><div>GIFTORA<br><span style="color:#ff8a19">UPGRADER</span></div></div>
- <div class="right"><div class="online"><i class="dot"></i><span id="onlineCount">—</span> онлайн</div><button class="profileTop" id="profileShortcut" aria-label="Профиль"><svg viewBox="0 0 24 24" fill="none" stroke="#ff9a35" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></button></div>
+ <div class="right"><div class="online"><i class="dot"></i><span id="onlineCount">—</span> онлайн</div><button class="profileTop hidden" id="profileShortcut" aria-label="Профиль"><svg viewBox="0 0 24 24" fill="none" stroke="#ff9a35" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></button></div>
 </header>
-<nav class="nav"><button id="homeTab" class="active">⬆ Апгрейдер</button><button id="profileTab">♙ Профиль</button></nav>
+<nav class="nav hidden" id="mainNav"><button id="homeTab" class="active">⬆ Апгрейдер</button><button id="profileTab">♙ Профиль</button></nav>
 <div id="homeView">
 <section class="hero"><div class="heroIcon"><svg viewBox="0 0 64 64" fill="none" stroke="#ff8a19" stroke-width="3.2" stroke-linejoin="round"><path d="M32 57V25M32 25C12 25 10 8 20 7c8-1 12 18 12 18Zm0 0C52 25 54 8 44 7c-8-1-12 18-12 18ZM7 29h50v28H7zM7 39h50M32 29v28"/></svg></div><h1>ДОБРО ПОЖАЛОВАТЬ<br>В <span>GIFTORA</span></h1><p class="sub">Подтверди вход через Telegram и переходи к апгрейду подарков.</p></section>
-<section class="card" id="requestPanel"><div class="steps"><div class="step active"></div><div class="step"></div><div class="step"></div></div><div class="label">Шаг 01 / Проверка</div><div style="font-size:15px;font-weight:850">Подтверди, что ты не робот</div><label class="captcha"><input type="checkbox" id="robotCheck"><span><b>Я не робот</b><small>Проверка перед отправкой кода</small></span></label><button class="btn" id="requestBtn" disabled>ПОЛУЧИТЬ КОД В БОТЕ</button><p class="hint">Код придёт в официальный бот Giftora и действует 30 секунд.</p><div class="status" id="requestStatus"></div></section>
+<section class="card" id="requestPanel"><div class="steps"><div class="step active"></div><div class="step"></div><div class="step"></div></div><div class="label">Шаг 01 / Проверка безопасности</div><div style="font-size:17px;font-weight:900">Докажи, что ты не робот</div><p class="sub" style="text-align:left;margin:7px 0 0;max-width:none">Поверни символ в правильное положение, чтобы продолжить.</p>
+<div class="ageBox" style="margin-top:14px;margin-bottom:12px"><strong>◷ Проверка возраста аккаунта</strong><div id="ageEstimateGate" style="font-size:12px;font-weight:850;color:#fff;margin-top:4px">Определяем примерный возраст…</div><p>Предварительная оценка по Telegram ID, а не официальная дата создания.</p></div><div class="puzzle"><div class="puzzleTop"><span>GIFTORA CAPTCHA</span><span id="puzzleState">Ожидает решения</span></div><div class="puzzleStage"><div class="rotateArt" id="rotateArt"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="38" stroke="#ff8a19" stroke-width="2"/><circle cx="50" cy="50" r="27" stroke="#ffb52e" stroke-width="1.5" stroke-dasharray="3 5"/><path d="M50 12 L61 42 L50 36 L39 42 Z" fill="#ffb52e"/><path d="M50 88 L39 58 L50 64 L61 58 Z" fill="#71330d" stroke="#ff8a19" stroke-width="1.5"/><circle cx="50" cy="50" r="7" fill="#ff7900"/><path d="M16 50H27M73 50H84M50 16V27M50 73V84" stroke="#ffb52e" stroke-width="2" stroke-linecap="round"/></svg></div></div><div class="puzzleControls"><button type="button" class="rotateBtn" id="rotateLeft" aria-label="Повернуть влево">↶</button><div class="angleLabel" id="angleLabel">Поворот: 0°</div><button type="button" class="rotateBtn" id="rotateRight" aria-label="Повернуть вправо">↷</button></div><div class="puzzleHelp" id="puzzleHelp">Используй стрелки, чтобы совместить оранжевую стрелку с направлением вверх.</div></div>
+<button class="btn" id="requestBtn" disabled>ПОЛУЧИТЬ КОД В БОТЕ</button><p class="hint">После проверки бот отправит одноразовый код. Он действует 30 секунд.</p><div class="status" id="requestStatus"></div></section>
 <section class="card hidden" id="verifyPanel"><div class="steps"><div class="step active"></div><div class="step active"></div><div class="step"></div></div><div class="label">Шаг 02 / Подтверждение</div><div style="font-size:15px;font-weight:850;margin-bottom:8px">Введи 6-значный код</div><p class="sub" style="text-align:left;margin:0 0 16px;max-width:none">Открой чат с ботом и введи код из сообщения.</p><input class="field" id="codeInput" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="••••••"><button class="btn" id="verifyBtn" style="margin-top:14px">ПОДТВЕРДИТЬ ВХОД</button><button class="btn secondary" id="backBtn">ЗАПРОСИТЬ НОВЫЙ КОД</button><div class="status" id="verifyStatus"></div></section>
 <section class="card hidden" id="successPanel" style="text-align:center"><div class="successMark">✓</div><h2 style="margin:0 0 8px">Ты в системе!</h2><p class="sub">Подтверждение прошло успешно.</p><button class="btn" id="goProfile" style="margin-top:20px">ОТКРЫТЬ ПРОФИЛЬ</button></section>
 </div>
 <div id="profileView" class="hidden">
-<section class="card"><div class="label">GIFTORA / Личный кабинет</div><div class="profileHead"><div class="avatarBig" id="avatarPreview">G</div><div><div class="profileName" id="profileNameView">Твой профиль</div><div class="profileId" id="profileIdView">Telegram ID: —</div><div class="small" style="margin-top:7px">Настрой профиль под себя</div></div></div>
-<label class="fieldLabel">Аватар профиля</label><label class="filePick">＋ Загрузить изображение<input type="file" id="avatarFile" accept="image/png,image/jpeg,image/webp"></label><div class="small" style="margin-top:7px">Изображение хранится в этом браузере на твоём устройстве.</div>
-<label class="fieldLabel" for="displayName">Отображаемое имя</label><input class="textField" id="displayName" maxlength="32" placeholder="Как тебя показывать">
-<label class="fieldLabel" for="description">Описание</label><textarea class="textField" id="description" rows="3" maxlength="160" placeholder="Расскажи немного о себе…"></textarea>
-<button class="btn" id="saveProfile" style="margin-top:17px">СОХРАНИТЬ ПРОФИЛЬ</button><div class="status" id="profileStatus"></div>
-</section>
-<section class="card"><div class="label">Твой аккаунт</div><div style="display:flex;justify-content:space-between;gap:12px;font-size:13px"><span style="color:#ad8a70">Статус</span><b style="color:#ffad4d" id="accountStatus">Не подтверждён</b></div><div style="display:flex;justify-content:space-between;gap:12px;font-size:13px;margin-top:13px"><span style="color:#ad8a70">Описание</span><span id="descCount">0 / 160</span></div></section>
-</div>
+<section class="card"><div class="label">GIFTORA / Telegram ID</div><div class="accountIdentity"><div class="avatarBig" id="avatarPreview">G</div><div class="identityMeta"><div class="profileName" id="profileNameView">Telegram пользователь</div><div class="profileId" id="profileIdView">Telegram ID: —</div><div class="small" id="profileUsername" style="margin-top:7px">@username</div></div></div>
+<div style="margin-top:16px"><div class="identityRow"><span>Статус аккаунта</span><b style="color:#9af0b3" id="accountStatus">Подтверждён</b></div><div class="identityRow"><span>Telegram ID</span><b id="identityId">—</b></div><div class="identityRow"><span>Имя</span><b id="identityName">—</b></div><div class="identityRow"><span>Username</span><b id="identityUsername">—</b></div></div>
+<div class="ageBox"><strong>◷ Чекер возраста Telegram-аккаунта</strong><div id="ageEstimate" style="font-size:14px;font-weight:900;color:#fff;margin:4px 0 7px">Вычисляем оценку…</div><p>Оценка приблизительная и строится по диапазону Telegram ID. Telegram Bot API не раскрывает точную дату создания аккаунта, поэтому это не официальная дата и её нельзя использовать как доказательство возраста.</p></div>
+<label class="fieldLabel" for="description">Описание профиля</label><textarea class="textField" id="description" rows="3" maxlength="160" placeholder="Расскажи немного о себе…"></textarea><div class="small" id="descCount" style="text-align:right;margin-top:5px">0 / 160</div>
+<button class="btn" id="saveProfile" style="margin-top:15px">СОХРАНИТЬ ОПИСАНИЕ</button><div class="status" id="profileStatus"></div>
+</section></div>
 <div class="footer">SECURE ACCESS · GIFTORA UPGRADER<br><span style="letter-spacing:0;color:#8e684f">Firebase-only · без отдельного HTTP API</span></div></main>
 <script>
 const tg=window.Telegram?.WebApp;tg?.ready();tg?.expand();
@@ -97,56 +109,39 @@ legalContinue.addEventListener('click',()=>{
 applyLegalGate();
 
 const $=id=>document.getElementById(id);const initData=tg?.initData||"";const tgUser=tg?.initDataUnsafe?.user||{};
-let avatarData=localStorage.getItem('giftora_avatar')||'';
-const localProfile=JSON.parse(localStorage.getItem('giftora_profile')||'{}');
-let firebaseProfileReady=false;
-async function loadFirebaseProfile(){try{if(!window.firebaseReady)await new Promise(resolve=>window.addEventListener('giftora-firebase-ready',resolve,{once:true}));await window.firebaseReady;const db=window.giftoraDb;const user=window.giftoraFirebaseUser;if(!db||!user)return;const {ref,get}=await import('https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js');const snap=await get(ref(db,'profiles/'+user.uid));if(snap.exists()){const p=snap.val();$('displayName').value=(p.name||tgUser.first_name||'').slice(0,32);$('description').value=(p.description||'').slice(0,160);refreshProfile()}firebaseProfileReady=true}catch(e){console.warn('Firebase profile load failed',e)}}
+const FIREBASE_DB_URL="https://test-64db2-default-rtdb.firebaseio.com";
+const dbPath=path=>FIREBASE_DB_URL+'/'+path+'.json';
+async function dbGet(path){const r=await fetch(dbPath(path),{cache:'no-store'});if(!r.ok)throw Error('Firebase GET '+r.status);return r.json()}
+async function dbSet(path,value){const r=await fetch(dbPath(path),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(value)});if(!r.ok)throw Error('Firebase PUT '+r.status);return r.json()}
+async function dbDelete(path){const r=await fetch(dbPath(path),{method:'DELETE'});if(!r.ok)throw Error('Firebase DELETE '+r.status)}
+const profileKey=String(tgUser.id||'guest');
+const localProfile=(()=>{try{return JSON.parse(localStorage.getItem('giftora_profile')||'{}')}catch{return {}}})();
+let registered=false;
+let puzzleAngle=[90,180,270][Math.floor(Math.random()*3)];
+const puzzleTarget=0;
 function status(id,msg,type){const e=$(id);e.textContent=msg;e.className='status show '+type}
-function setAvatar(src){avatarData=src||'';const preview=$('avatarPreview');preview.innerHTML='';if(avatarData){const img=document.createElement('img');img.src=avatarData;preview.append(img)}else preview.textContent=(($('displayName').value||tgUser.first_name||'G').trim()[0]||'G').toUpperCase();const top=$('profileShortcut');top.innerHTML='';if(avatarData){const img=document.createElement('img');img.src=avatarData;top.append(img)}else top.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="#ff9a35" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>'}
-function refreshProfile(){const name=$('displayName').value.trim()||tgUser.first_name||'Пользователь';$('profileNameView').textContent=name;$('profileIdView').textContent='Telegram ID: '+(tgUser.id||'доступен в Telegram');$('descCount').textContent=$('description').value.length+' / 160';setAvatar(avatarData)}
-function switchView(which){const profile=which==='profile';$('homeView').classList.toggle('hidden',profile);$('profileView').classList.toggle('hidden',!profile);$('homeTab').classList.toggle('active',!profile);$('profileTab').classList.toggle('active',profile);if(profile)refreshProfile()}
+function telegramName(){return [tgUser.first_name,tgUser.last_name].filter(Boolean).join(' ')||'Telegram пользователь'}
+function avatarFallback(){const p=$('avatarPreview');p.innerHTML='';p.textContent=(telegramName().trim()[0]||'T').toUpperCase();p.style.background='linear-gradient(145deg,#3b1a08,#160a04)';const top=$('profileShortcut');top.innerHTML='';top.textContent=(telegramName().trim()[0]||'T').toUpperCase()}
+function setTelegramAvatar(){const url=tgUser.photo_url||'';if(!url){avatarFallback();return}for(const id of ['avatarPreview','profileShortcut']){const box=$(id);box.innerHTML='';const img=document.createElement('img');img.src=url;img.alt='Аватар Telegram';img.referrerPolicy='no-referrer';img.onerror=()=>{avatarFallback()};box.append(img)}}
+function updateIdentity(){const name=telegramName();const username=tgUser.username?'@'+tgUser.username:'не указан';$('profileNameView').textContent=name;$('profileIdView').textContent='Telegram ID: '+(tgUser.id||'недоступен');$('identityId').textContent=tgUser.id||'—';$('identityName').textContent=name;$('identityUsername').textContent=username;$('profileUsername').textContent=username;$('descCount').textContent=$('description').value.length+' / 160';$('ageEstimate').textContent=accountAgeEstimate(tgUser.id);if($('ageEstimateGate'))$('ageEstimateGate').textContent=accountAgeEstimate(tgUser.id);setTelegramAvatar();}
+function accountAgeEstimate(id){const n=Number(id);if(!Number.isFinite(n)||n<=0)return 'Не удалось оценить';let label;if(n<1_000_000)label='Очень старый аккаунт · ориентировочно 2013';else if(n<10_000_000)label='Ранний аккаунт · ориентировочно 2013–2014';else if(n<100_000_000)label='Старый аккаунт · ориентировочно 2014–2015';else if(n<1_000_000_000)label='Аккаунт ранних лет · ориентировочно 2015–2017';else if(n<3_000_000_000)label='Средний возраст · ориентировочно 2017–2019';else if(n<7_000_000_000)label='Относительно новый · ориентировочно 2019–2021';else if(n<15_000_000_000)label='Новый аккаунт · ориентировочно 2021–2023';else label='Вероятно новый аккаунт · ориентировочно 2023–2026';return label}
+function switchView(which){if(!registered&&which==='profile')return;const profile=which==='profile';$('homeView').classList.toggle('hidden',profile);$('profileView').classList.toggle('hidden',!profile);$('homeTab').classList.toggle('active',!profile);$('profileTab').classList.toggle('active',profile);if(profile)updateIdentity()}
+function unlockRegistered(){registered=true;$('mainNav').classList.remove('hidden');$('profileShortcut').classList.remove('hidden');$('requestPanel').classList.add('hidden');$('verifyPanel').classList.add('hidden');$('successPanel').classList.add('hidden');$('homeView').classList.remove('hidden');$('profileView').classList.add('hidden');$('homeTab').classList.add('active');$('profileTab').classList.remove('active');updateIdentity()}
 $('homeTab').onclick=()=>switchView('home');$('profileTab').onclick=()=>switchView('profile');$('profileShortcut').onclick=()=>switchView('profile');$('goProfile').onclick=()=>switchView('profile');
-$('displayName').value=localProfile.name||tgUser.first_name||'';$('description').value=localProfile.description||'';setAvatar(avatarData);refreshProfile();
-$('avatarFile').onchange=async e=>{const file=e.target.files?.[0];if(!file)return;if(file.size>2*1024*1024){status('profileStatus','Файл должен быть меньше 2 МБ.','err');return}const reader=new FileReader();reader.onload=()=>{setAvatar(reader.result);try{localStorage.setItem('giftora_avatar',reader.result)}catch{status('profileStatus','Не удалось сохранить изображение в браузере.','err')}};reader.readAsDataURL(file)};
-$('displayName').oninput=refreshProfile;$('description').oninput=refreshProfile;
-$('saveProfile').onclick=async()=>{const profile={name:$('displayName').value.trim().slice(0,32),description:$('description').value.trim().slice(0,160),telegramId:tgUser.id||null,updatedAt:Date.now()};localStorage.setItem('giftora_profile',JSON.stringify(profile));refreshProfile();$('saveProfile').disabled=true;try{await window.firebaseReady;const db=window.giftoraDb;const user=window.giftoraFirebaseUser;if(!db||!user)throw Error('Firebase не подключился. Проверь настройки проекта.');const {ref,set}=await import('https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js');await set(ref(db,'profiles/'+user.uid),profile);status('profileStatus','Профиль сохранён в Firebase Realtime Database.','ok')}catch(e){status('profileStatus','Не удалось сохранить в Firebase: '+e.message,'err')}finally{$('saveProfile').disabled=false}};
-loadFirebaseProfile();
-$('robotCheck').onchange=e=>$('requestBtn').disabled=!e.target.checked;
-async function waitForFirebase(){await window.firebaseReady;const db=window.giftoraDb,user=window.giftoraFirebaseUser;if(!db||!user)throw Error('Firebase не подключился.');if(!tgUser.id||!initData)throw Error('Открой Mini App через кнопку в Telegram-боте.');return {db,user}}
-$('requestBtn').onclick=async()=>{$('requestBtn').disabled=true;status('requestStatus','Отправляем запрос боту…','ok');try{const {db,user}=await waitForFirebase();const {ref,set,get,remove}=await import('https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js');await set(ref(db,'auth_requests/'+user.uid),{timestamp:Date.now(),telegram_id:tgUser.id,init_data:initData});$('requestPanel').classList.add('hidden');$('verifyPanel').classList.remove('hidden');status('verifyStatus','Запрос отправлен. Код должен прийти в чат с ботом в течение нескольких секунд.','ok')}catch(e){status('requestStatus','Не удалось запросить код: '+e.message,'err');$('requestBtn').disabled=!$('robotCheck').checked}};
-$('verifyBtn').onclick=async()=>{const code=$('codeInput').value.replace(/\D/g,'');if(code.length!==6){status('verifyStatus','Введи все 6 цифр.','err');return}$('verifyBtn').disabled=true;try{const {db,user}=await waitForFirebase();const {ref,set,get,remove}=await import('https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js');const attemptId=Date.now().toString()+'-'+Math.random().toString(36).slice(2,10);await set(ref(db,'auth_verifications/'+user.uid),{code,timestamp:Date.now(),attempt_id:attemptId});status('verifyStatus','Проверяем код…','ok');let result=null;for(let i=0;i<12;i++){await new Promise(r=>setTimeout(r,500));const snap=await get(ref(db,'auth_results/'+user.uid));if(snap.exists()&&snap.val().attempt_id===attemptId){result=snap.val();break}}if(!result)throw Error('Бот не ответил. Проверь, что бот запущен, и попробуй ещё раз.');if(!result.ok)throw Error(result.message||'Неверный или просроченный код.');$('verifyPanel').classList.add('hidden');$('successPanel').classList.remove('hidden');$('accountStatus').textContent='Подтверждён';localStorage.setItem('giftora_verified','yes')}catch(e){status('verifyStatus',e.message,'err')}finally{$('verifyBtn').disabled=false}};
-$('backBtn').onclick=()=>{$('verifyPanel').classList.add('hidden');$('requestPanel').classList.remove('hidden');$('requestBtn').disabled=!$('robotCheck').checked;$('codeInput').value=''};
-async function refreshOnline(){try{await window.firebaseReady;const db=window.giftoraDb,user=window.giftoraFirebaseUser;if(!db||!user)return;const {ref,set,get,remove}=await import('https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js');await set(ref(db,'presence/'+user.uid),{last_seen:Date.now()});const snap=await get(ref(db,'presence'));const data=snap.val()||{};const now=Date.now();const count=Object.values(data).filter(x=>x&&now-(x.last_seen||0)<90000).length;$('onlineCount').textContent=count}catch{$('onlineCount').textContent='—'}}refreshOnline();setInterval(refreshOnline,30000);
-</script>
-<script type="module">
-  import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-  import { getDatabase } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
-  import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
-  const firebaseConfig = {
-    apiKey: "AIzaSyDpjHSWwkfyMNPKgtg6hJIbQ5F9mf61N48",
-    authDomain: "test-64db2.firebaseapp.com",
-    databaseURL: "https://test-64db2-default-rtdb.firebaseio.com",
-    projectId: "test-64db2",
-    storageBucket: "test-64db2.firebasestorage.app",
-    messagingSenderId: "171063133481",
-    appId: "1:171063133481:web:dc2f7eb0b5f13c2ebc6338",
-    measurementId: "G-DF203GV4XE"
-  };
-  window.firebaseReady = (async () => {
-    const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const credential = await signInAnonymously(auth);
-    window.giftoraFirebaseUser = credential.user;
-    window.giftoraDb = getDatabase(app);
-    document.documentElement.dataset.firebase = "connected";
-    window.dispatchEvent(new Event("giftora-firebase-ready"));
-    return true;
-  })().catch(error => {
-    console.error("Firebase initialization failed", error);
-    document.documentElement.dataset.firebase = "error";
-    window.dispatchEvent(new Event("giftora-firebase-ready"));
-    throw error;
-  });
+$('description').value=localProfile.description||'';
+function renderPuzzle(){ $('rotateArt').style.transform='rotate('+puzzleAngle+'deg)';$('angleLabel').textContent='Поворот: '+puzzleAngle+'°';const solved=puzzleAngle===puzzleTarget;$('requestBtn').disabled=!solved;$('puzzleState').textContent=solved?'Проверка пройдена':'Ожидает решения';$('puzzleState').style.color=solved?'#9af0b3':'#c9a187';$('puzzleHelp').textContent=solved?'✓ Отлично! Теперь можно запросить код.':'Поверни стрелку так, чтобы она смотрела строго вверх.';}
+function rotate(delta){puzzleAngle=(puzzleAngle+delta+360)%360;renderPuzzle()}
+$('rotateLeft').onclick=()=>rotate(-90);$('rotateRight').onclick=()=>rotate(90);renderPuzzle();
+async function loadProfile(){try{if(!tgUser.id)return;const p=await dbGet('profiles/'+profileKey);if(p&&p.registered===true){registered=true;$('description').value=(p.description||'').slice(0,160);localStorage.setItem('giftora_verified','yes');unlockRegistered()}else{ $('mainNav').classList.add('hidden');$('profileShortcut').classList.add('hidden');$('profileView').classList.add('hidden');$('requestPanel').classList.remove('hidden');}updateIdentity()}catch(e){console.warn('Profile load:',e.message);updateIdentity()}}
+$('saveProfile').onclick=async()=>{if(!registered)return;const profile={...(await dbGet('profiles/'+profileKey).catch(()=>({}))),registered:true,telegramId:Number(tgUser.id)||null,firstName:tgUser.first_name||'',lastName:tgUser.last_name||'',username:tgUser.username||'',photoUrl:tgUser.photo_url||'',description:$('description').value.trim().slice(0,160),updatedAt:Date.now()};$('saveProfile').disabled=true;try{await dbSet('profiles/'+profileKey,profile);localStorage.setItem('giftora_profile',JSON.stringify(profile));status('profileStatus','Описание сохранено. Данные Telegram обновлены.','ok');updateIdentity()}catch(e){status('profileStatus','Не удалось сохранить: '+e.message,'err')}finally{$('saveProfile').disabled=false}};
+$('description').oninput=()=>{$('descCount').textContent=$('description').value.length+' / 160'};
+function ensureTelegram(){if(!tgUser.id||!initData)throw Error('Открой Mini App через кнопку в Telegram-боте.')}
+$('requestBtn').onclick=async()=>{$('requestBtn').disabled=true;status('requestStatus','Отправляем запрос боту…','ok');try{ensureTelegram();if(puzzleAngle!==puzzleTarget)throw Error('Сначала реши проверку на робота.');await dbSet('auth_requests/'+profileKey,{timestamp:Date.now(),telegram_id:tgUser.id,init_data:initData});$('requestPanel').classList.add('hidden');$('verifyPanel').classList.remove('hidden');status('verifyStatus','Запрос отправлен. Код должен прийти в чат с ботом.','ok')}catch(e){status('requestStatus','Не удалось запросить код: '+e.message,'err');$('requestBtn').disabled=puzzleAngle!==puzzleTarget}};
+$('verifyBtn').onclick=async()=>{const code=$('codeInput').value.replace(/\D/g,'');if(code.length!==6){status('verifyStatus','Введи все 6 цифр.','err');return}$('verifyBtn').disabled=true;try{ensureTelegram();const attemptId=Date.now().toString()+'-'+Math.random().toString(36).slice(2,10);await dbSet('auth_verifications/'+profileKey,{code,timestamp:Date.now(),attempt_id:attemptId});status('verifyStatus','Проверяем код…','ok');let result=null;for(let i=0;i<12;i++){await new Promise(r=>setTimeout(r,500));const r=await dbGet('auth_results/'+profileKey);if(r&&r.attempt_id===attemptId){result=r;break}}if(!result)throw Error('Бот не ответил. Проверь, что он запущен, и попробуй ещё раз.');if(!result.ok)throw Error(result.message||'Неверный или просроченный код.');const existing=await dbGet('profiles/'+profileKey).catch(()=>({}));const profile={...(existing||{}),registered:true,telegramId:Number(tgUser.id),firstName:tgUser.first_name||'',lastName:tgUser.last_name||'',username:tgUser.username||'',photoUrl:tgUser.photo_url||'',description:(existing&&existing.description)||'',registeredAt:(existing&&existing.registeredAt)||Date.now(),updatedAt:Date.now()};await dbSet('profiles/'+profileKey,profile);localStorage.setItem('giftora_profile',JSON.stringify(profile));localStorage.setItem('giftora_verified','yes');$('verifyPanel').classList.add('hidden');$('successPanel').classList.remove('hidden');$('accountStatus').textContent='Подтверждён';$('goProfile').textContent='ПРОФИЛЬ ОТКРЫТ';registered=true;setTimeout(()=>{unlockRegistered();switchView('profile')},650)}catch(e){status('verifyStatus',e.message,'err')}finally{$('verifyBtn').disabled=false}};
+$('backBtn').onclick=()=>{$('verifyPanel').classList.add('hidden');$('requestPanel').classList.remove('hidden');$('requestBtn').disabled=puzzleAngle!==puzzleTarget;$('codeInput').value=''};
+loadProfile();
+async function refreshOnline(){try{if(!tgUser.id)return;await dbSet('presence/'+profileKey,{last_seen:Date.now()});const data=await dbGet('presence')||{};const now=Date.now();const count=Object.values(data).filter(x=>x&&now-(x.last_seen||0)<90000).length;$('onlineCount').textContent=count}catch{$('onlineCount').textContent='—'}}refreshOnline();setInterval(refreshOnline,30000);
+
 </script>
 
 </body></html>
